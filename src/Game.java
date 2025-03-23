@@ -21,6 +21,9 @@ public class Game {
     this.name = name;
     this.version = version;
     this.rooms = new ArrayList<Room>(Arrays.asList(rooms));
+    for (Room room : rooms) {
+      room.setGame(this);
+    }
   }
 
   /**

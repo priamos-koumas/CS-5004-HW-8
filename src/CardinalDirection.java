@@ -2,7 +2,7 @@
  * The CardinalDirection enumeration groups the four cardinal directions as constants.
  */
 public enum CardinalDirection {
-  NORTH("N"), EAST("E"), SOUTH("S"), WEST("S");
+  NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
   private String txt;
 
   /**

@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class Room {
   private Game game;
+  private boolean gameSet;
 
   // The @SerializedName tag specifies if the variable name does not match the corresponding
   // key name in a JSON file and gives the correct key name (for this "room_name" is the JSON key
@@ -32,7 +33,6 @@ public class Room {
    * Room's overloaded constructor takes in all the necessary elements that make up the Room
    * as specified below.
    *
-   * @param game the Game instance that created this Room
    * @param roomName the name of the room
    * @param roomNumber the room number
    * @param description a String description of the room
@@ -46,11 +46,10 @@ public class Room {
    * @param fixtures the fixtures in the room
    * @param picture image that depicts the room
    */
-  public Room(Game game, String roomName, int roomNumber, String description,
+  public Room(String roomName, int roomNumber, String description,
               int n, int s, int e, int w, boolean puzzle,
               boolean monster, Map<String, String> items, Map<String, String> fixtures,
               String picture) {
-    this.game = game;
     this.NAME = roomName;
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
@@ -61,6 +60,7 @@ public class Room {
     this.items = new HashMap<>();
     this.fixtures = new HashMap<>();
     this.PICTURE = picture;
+    this.gameSet = false;
   }
 
   /**
@@ -100,10 +100,20 @@ public class Room {
     return NEIGHBORS.getRoom(direction);
   }
 
+  public void setGame(Game game) {
+    if (!gameSet) {
+      this.game = game;
+    }
+    else {
+      throw new IllegalArgumentException("Game is already set");
+    }
+  }
+
   @Override
   public String toString() {
     return "Room{" +
-            "NAME='" + NAME + '\'' +
+            "game=" + game +
+            ", NAME='" + NAME + '\'' +
             ", NUMBER=" + NUMBER +
             ", DESCRIPTION='" + DESCRIPTION + '\'' +
             ", NEIGHBORS=" + NEIGHBORS +
@@ -114,6 +124,4 @@ public class Room {
             ", PICTURE='" + PICTURE + '\'' +
             '}';
   }
-
-
 }

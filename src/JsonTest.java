@@ -20,7 +20,6 @@ public class JsonTest {
 
       // Create a new game class using the reader reading from the json file and the
       // gson object
-
       Game game = gson.fromJson(reader, Game.class);
 
       // Print game object
@@ -32,7 +31,8 @@ public class JsonTest {
         System.out.println(room);
       }
       reader.close();
-    } catch (FileNotFoundException e) {
+    }
+    catch (FileNotFoundException e) {
       throw new FileNotFoundException();
     } catch (IOException e) {
       throw new RuntimeException(e);
