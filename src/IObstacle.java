@@ -1,4 +1,4 @@
-
+import java.awt.image.BufferedImage;
 
 /**
  * This is the obstacle interface which represents any solvable obstacle
@@ -9,42 +9,82 @@ public interface IObstacle {
   /**
    * Sets whether the puzzle or enemy state is solved.
    */
-  public void solved();
+  public void changeActiveState();
 
   /**
-   * Adds obstacle to room.
+   * Gets the obstacle name.
    */
-  public void createObstacle();
+  public String getName();
 
   /**
-   * Removes obstacle from room.
+   * Returns active state of obstacle as a boolean, meaning solved or not.
    */
-  public void removeObstacle();
+  public boolean getActiveState();
 
   /**
-   * Checks and returns a boolean on whether obstacle has been solved.
+   * Returns whether this impacts target as a boolean.
    */
-  public boolean isSolved();
+  public boolean getAffectsTarget();
 
   /**
-   * Gets obstacle name.
+   * Returns whether this impacts player as a boolean.
    */
-  public String getObstacleName();
+  public boolean getAffectsPlayer();
 
   /**
-   * Gets obstacle name.
+   * Checks solutions as a string.
    */
-  public String getObstacleDescription();
+  public String getSolution();
 
   /**
-   * Gets obstacle answer.
+   * Gets the obstacle value as an integer.
    */
-  public String getObstacleAnswer();
-
+  public int getValue();
 
   /**
-   * Returns the health of enemy.
-   * @return int.
+   * Gets the obstacle description.
    */
-  int getHealth();
+  public String getDescription();
+
+  /**
+   * Provides a more indepth understanding and description of what the
+   * obstacle is doing or how it is behaving.
+   */
+  public String getEffects();
+
+  /**
+   * Provides the level of damage an enemy impacts upon attack.
+   */
+  public String getDamage();
+
+  /**
+   * Gets the location of the object.
+   */
+  public String getTarget();
+
+  /**
+   * Set the location of an object.
+   * This is originally set as part of object creation,
+   * the object can move to the bag, or it can be placed in
+   * a new room
+   */
+  public void setTarget(String target);
+
+  /**
+   * Returns whether an object can attack.
+   */
+  public boolean getCanAttack();
+
+  /**
+   * Returns a string describing how an enemy attacks.
+   */
+  public String getAttack();
+
+  /**
+   * Provides an image of the object.
+   */
+  public BufferedImage getImage();
+
+
+
 }

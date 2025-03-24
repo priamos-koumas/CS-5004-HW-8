@@ -1,4 +1,4 @@
-
+import java.awt.image.BufferedImage;
 
 /**
  * This is the abstract obstacle class which implements the IObstacle interface.
@@ -17,70 +17,117 @@ public abstract class AbstractObstacle implements IObstacle {
 
   }
 
-
-
   /**
    * Sets whether the puzzle or enemy state is solved.
    */
-  public void solved() {
-    this.solved = true;
+  public void changeActiveState() {
+
   }
 
   /**
-   * Adds obstacle to room.
+   * Gets the obstacle name.
    */
-  public void createObstacle() {
+  public String getName() {
+    return "";
   }
 
   /**
-   * Removes obstacle from room.
+   * Returns active state of obstacle as a boolean, meaning solved or not.
    */
-
-  public void removeObstacle() {
+  public boolean getActiveState() {
+    return false;
   }
 
   /**
-   * Checks and returns a boolean on whether obstacle has been solved.
+   * Returns whether this impacts target as a boolean.
    */
-  public boolean isSolved() {
-    return this.solved;
+  public boolean getAffectsTarget() {
+    return false;
   }
 
   /**
-   * Gets obstacle name.
+   * Returns whether this impacts player as a boolean.
    */
-  @Override
-  public String getObstacleName() {
-    return this.name;
+  public boolean getAffectsPlayer() {
+    return false;
   }
 
   /**
-   * Gets obstacle name.
+   * Checks solutions as a string.
    */
-  @Override
-  public String getObstacleDescription() {
-    return this.description;
+  public String getSolution() {
+    return "";
   }
 
   /**
-   * Gets obstacle answer.
+   * Gets the obstacle value as an integer.
    */
-  @Override
-  public String getObstacleAnswer() {
-    return this.answer;
-  }
-
-  /**
-   * Returns the health of enemy.
-   *
-   * @return int.
-   */
-  public int getHealth() {
+  public int getValue() {
     return 0;
-  };
+  }
 
   /**
-   * This decrements the health.
+   * Gets the obstacle description.
    */
-  public void decrementHealth() {};
+  public String getDescription() {
+    return "";
+  }
+
+  /**
+   * Provides a more indepth understanding and description of what the
+   * obstacle is doing or how it is behaving.
+   */
+  public String getEffects() {
+    return "";
+  }
+
+  /**
+   * Provides the level of damage an enemy impacts upon attack.
+   */
+  public String getDamage() {
+    return "";
+  }
+
+  /**
+   * Gets the location of the object.
+   */
+  public String getTarget() {
+    return "";
+  }
+
+  /**
+   * Set the location of an object.
+   * This is originally set as part of object creation,
+   * the object can move to the bag, or it can be placed in
+   * a new room
+   *
+   * @param target
+   */
+  public void setTarget(String target) {
+
+  }
+
+  /**
+   * Returns whether an object can attack.
+   */
+  public boolean getCanAttack() {
+    return false;
+  }
+
+  /**
+   * Returns a string describing how an enemy attacks.
+   */
+  public String getAttack() {
+    return "";
+  }
+
+  /**
+   * Provides an image of the object.
+   */
+  public BufferedImage getImage() {
+    return null;
+  }
+
+
+
 }
