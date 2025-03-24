@@ -1,4 +1,6 @@
-package GameEngine;
+package GameEngine.Item;
+
+import java.lang.reflect.Method;
 
 public class HealthPotion extends abstractItem {
 
@@ -12,8 +14,18 @@ public class HealthPotion extends abstractItem {
 
   @Override
   public <T> void interact(T target) {
-    //target.setHealth(target.getHealth() + this.healAmount);
-    return;
+    try {
+      Method getHealthMethod = target.getClass().getMethod("getHealth");
+      Method setHealthMethod = target.getClass().getMethod("setHealth", int.class);
+
+      int currentHealth = (int) getHealthMethod.invoke(target);
+      setHealthMethod.invoke(target, currentHealth + this.healAmount);
+
+      this.usage = this.usage - 1;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public String toString() {

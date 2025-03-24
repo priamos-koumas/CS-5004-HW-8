@@ -2,33 +2,42 @@ package GameEngine;
 
 import java.util.List;
 
+import GameEngine.Avatar.Avatar;
+import GameEngine.Avatar.AvatarController;
+import GameEngine.Avatar.Direction;
+import GameEngine.Holder.bag;
+import GameEngine.Item.HealthPotion;
+import GameEngine.Item.IItem;
+import GameEngine.Room.Room;
+
 public class MainTest {
   public static void main(String[] args) {
 
-    bag bag1 = new bag(10);
+    Room rm0 = new Room("INIT", 0, "Respawn spot");
+    Room rm1 = new Room("Room1", 1, "west room");
+    Room rm2 = new Room("Room2", 2, "east room");
+    Room rm3 = new Room("Room3", 3, "south room");
 
-    IItem healPotion = new HealthPotion("Heal Potion", "Heal 10",
-            3, 1, 10);
+    rm0.setNeighbor(Direction.WEST, rm1);
+    rm0.setNeighbor(Direction.EAST, rm2);
+    rm0.setNeighbor(Direction.SOUTH, rm3);
 
-    IItem healPotionMax = new HealthPotion("Heal Potion Max", "Heal 20",
-            3, 4, 20);
+    IItem healingPotion = new HealthPotion("small potion"
+            ,"Heal 10", 5, 1, 10);
+    rm1.getInvent().addItem(healingPotion);
 
-    bag1.addItem(healPotion);
-    bag1.addItem(healPotionMax);
-    bag1.addItem(healPotion);
+    Avatar player = new Avatar(100, "Warrior", rm0);
 
-    bag1.removeItem("Heal Potion");
-    bag1.removeItem("Heal Potion");
+    System.out.println(player.toString());
 
-    bag1.addItem(healPotionMax);
-    bag1.addItem(healPotionMax);
 
-    List<IItem> list = bag1.getItem();
+    AvatarController control = new AvatarController(player);
+    control.Control("Move", "W");
+    System.out.println(player.toString());
+    System.out.println(rm1.toString());
 
-    for (IItem exist: list) {
-      System.out.println(exist.toString());
-    }
-
+    control.Control("add", "small potion");
+    System.out.println(player.toString());
 
   }
 }

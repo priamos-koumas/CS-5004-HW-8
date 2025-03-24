@@ -1,12 +1,14 @@
-package GameEngine;
+package GameEngine.Holder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class abstractItemHolder implements IHolder{
+import GameEngine.Item.IItem;
+
+public class abstractItemHolder implements IHolder {
 
   private List<IItem> itemlist = new ArrayList<>();
-  private final int weightLimit;
+  private int weightLimit;
   private int usage = 0;
 
   public abstractItemHolder (int weightLimit) {
@@ -18,15 +20,16 @@ public class abstractItemHolder implements IHolder{
    * if true add the item in to the storage list.
    * @param item item
    */
-  public void addItem(IItem item) {
+  public boolean addItem(IItem item) {
 
     if (this.weightLimit < this.usage) {
       System.out.println("Not enough space in the bag");
-      return;
+      return false;
     }
 
     itemlist.add(item);
     this.usage = this.usage + item.getWeight();
+    return true;
 
   }
 
@@ -60,5 +63,29 @@ public class abstractItemHolder implements IHolder{
    */
   public List<IItem> getItem() {
     return this.itemlist;
+  }
+
+  /**
+   * set weight limit.
+   * @param limit
+   */
+  public void setWeightLimit(int limit) {
+    this.weightLimit = limit;
+  }
+
+  /**
+   * to String method.
+   * @return
+   */
+  @Override
+  public String toString() {
+    String result = "";
+
+    for (IItem exist: this.itemlist) {
+      result = result + "\nName: " + exist.getName()
+              + "\nDescription: " + exist.getDescription();
+    }
+
+    return result;
   }
 }

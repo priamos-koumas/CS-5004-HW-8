@@ -1,9 +1,9 @@
-package GameEngine;
+package GameEngine.Item;
 
 public interface IItem {
 
   public String getName();
-  public String getDescriotion();
+  public String getDescription();
   public int getWeight();
   public <T> void interact(T target);
   public int getUsage();

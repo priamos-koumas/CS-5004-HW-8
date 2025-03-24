@@ -1,4 +1,4 @@
-package GameEngine;
+package GameEngine.Item;
 
 public abstract class abstractItem implements IItem {
   protected final String name;
@@ -16,9 +16,11 @@ public abstract class abstractItem implements IItem {
   public String getName() {
     return this.name;
   }
-  public String getDescriotion() {
+
+  public String getDescription() {
     return this.description;
   }
+
   public int getWeight() {
     return this.weight;
   }
