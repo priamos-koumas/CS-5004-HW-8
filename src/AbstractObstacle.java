@@ -122,7 +122,7 @@ public abstract class AbstractObstacle implements IObstacle {
    * Gets the location of the object.
    */
   public String getTarget() {
-    return "";
+    return this.target;
   }
 
   /**

@@ -46,131 +46,115 @@ public class Enemy extends AbstractObstacle {
     return s.equalsIgnoreCase("true");
   }
 
-  /**
-   * Sets whether the puzzle or enemy state is solved.
-   */
-  @Override
-  public void changeActiveState() {
+  ///**
+  // * Sets whether the puzzle or enemy state is solved.
+  // */
+  //public void changeActiveState() {
+  //}
 
-  }
+  ///**
+  // * Gets the obstacle name.
+  // */
+  //public String getName() {
+  //  return "";
+  //}
 
-  /**
-   * Gets the obstacle name.
-   */
-  @Override
-  public String getName() {
-    return "";
-  }
-
-  /**
-   * Returns active state of obstacle as a boolean, meaning solved or not.
-   */
-  @Override
-  public boolean getActiveState() {
-    return false;
-  }
-
-  /**
-   * Returns whether this impacts target as a boolean.
-   */
-  @Override
-  public boolean getAffectsTarget() {
-    return false;
-  }
-
-  /**
-   * Returns whether this impacts player as a boolean.
-   */
-  @Override
-  public boolean getAffectsPlayer() {
-    return false;
-  }
-
-  /**
-   * Checks solutions as a string.
-   */
-  @Override
-  public String getSolution() {
-    return "";
-  }
-
-  /**
-   * Gets the obstacle value as an integer.
-   */
-  @Override
-  public int getValue() {
-    return 0;
-  }
-
-  /**
-   * Gets the obstacle description.
-   */
-  @Override
-  public String getDescription() {
-    return "";
-  }
-
-  /**
-   * Provides a more indepth understanding and description of what the
-   * obstacle is doing or how it is behaving.
-   */
-  @Override
-  public String getEffects() {
-    return "";
-  }
+  ///**
+  // * Returns active state of obstacle as a boolean, meaning solved or not.
+  // */
+  //public boolean getActiveState() {
+  //  return false;
+  //}
+  //
+  ///**
+  // * Returns whether this impacts target as a boolean.
+  // */
+  //public boolean getAffectsTarget() {
+  //  return false;
+  //}
+  //
+  ///**
+  // * Returns whether this impacts player as a boolean.
+  // */
+  //public boolean getAffectsPlayer() {
+  //  return false;
+  //}
+  //
+  ///**
+  // * Checks solutions as a string.
+  // */
+  //public String getSolution() {
+  //  return "";
+  //}
+  //
+  ///**
+  // * Gets the obstacle value as an integer.
+  // */
+  //public int getValue() {
+  //  return 0;
+  //}
+  //
+  ///**
+  // * Gets the obstacle description.
+  // */
+  //public String getDescription() {
+  //  return "";
+  //}
+  //
+  ///**
+  // * Provides a more indepth understanding and description of what the
+  // * obstacle is doing or how it is behaving.
+  // */
+  //public String getEffects() {
+  //  return "";
+  //}
 
   /**
    * Provides the level of damage an enemy impacts upon attack.
    */
-  @Override
   public int getDamage() {
     return this.damage;
   }
 
-  /**
-   * Gets the location of the object.
-   */
-  @Override
-  public String getTarget() {
-    return this.target;
-  }
+  ///**
+  // * Gets the location of the object.
+  // */
+  //public String getTarget() {
+  //  return this.target;
+  //}
 
-  /**
-   * Set the location of an object.
-   * This is originally set as part of object creation,
-   * the object can move to the bag, or it can be placed in
-   * a new room
-   *
-   * @param target
-   */
-  @Override
-  public void setTarget(String target) {
-    this.target = target;
-  }
+  ///**
+  // * Set the location of an object.
+  // * This is originally set as part of object creation,
+  // * the object can move to the bag, or it can be placed in
+  // * a new room
+  // *
+  // * @param target
+  // */
+  //public void setTarget(String target) {
+  //  this.target = target;
+  //}
 
   /**
    * Returns whether an object can attack.
    */
-  @Override
   public boolean getCanAttack() {
-    return false;
+    return this.canAttack;
   }
 
   /**
    * Returns a string describing how an enemy attacks.
    */
-  @Override
   public String getAttack() {
-    return "";
+    return this.attack;
   }
 
-  /**
-   * Provides an image of the object.
-   */
-  @Override
-  public String getImage() {
-    return null;
-  }
+  ///**
+  // * Provides an image of the object.
+  // */
+  //public String getImage() {
+  //  return null;
+  //}
 
 
   // * Returns current health.
