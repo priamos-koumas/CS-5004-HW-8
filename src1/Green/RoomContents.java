@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import GameEngine.IHolder;
+import GameEngine.IItem;
+
 public class RoomContents implements IHolder {
   public Map<String, IItem> contents;
-  //Should this be IItem or IRoomContents
 
   public RoomContents() {
-    contents = new HashMap<String, IItem>();
+    contents = new HashMap<>();
   }
 
   @Override
@@ -27,3 +29,4 @@ public class RoomContents implements IHolder {
     return List.of();
   }
 }
+
