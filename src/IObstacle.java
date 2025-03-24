@@ -1,5 +1,3 @@
-import java.awt.image.BufferedImage;
-
 /**
  * This is the obstacle interface which represents any solvable obstacle
  * such as a puzzle or an enemy.
@@ -55,7 +53,7 @@ public interface IObstacle {
   /**
    * Provides the level of damage an enemy impacts upon attack.
    */
-  public String getDamage();
+  public int getDamage();
 
   /**
    * Gets the location of the object.
@@ -83,7 +81,7 @@ public interface IObstacle {
   /**
    * Provides an image of the object.
    */
-  public BufferedImage getImage();
+  public String getImage();
 
 
 

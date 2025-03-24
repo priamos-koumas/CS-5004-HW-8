@@ -16,11 +16,12 @@ public class Main {
    */
   public static void main(String [] args) throws IOException {
 
-    IObstacle obstacle1 = new Puzzle("Test Obstacle Puzzle", "It's a riddle", "What has 2 legs...", false);
-    IObstacle obstacle2 = new Enemy("Test Obstacle Enemy", "It's a monster", "Kill it", false, 75);
+    IObstacle obstacle1 = new Enemy("Rabbit", "true", "true", "true", "Carrot", "300",
+            "Awww. A furry rabbit twitching its nose and eating a carrot. Makes you want to pet him",
+            "A monster Rabbit moves towards you! He's blocking the way north. \nI think you might be dinner!", "-15", "7:Dining Room", "true",
+            "licks you with a giant tongue!", "monster-rabbit.png");
 
-    System.out.println(obstacle1.getObstacleName());
-    System.out.println(obstacle2.getObstacleName());
+
 
 
 
