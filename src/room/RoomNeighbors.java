@@ -1,10 +1,12 @@
+package room;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The RoomNeighbors class acts as a manager for a Room instance's "neighboring" rooms (i.e., the
+ * The room.RoomNeighbors class acts as a manager for a room.Room instance's "neighboring" rooms (i.e., the
  * rooms that a Player can access from the room they are currently in). These are stored using the
- * CardinalDirection enumeration to prevent more than four rooms being added.
+ * room.CardinalDirection enumeration to prevent more than four rooms being added.
  */
 public class RoomNeighbors {
   private final Map<CardinalDirection, Room> NEIGHBORS;
@@ -38,7 +40,7 @@ public class RoomNeighbors {
   }
 
   /**
-   * Returns the room at the given CardinalDirection. Not a copy.
+   * Returns the room at the given room.CardinalDirection. Not a copy.
    *
    * @param direction direction of target room
    *

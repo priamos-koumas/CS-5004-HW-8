@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import game.Game;
+import room.Room;
+
 /**
  * To ensure GSON is downloaded go to file->project structure->libraries and check that both
  * the gson and the errorprone libraries are downlaoded. If not, from there click the + sign in the

@@ -1,5 +1,7 @@
+package room;
+
 /**
- * The CardinalDirection enumeration groups the four cardinal directions as constants.
+ * The room.CardinalDirection enumeration groups the four cardinal directions as constants.
  */
 public enum CardinalDirection {
   NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
@@ -16,7 +18,7 @@ public enum CardinalDirection {
 
   /**
    * Returns direction's txt value.
-   * @return CardinalDirection's txt value
+   * @return room.CardinalDirection's txt value
    */
   String getText() {
     return txt;

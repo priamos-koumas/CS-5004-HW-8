@@ -1,10 +1,14 @@
+package room;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import game.Game;
+
 /**
- * The Room class represents the location of the player's avatar. It is the central hub for any
+ * The room.Room class represents the location of the player's avatar. It is the central hub for any
  * interactable elements in the game including items, fixtures, puzzles, and monsters.
  */
 public class Room {
@@ -31,7 +35,7 @@ public class Room {
   private final String PICTURE;
 
   /**
-   * Room's overloaded constructor takes in all the necessary elements that make up the Room
+   * room.Room's overloaded constructor takes in all the necessary elements that make up the room.Room
    * as specified below.
    *
    * @param roomName the name of the room
@@ -128,9 +132,9 @@ public class Room {
   }
 
   /**
-   * Returns the room at the given CardinalDirection relative to the current Room instance.
+   * Returns the room at the given room.CardinalDirection relative to the current room.Room instance.
    *
-   * @param direction CardinalDirection of target room
+   * @param direction room.CardinalDirection of target room
    * @return target room
    */
   public Room getNeighbor(CardinalDirection direction) {
@@ -142,13 +146,13 @@ public class Room {
       this.game = game;
     }
     else {
-      throw new IllegalArgumentException("Game is already set");
+      throw new IllegalArgumentException("game.Game is already set");
     }
   }
 
   @Override
   public String toString() {
-    return "Room{" +
+    return "room.Room{" +
             "game=" + game +
             ", NAME='" + NAME + '\'' +
             ", NUMBER=" + NUMBER +
