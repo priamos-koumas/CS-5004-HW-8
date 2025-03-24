@@ -35,7 +35,6 @@ public class Enemy extends AbstractObstacle {
     super(name, active, affects_target, affects_player, solution, value, description, effects,
             target, picture);
 
-
     // Not sent to abstract
     this.damage = Integer.parseInt(damage);
     this.canAttack = booleanChecker(can_attack);
@@ -46,94 +45,12 @@ public class Enemy extends AbstractObstacle {
     return s.equalsIgnoreCase("true");
   }
 
-  ///**
-  // * Sets whether the puzzle or enemy state is solved.
-  // */
-  //public void changeActiveState() {
-  //}
-
-  ///**
-  // * Gets the obstacle name.
-  // */
-  //public String getName() {
-  //  return "";
-  //}
-
-  ///**
-  // * Returns active state of obstacle as a boolean, meaning solved or not.
-  // */
-  //public boolean getActiveState() {
-  //  return false;
-  //}
-  //
-  ///**
-  // * Returns whether this impacts target as a boolean.
-  // */
-  //public boolean getAffectsTarget() {
-  //  return false;
-  //}
-  //
-  ///**
-  // * Returns whether this impacts player as a boolean.
-  // */
-  //public boolean getAffectsPlayer() {
-  //  return false;
-  //}
-  //
-  ///**
-  // * Checks solutions as a string.
-  // */
-  //public String getSolution() {
-  //  return "";
-  //}
-  //
-  ///**
-  // * Gets the obstacle value as an integer.
-  // */
-  //public int getValue() {
-  //  return 0;
-  //}
-  //
-  ///**
-  // * Gets the obstacle description.
-  // */
-  //public String getDescription() {
-  //  return "";
-  //}
-  //
-  ///**
-  // * Provides a more indepth understanding and description of what the
-  // * obstacle is doing or how it is behaving.
-  // */
-  //public String getEffects() {
-  //  return "";
-  //}
-
   /**
    * Provides the level of damage an enemy impacts upon attack.
    */
   public int getDamage() {
     return this.damage;
   }
-
-  ///**
-  // * Gets the location of the object.
-  // */
-  //public String getTarget() {
-  //  return this.target;
-  //}
-
-  ///**
-  // * Set the location of an object.
-  // * This is originally set as part of object creation,
-  // * the object can move to the bag, or it can be placed in
-  // * a new room
-  // *
-  // * @param target
-  // */
-  //public void setTarget(String target) {
-  //  this.target = target;
-  //}
 
   /**
    * Returns whether an object can attack.
@@ -149,35 +66,6 @@ public class Enemy extends AbstractObstacle {
     return this.attack;
   }
 
-  ///**
-  // * Provides an image of the object.
-  // */
-  //public String getImage() {
-  //  return null;
-  //}
-
-
-  // * Returns current health.
-  // */
-  //@Override
-  //public int getHealth() {
-  //  return this.health;
-  //}
-
-
-
-
-
-  // * This addresses an attack on the enemy.
-  // */
-  //@Override
-  //public void decrementHealth() {
-  //  this.health = health - 25;
-  //  System.out.println("You've hit the enemy!");
-  //  if (this.health <= 0) {
-  //    this.solved = true;
-  //    System.out.println("The enemy has been defeated and is going to sleep!");
-  //  }
-  }
+}
 
 

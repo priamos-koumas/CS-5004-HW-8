@@ -39,7 +39,6 @@ public abstract class AbstractObstacle implements IObstacle {
     this.effects = effects;
     this.target = target;
     this.picture = picture;
-
   }
 
   /**
@@ -50,6 +49,7 @@ public abstract class AbstractObstacle implements IObstacle {
   private boolean booleanChecker(String s) {
     return s.equalsIgnoreCase("true");
   }
+
   /**
    * Sets whether the puzzle or enemy state is solved.
    */
@@ -144,4 +144,5 @@ public abstract class AbstractObstacle implements IObstacle {
   public String getImage() {
     return this.picture;
   }
+
 }
