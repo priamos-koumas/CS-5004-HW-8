@@ -22,6 +22,7 @@ public class Room {
 
   @SerializedName("description")
   private final String DESCRIPTION;
+  private final RoomNeighbors NEIGHBORS_ENEMY;
   private final RoomNeighbors NEIGHBORS;
   private boolean puzzle;
   private boolean monster;
@@ -54,6 +55,10 @@ public class Room {
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
     int [] directions = {n, s, e, w};
+
+    this.NEIGHBORS_ENEMY = new RoomNeighbors();
+    makeEnemyNeighbors(directions);
+
     this.NEIGHBORS = new RoomNeighbors(game.getRoom(Math.abs(n)), game.getRoom(s),
                                         game.getRoom(e), game.getRoom(w));
     this.puzzle = puzzle; // ADD ERROR FOR SIMULTANEOUS PUZZLE AND MONSTER
@@ -62,6 +67,37 @@ public class Room {
     this.fixtures = new HashMap<>();
     this.PICTURE = picture;
     this.gameSet = false;
+  }
+
+  private void makeEnemyNeighbors(int[] directions) {
+
+    for (int i = 0; i < directions.length; i++) {
+      if (i == 0) {
+        if (directions[i] <= 0) {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.NORTH, null);
+        } else {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.NORTH, game.getRoom(directions[i]));
+        }
+      } else if (i == 1) {
+        if (directions[i] <= 0) {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.SOUTH, null);
+        } else {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.SOUTH, game.getRoom(directions[i]));
+        }
+      } else if (i == 2) {
+        if (directions[i] <= 0) {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.EAST, null);
+        } else {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.EAST, game.getRoom(directions[i]));
+        }
+      } else if (i == 3) {
+        if (directions[i] <= 0) {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.WEST, null);
+        } else {
+          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.WEST, game.getRoom(directions[i]));
+        }
+      }
+    }
   }
 
   /**

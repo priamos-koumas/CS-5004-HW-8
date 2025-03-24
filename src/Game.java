@@ -9,6 +9,7 @@ public class Game {
   private String name;
   private String version;
   private List<Room> rooms;
+  private List<IItem> items; // must be concrete so GSON can understand
 
   /**
    * Game objects are created with a name, a version number, and a List of Room objects.
@@ -24,6 +25,7 @@ public class Game {
     for (Room room : rooms) {
       room.setGame(this);
     }
+
   }
 
   /**
