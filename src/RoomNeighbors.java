@@ -26,6 +26,17 @@ public class RoomNeighbors {
     NEIGHBORS.put(CardinalDirection.WEST, W);
   }
 
+  public RoomNeighbors() {
+    NEIGHBORS = new HashMap<CardinalDirection, Room>();
+  }
+
+  public void setNeighbor(CardinalDirection direction, Room room) {
+    if (NEIGHBORS.containsKey(direction)) {
+      throw new IllegalArgumentException("Direction " + direction + " is already set");
+    }
+    NEIGHBORS.put(direction, room);
+  }
+
   /**
    * Returns the room at the given CardinalDirection. Not a copy.
    *

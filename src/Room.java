@@ -53,7 +53,8 @@ public class Room {
     this.NAME = roomName;
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
-    this.NEIGHBORS = new RoomNeighbors(game.getRoom(n), game.getRoom(s),
+    int [] directions = {n, s, e, w};
+    this.NEIGHBORS = new RoomNeighbors(game.getRoom(Math.abs(n)), game.getRoom(s),
                                         game.getRoom(e), game.getRoom(w));
     this.puzzle = puzzle; // ADD ERROR FOR SIMULTANEOUS PUZZLE AND MONSTER
     this.monster = monster;
