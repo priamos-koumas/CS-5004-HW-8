@@ -1,15 +1,24 @@
 package Green;
 
-public class Item extends AbstractContents implements IItem {
-  private int weight;
+import com.google.gson.annotations.SerializedName;
+
+public class Item extends AbstractContents implements IElements {
+
+  @SerializedName("max_uses")
   private int maxUses;
+
+  @SerializedName("uses_remaining")
   private int usesRemaining;
+
+  @SerializedName("value")
   private int value;
+
+  @SerializedName("when_used")
   private String whenUsed;
 
   public Item(String name, String description, int weight, int maxUses, int usesRemaining,
               int value, String whenUsed) {
-    super(name, description);
+    super(name, description, weight);
     this.weight = weight;
     this.maxUses = maxUses;
     this.usesRemaining = usesRemaining;
@@ -21,8 +30,7 @@ public class Item extends AbstractContents implements IItem {
   public void decrementUsesRemaining() {
     if (this.usesRemaining > 0) {
       this.usesRemaining--;
-    }
-    else {
+    } else {
       this.usesRemaining = 0;
     }
   }
@@ -35,26 +43,8 @@ public class Item extends AbstractContents implements IItem {
     return this.whenUsed;
   }
 
-  public int getWeight() {
-    return weight;
-  }
-
   public int getValue() {
     return value;
   }
-
-  @Override
-  public <T> void interact(T target) {
-
-  }
-
-  @Override
-  public int getUsage() {
-    return 0;
-  }
-
-  @Override
-  public String getName() {
-    return super.getName();
-  }
 }
+

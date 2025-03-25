@@ -1,18 +1,31 @@
 package Green;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Fixtures extends AbstractContents {
-  int weight;
 
-  public Fixtures(String name, String description, int weight) {
-    super(name, description);
+  @SerializedName("puzzle")
+  private String puzzle;
+
+  @SerializedName("states")
+  private String states;
+
+  public Fixtures(String name, String description, int weight, String puzzle, String states) {
+    super(name, description, weight);
     this.weight = weight;
+    this.puzzle = puzzle;
+    this.states = states;
   }
 
-  public int getWeight() {
-    return weight;
+  public boolean isFixtureMovable() {
+    return weight <= 200;
   }
 
-  public boolean fixtureImmovable() {
-    return weight > 200;
+  public String getPuzzle() {
+    return puzzle;
+  }
+
+  public String getStates() {
+    return states;
   }
 }
