@@ -43,6 +43,8 @@
       "description":"Congratulations on all you've achieved! You're at the end of the road with the Bridge.\nBest wishes as you proceed to the MSCS/MSDS!\n *** THE END *** (of this adventure...the START of a new one for YOU! :-))",
       "N": "0", "S": "12", "E": "0", "W": "0","puzzle": "Robot", "monster": null, "items": "Note", "fixtures" : null, "picture": "congratulations.png" }
   ],
+
+
   "items":[
     { "name":"Lamp", "weight": "3", "max_uses": "100", "uses_remaining": "20", "value" : "100", "when_used" : "You light the lamp with the flint.",
       "description":"An old oil lamp with flint to spark.", "picture": "lamp.png" },

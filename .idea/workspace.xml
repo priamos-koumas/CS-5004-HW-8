@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aece01a-14b4-4385-8c77-90ff1b2f628b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/IHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abstractItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CS-5004-HW-8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CS-5004-HW-8.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/align_quest_game_elements.json" beforeDir="false" afterPath="$PROJECT_DIR$/align_quest_game_elements.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/AbstractObstacle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/AbstractObstacle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/IObstacle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/IObstacle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/Puzzle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS-5004-HW-8/RoomObstacles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-5004-HW-8/RoomObstacles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractObstacle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Puzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RoomObstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoomObstacles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/IObstacleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/IObstacleTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +60,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.IObstacleTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
@@ -92,7 +100,7 @@
       <updated>1742839849534</updated>
       <workItem from="1742839850577" duration="353000" />
       <workItem from="1742840207914" duration="1189000" />
-      <workItem from="1742841455105" duration="5586000" />
+      <workItem from="1742841455105" duration="21967000" />
     </task>
     <servers />
   </component>

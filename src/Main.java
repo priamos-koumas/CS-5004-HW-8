@@ -47,6 +47,11 @@ public class Main {
     System.out.println(obstacle1.getAttack());
     System.out.println("*******Image********");
     System.out.println(obstacle1.getImage());
+    System.out.println("*******RoomObstacle********");
+    RoomObstacles roomObstacles = new RoomObstacles();
+    roomObstacles.addObstacle("Rabbit", obstacle1);
+    System.out.println(roomObstacles.getObstacle("Rabbit"));
+
 
     // Enemy smoke test
     IObstacle obstacle2 = new Puzzle("DARKNESS", "true", "true", "true", "Lamp", "150",

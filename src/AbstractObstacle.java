@@ -41,6 +41,7 @@ public abstract class AbstractObstacle implements IObstacle {
     this.picture = picture;
   }
 
+
   /**
    * This takes a string from the constructor and returns a boolean.
    * @param s is a String of either True or False.

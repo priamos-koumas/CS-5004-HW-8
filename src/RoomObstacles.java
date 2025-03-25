@@ -9,6 +9,19 @@ import java.util.List;
 public class RoomObstacles implements IHolder {
 
   private HashMap<String, IObstacle> obstacles;
+  private IObstacle iObstacle;
+
+  public RoomObstacles() {
+    this.obstacles = new HashMap<>();
+  }
+
+  public void addObstacle(String s, IObstacle o) {
+    this.obstacles.put(s, o);
+  }
+
+  public IObstacle getObstacle(String s) {
+    return this.obstacles.get(s);
+  }
 
 
   /**

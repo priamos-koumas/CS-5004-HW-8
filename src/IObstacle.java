@@ -87,4 +87,5 @@ public interface IObstacle {
    */
   public String getImage();
 
+  IObstacle getPuzzle();
 }

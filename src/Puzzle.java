@@ -21,6 +21,7 @@ public class Puzzle extends AbstractObstacle {
   private String target;
 
   private String picture; //https://stackoverflow.com/questions/34072052/is-it-possible-to-add-an-image-png-as-an-attribute-of-a-java-class
+  private RoomObstacles puzzle;
 
   public Puzzle(String name, String active, String affects_target, String affects_player,
                String solution, String value, String description, String effects,
@@ -28,6 +29,16 @@ public class Puzzle extends AbstractObstacle {
     // Push to abstract constructor
     super(name, active, affects_target, affects_player, solution, value, description, effects,
             target, picture);
+
+    // Add puzzle to the Room Obstacles Class
+    this.puzzle = new RoomObstacles();
+    this.puzzle.addObstacle(this.name, this);
+  }
+
+
+  @Override
+  public IObstacle getPuzzle() {
+    return this.puzzle.getObstacle(this.getTarget());
   }
 
   private boolean booleanChecker(String s) {
