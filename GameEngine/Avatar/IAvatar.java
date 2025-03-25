@@ -1,5 +1,6 @@
 package GameEngine.Avatar;
 
+import GameEngine.Holder.bag;
 import GameEngine.Item.IItem;
 import GameEngine.Room.Room;
 
@@ -42,6 +43,8 @@ public interface IAvatar {
    * @param health
    */
   public void setHealth(int health);
+
+  public bag getBag();
 
   public String toString();
 

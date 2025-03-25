@@ -75,14 +75,29 @@ public class Avatar implements IAvatar{
     this.health = health;
   }
 
+  @Override
+  public bag getBag() {
+    return this.inventory;
+  }
+
   /**
    * to String method
    * @return
    */
   @Override
   public String toString() {
+    String status = "";
+    if (this.health <= 0 )
+      status =  HEALTH_STATUS.SLEEP.getText();
+    if(this.health < 40)
+      status =  HEALTH_STATUS.WOOZY.getText();
+    if(this.health < 70)
+      status =  HEALTH_STATUS.FATIGUED.getText();
+    if(this.health >=70)
+      status =  HEALTH_STATUS.AWAKE.getText();
+
     String result = "Name: " + this.name
-            + "\n Health: " + this.health
+            + "\n Health: " + this.health + " feeling " + status
             + "\n Current Loc: " + this.loc.getDescription()
             + "\n Inventory: " + this.inventory.toString();
     return result;

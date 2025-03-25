@@ -28,16 +28,15 @@ public class MainTest {
 
     Avatar player = new Avatar(100, "Warrior", rm0);
 
-    System.out.println(player.toString());
-
-
     AvatarController control = new AvatarController(player);
-    control.Control("Move", "W");
-    System.out.println(player.toString());
-    System.out.println(rm1.toString());
 
-    control.Control("add", "small potion");
-    System.out.println(player.toString());
+    control.Control("W");
+
+    control.Control("t", "small potion");
+
+    control.Control("X", "small potion");
+
+
 
   }
 }
