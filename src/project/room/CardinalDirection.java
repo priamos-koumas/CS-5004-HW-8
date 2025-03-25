@@ -20,7 +20,7 @@ public enum CardinalDirection {
    * Returns direction's txt value.
    * @return room.CardinalDirection's txt value
    */
-  String getText() {
+  public String getText() {
     return txt;
   }
 }

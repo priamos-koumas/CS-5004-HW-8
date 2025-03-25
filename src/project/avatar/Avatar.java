@@ -2,6 +2,7 @@ package project.avatar;
 
 import project.elements.IElements;
 import project.holder.Bag;
+import project.room.CardinalDirection;
 import project.room.Room;
 
 public class Avatar implements IAvatar{
@@ -23,7 +24,7 @@ public class Avatar implements IAvatar{
    * @return
    */
   @Override
-  public boolean moveRoom(Direction direction) {
+  public boolean moveRoom(CardinalDirection direction) {
 
     if (this.loc.getNeighbor(direction) == null) {
       return false;

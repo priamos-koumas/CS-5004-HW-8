@@ -1,8 +1,8 @@
 package project.avatar;
 
-import GameEngine.Holder.bag;
-import GameEngine.Item.IItem;
-import GameEngine.Room.Room;
+import project.holder.Bag;
+import project.room.CardinalDirection;
+import project.room.Room;
 import project.elements.IElements;
 
 public class AvatarController {
@@ -18,7 +18,7 @@ public class AvatarController {
 
     if (instruct.equalsIgnoreCase("W") || instruct.equalsIgnoreCase("E") ||
             instruct.equalsIgnoreCase("N")|| instruct.equalsIgnoreCase("S")) {
-      for (Direction dir : Direction.values()) {
+      for (CardinalDirection dir : CardinalDirection.values()) {
         if (dir.getText().equalsIgnoreCase(instruct)) {
           this.player.moveRoom(dir);
           return;
@@ -28,10 +28,10 @@ public class AvatarController {
 
     else if (instruct.equalsIgnoreCase("T")) {
       String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      for (IElements items : this.player.getLoc().getInventList()) {
+      for (IElements items : this.player.getLoc().getRoomItemsList()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
-          this.player.getLoc().getInvent().removeItem(items.getName());
+          this.player.getLoc().getRoomItems().removeItem(items.getName());
           return;
         }
       }
@@ -53,10 +53,10 @@ public class AvatarController {
 
     else if (instruct.equalsIgnoreCase("D")) {
       String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      for (IItem items : this.player.getBag().getItem()) {
+      for (IElements items : this.player.getBag().getItem()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.getBag().removeItem(items.getName());
-          this.player.getLoc().getInvent().addItem(items);
+          this.player.getLoc().getRoomItems().addItem(items);
           return;
         }
       }
@@ -64,8 +64,8 @@ public class AvatarController {
 
     else if (instruct.equalsIgnoreCase("X")) {
       String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      bag bag1 = player.getBag();
-      for (IItem items : bag1.getItem()) {
+      Bag bag1 = player.getBag();
+      for (IElements items : bag1.getItem()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           System.out.println(items.getDescription());
           return;

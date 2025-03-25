@@ -102,7 +102,7 @@ public class Room {
     this.NEIGHBORS.setNeighbor(CardinalDirection.NORTH, directions[0]);
     this.NEIGHBORS.setNeighbor(CardinalDirection.SOUTH, directions[1]);
     this.NEIGHBORS.setNeighbor(CardinalDirection.EAST, directions[2]);
-    this.NEIGHBORS.setNeighbor(CardinalDirection.WEST, directions[0]);
+    this.NEIGHBORS.setNeighbor(CardinalDirection.WEST, directions[3]);
   }
 
   /**
@@ -213,5 +213,13 @@ public class Room {
             ", roomFixtures=" + roomFixtures +
             ", PICTURE='" + PICTURE + '\'' +
             '}' + "\n";
+  }
+
+  public IHolder<IElements> getRoomItems() {
+    return this.roomItems;
+  }
+
+  public List<IElements> getRoomItemsList() {
+    return this.roomItems.getItem();
   }
 }

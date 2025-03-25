@@ -1,5 +1,6 @@
 package project.holder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,12 @@ public class RoomContents implements IHolder<IElements> {
   }
 
   @Override
-  public <T> List<T> getItem() {
-    return List.of();
+  public List<IElements> getItem() {
+    List<IElements> contentsList = new ArrayList<>();
+    for (String key : contents.keySet()) {
+      contentsList.add((IElements) contents.values());
+    }
+    return contentsList;
   }
 
 }
