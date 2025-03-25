@@ -1,4 +1,4 @@
-package GameEngine.Avatar;
+package project.avatar;
 
 import GameEngine.Holder.bag;
 import GameEngine.Item.IItem;

@@ -1,7 +1,7 @@
-package GameEngine.Avatar;
+package project.avatar;
 
-public enum HEALTH_STATUS {
-  SLEEP("SLEEP"), WOOZY("WOOZY"), FATIGUED("FATIGUED"), AWAKE("AWAKE");
+public enum Direction {
+  NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
   private String txt;
 
   /**
@@ -9,7 +9,7 @@ public enum HEALTH_STATUS {
    *
    * @param txt direction's first letter
    */
-  HEALTH_STATUS(String txt) {
+  Direction(String txt) {
     this.txt = txt;
   }
 

@@ -1,9 +1,8 @@
 package project.avatar;
 
-import project.elements.IElements;
-import project.room.Room;
-
-import project.room.CardinalDirection;
+import GameEngine.Holder.bag;
+import GameEngine.Item.IItem;
+import GameEngine.Room.Room;
 
 public interface IAvatar {
 
@@ -12,7 +11,7 @@ public interface IAvatar {
    * @param direction
    * @return
    */
-  public boolean moveRoom(CardinalDirection direction);
+  public boolean moveRoom(Direction direction);
 
   /**
    * get room.
@@ -25,7 +24,7 @@ public interface IAvatar {
    * @param item
    * @return
    */
-  public boolean addToBag(IElements item);
+  public boolean addToBag(IItem item);
 
   /**
    * reset the weight limit for the bag
@@ -44,6 +43,8 @@ public interface IAvatar {
    * @param health
    */
   public void setHealth(int health);
+
+  public bag getBag();
 
   public String toString();
 

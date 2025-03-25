@@ -1,16 +1,14 @@
 package project.avatar;
 
-import project.elements.IElements;
+import GameEngine.Holder.bag;
+import GameEngine.Item.IItem;
+import GameEngine.Room.Room;
 
-import project.holder.Bag;
-import project.room.CardinalDirection;
-import project.room.Room;
-
-public class Avatar implements IAvatar {
+public class Avatar implements IAvatar{
 
   private int health;
   private String name;
-  private Bag inventory = new Bag(10);
+  private bag inventory = new bag(10);
   private Room loc;
 
   public Avatar(int health, String name, Room init) {
@@ -25,7 +23,7 @@ public class Avatar implements IAvatar {
    * @return
    */
   @Override
-  public boolean moveRoom(CardinalDirection direction) {
+  public boolean moveRoom(Direction direction) {
 
     if (this.loc.getNeighbor(direction) == null) {
       return false;
@@ -46,7 +44,7 @@ public class Avatar implements IAvatar {
    * @return
    */
   @Override
-  public boolean addToBag(IElements item) {
+  public boolean addToBag(IItem item) {
     return this.inventory.addItem(item);
   }
 
@@ -77,14 +75,29 @@ public class Avatar implements IAvatar {
     this.health = health;
   }
 
+  @Override
+  public bag getBag() {
+    return this.inventory;
+  }
+
   /**
    * to String method
    * @return
    */
   @Override
   public String toString() {
+    String status = "";
+    if (this.health <= 0 )
+      status =  HEALTH_STATUS.SLEEP.getText();
+    if(this.health < 40)
+      status =  HEALTH_STATUS.WOOZY.getText();
+    if(this.health < 70)
+      status =  HEALTH_STATUS.FATIGUED.getText();
+    if(this.health >=70)
+      status =  HEALTH_STATUS.AWAKE.getText();
+
     String result = "Name: " + this.name
-            + "\n Health: " + this.health
+            + "\n Health: " + this.health + " feeling " + status
             + "\n Current Loc: " + this.loc.getDescription()
             + "\n Inventory: " + this.inventory.toString();
     return result;

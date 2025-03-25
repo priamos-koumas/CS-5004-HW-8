@@ -1,13 +1,13 @@
-package project.holder;
+package GameEngine.Holder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import project.elements.IElements;
+import GameEngine.Item.IItem;
 
-public class abstractItemHolder implements IHolder<IElements> {
+public class abstractItemHolder implements IHolder {
 
-  private List<IElements> itemlist = new ArrayList<>();
+  private List<IItem> itemlist = new ArrayList<>();
   private int weightLimit;
   private int usage = 0;
 
@@ -20,8 +20,8 @@ public class abstractItemHolder implements IHolder<IElements> {
    * if true add the item in to the storage list.
    * @param item item
    */
-  @Override
-  public boolean addItem(IElements item) {
+  public boolean addItem(IItem item) {
+
     if (this.weightLimit < this.usage) {
       System.out.println("Not enough space in the bag");
       return false;
@@ -44,7 +44,7 @@ public class abstractItemHolder implements IHolder<IElements> {
     if (itemlist.isEmpty() || itemlist == null) {
       System.out.println("Nothing is in the list");
     }
-    for (IElements exist : itemlist) {
+    for (IItem exist : itemlist) {
       if (exist != null && exist.getName() != null
               && exist.getName().equalsIgnoreCase(name)) {
         itemlist.remove(exist);
@@ -61,7 +61,7 @@ public class abstractItemHolder implements IHolder<IElements> {
    * Check if the item is in the holder.
    * @return Item object
    */
-  public List<IElements> getItem() {
+  public List<IItem> getItem() {
     return this.itemlist;
   }
 
@@ -81,7 +81,7 @@ public class abstractItemHolder implements IHolder<IElements> {
   public String toString() {
     String result = "";
 
-    for (IElements exist: this.itemlist) {
+    for (IItem exist: this.itemlist) {
       result = result + "\nName: " + exist.getName()
               + "\nDescription: " + exist.getDescription();
     }
