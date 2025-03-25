@@ -1,17 +1,15 @@
-package GameEngine.Holder;
+package project.holder;
 
 import java.util.List;
 
-import GameEngine.Item.IItem;
-
-public interface IHolder {
+public interface IHolder <T> {
 
   /**
    * Check if the bag have enough storage.
    * if true add the item in to the storage list.
    * @param item
    */
-  public boolean addItem(IItem item);
+  public boolean addItem(T item);
 
   /**
    * Check if the item is in the holder.
@@ -26,11 +24,11 @@ public interface IHolder {
    */
   public <T> List<T> getItem();
 
-  /**
-   * set weight limit.
-   * @param limit
-   */
-  public void setWeightLimit(int limit);
+//  /**
+//   * set weight limit.
+//   * @param limit
+//   */
+//  public void setWeightLimit(int limit);
 
   public String toString();
 }
