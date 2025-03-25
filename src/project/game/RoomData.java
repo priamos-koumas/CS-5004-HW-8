@@ -7,15 +7,35 @@ public class RoomData {
   private String roomName;
   @SerializedName("room_number")
   private String roomNumber;
+
+  @SerializedName("description")
   private String description;
+
+  @SerializedName("N")
   private String N;
+
+  @SerializedName("S")
   private String S;
+
+  @SerializedName("E")
   private String E;
+
+  @SerializedName("W")
   private String W;
+
+  @SerializedName("puzzle")
   private String puzzle;
+
+  @SerializedName("monster")
   private String monster;
+
+  @SerializedName("items")
   private String items;
+
+  @SerializedName("fixtures")
   private String fixtures;
+
+  @SerializedName("picture")
   private String picture;
 
   public String getRoomName() {

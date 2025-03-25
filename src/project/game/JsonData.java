@@ -1,14 +1,27 @@
 package project.game;
 
 import java.util.List;
-
 public class JsonData {
+
+  @SerializedName("name")
   private String name;
+
+  @SerializedName("version")
   private String version;
+
+  @SerializedName("rooms")
   private List<RoomData> rooms;
+
+  @SerializedName("items")
   private List<ItemData> items;
+
+  @SerializedName("fixtures")
   private List<FixtureData> fixtures;
+
+  @SerializedName("monsters")
   private List<MonsterData> monsters;
+
+  @SerializedName("puzzles")
   private List<PuzzleData> puzzles;
 
   @Override

@@ -1,15 +1,35 @@
 package project.game;
 
 public class PuzzleData {
+
+  @SerializedName("name")
   private String name;
+
+  @SerializedName("active")
   private String active;
+
+  @SerializedName("affects_targets")
   private String affectsTarget;
+
+  @SerializedName("affects_player")
   private String affectsPlayer;
+
+  @SerializedName("solution")
   private String solution;
+
+  @SerializedName("value")
   private String value;
+
+  @SerializedName("description")
   private String description;
+
+  @SerializedName("effects")
   private String effects;
+
+  @SerializedName("target")
   private String target;
+
+  @SerializedName("picture")
   private String picture;
 
   public String getName() {

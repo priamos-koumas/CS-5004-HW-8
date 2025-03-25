@@ -1,20 +1,46 @@
 package project.game;
 
 public class MonsterData {
-  private String name;
-  private String active;
-  private String affectsTarget;
-  private String affectsPlayer;
-  private String solution;
-  private String value;
-  private String description;
-  private String effects;
-  private String damage;
-  private String target;
-  private String canAttack;
-  private String attack;
-  private String picture;
 
+  @SerializedName("name")
+  private String name;
+  
+  @SerializedName("active")
+  private String active;
+
+  @SerializedName("affects_target")
+  private String affectsTarget;
+
+  @SerializedName("affects_player")
+  private String affectsPlayer;
+
+  @SerializedName("solution")
+  private String solution;
+
+  @SerializedName("value")
+  private String value;
+
+  @SerializedName("description")
+  private String description;
+
+  @SerializedName("effects")
+  private String effects;
+  
+  @SerializedName("damage")
+  private String damage;
+
+  @SerializedName("target")
+  private String target;
+
+  @SerializedName("can_attack")
+  private String canAttack;
+
+  @SerializedName("attack")
+  private String attack;
+
+  @SerializedName("picture")
+  private String picture;
+  
   public String getName() {
     return name;
   }
