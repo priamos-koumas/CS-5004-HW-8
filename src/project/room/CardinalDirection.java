@@ -1,4 +1,4 @@
-package room;
+package project.room;
 
 /**
  * The room.CardinalDirection enumeration groups the four cardinal directions as constants.

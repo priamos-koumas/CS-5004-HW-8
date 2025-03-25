@@ -1,4 +1,4 @@
-package holder;
+package project.holder;
 
 public class Bag extends abstractItemHolder {
 

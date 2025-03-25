@@ -1,6 +1,6 @@
-package elements;
+package project.elements;
 
-public class AbstractContents implements IElements {
+abstract class AbstractContents implements IElements {
   private String name;
   private String description;
 

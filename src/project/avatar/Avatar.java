@@ -1,10 +1,10 @@
-package avatar;
+package project.avatar;
 
-import elements.IItem;
+import project.elements.IElements;
 
-import holder.Bag;
-import room.CardinalDirection;
-import room.Room;
+import project.holder.Bag;
+import project.room.CardinalDirection;
+import project.room.Room;
 
 public class Avatar implements IAvatar {
 
@@ -46,7 +46,7 @@ public class Avatar implements IAvatar {
    * @return
    */
   @Override
-  public boolean addToBag(IItem item) {
+  public boolean addToBag(IElements item) {
     return this.inventory.addItem(item);
   }
 

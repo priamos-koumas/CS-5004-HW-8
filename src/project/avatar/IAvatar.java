@@ -1,9 +1,9 @@
-package avatar;
+package project.avatar;
 
-import room.Room;
+import project.elements.IElements;
+import project.room.Room;
 
-import room.CardinalDirection;
-import elements.IItem;
+import project.room.CardinalDirection;
 
 public interface IAvatar {
 
@@ -25,7 +25,7 @@ public interface IAvatar {
    * @param item
    * @return
    */
-  public boolean addToBag(IItem item);
+  public boolean addToBag(IElements item);
 
   /**
    * reset the weight limit for the bag

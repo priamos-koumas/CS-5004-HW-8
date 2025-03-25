@@ -1,6 +1,8 @@
-package elements;
+package project.elements;
 
-public class Item extends AbstractContents implements IItem {
+import project.game.ItemData;
+
+public class Item extends AbstractContents implements IElements {
   private int weight;
   private int maxUses;
   private int usesRemaining;
@@ -15,7 +17,23 @@ public class Item extends AbstractContents implements IItem {
     this.usesRemaining = usesRemaining;
     this.value = value;
     this.whenUsed = whenUsed;
+  }
 
+  public Item(ItemData data) {
+    super(data.getName(), data.getDescription());
+    if (data.getWeight() != null) {
+      this.weight = Integer.parseInt(data.getWeight());
+    }
+    if (data.getMaxUses() != null) {
+      this.maxUses = Integer.parseInt(data.getMaxUses());
+    }
+    if (data.getUsesRemaining() != null) {
+      this.usesRemaining = Integer.parseInt(data.getUsesRemaining());
+    }
+    if (data.getValue() != null) {
+      this.value = Integer.parseInt(data.getValue());
+    }
+    this.whenUsed = data.getWhenUsed();
   }
 
   public void decrementUsesRemaining() {
@@ -43,12 +61,10 @@ public class Item extends AbstractContents implements IItem {
     return value;
   }
 
-  @Override
   public <T> void interact(T target) {
 
   }
 
-  @Override
   public int getUsage() {
     return 0;
   }
@@ -56,5 +72,16 @@ public class Item extends AbstractContents implements IItem {
   @Override
   public String getName() {
     return super.getName();
+  }
+
+  @Override
+  public String toString() {
+    return "Item{" +
+            "weight=" + weight +
+            ", maxUses=" + maxUses +
+            ", usesRemaining=" + usesRemaining +
+            ", value=" + value +
+            ", whenUsed='" + whenUsed + '\'' +
+            '}';
   }
 }

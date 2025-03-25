@@ -1,4 +1,4 @@
-package elements;
+package project.elements;
 
 public interface IItem {
 

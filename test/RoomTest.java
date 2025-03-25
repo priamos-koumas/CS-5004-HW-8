@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import game.Game;
-import room.Room;
+import project.game.GameOld;
+import project.room.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 class RoomTest {
@@ -20,7 +20,7 @@ class RoomTest {
   }
 
   Gson gson = new Gson();
-  Game game = gson.fromJson(reader, Game.class);
+  GameOld game = gson.fromJson(reader, GameOld.class);
 
   Room room1 = game.getRooms().get(0);
   Room room2 = game.getRooms().get(1);
