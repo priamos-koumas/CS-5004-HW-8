@@ -3,6 +3,7 @@ package avatar;
 import room.Room;
 
 import room.CardinalDirection;
+import elements.IItem;
 
 public interface IAvatar {
 

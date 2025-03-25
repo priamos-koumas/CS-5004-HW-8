@@ -1,6 +1,6 @@
 package avatar;
 
-import
+import elements.IItem;
 
 import holder.Bag;
 import room.CardinalDirection;

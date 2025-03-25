@@ -2,6 +2,8 @@ package holder;
 
 import java.util.List;
 
+import elements.IItem;
+
 public interface IHolder {
 
   /**

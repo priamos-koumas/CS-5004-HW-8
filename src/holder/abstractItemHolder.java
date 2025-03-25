@@ -3,6 +3,8 @@ package holder;
 import java.util.ArrayList;
 import java.util.List;
 
+import elements.IItem;
+
 public class abstractItemHolder implements IHolder {
 
   private List<IItem> itemlist = new ArrayList<>();

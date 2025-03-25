@@ -1,3 +1,5 @@
+package elements;
+
 public interface IItem {
 
   public String getName();
