@@ -19,7 +19,6 @@ import project.obstacle.IObstacle;
  */
 public class Room {
   private Game game;
-  private boolean gameSet;
 
   // The @SerializedName tag specifies if the variable name does not match the corresponding
   // key name in a JSON file and gives the correct key name (for this "room_name" is the JSON key
@@ -64,19 +63,13 @@ public class Room {
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
     int [] directions = {n, s, e, w};
-
     this.NEIGHBORS = new RoomNeighbors(this.game.getRooms());
-//    makeEnemyNeighbors(directions);
-//    this.NEIGHBORS = new RoomNeighbors(game.getRoom(Math.abs(n)), game.getRoom(s),
-//                                        game.getRoom(e), game.getRoom(w));
-
     setObstacle(monster, puzzle);
     this.roomItems = new Bag(13);
     setRoomItems(items);
     this.roomFixtures = new RoomContents();
     setRoomFixtures(fixtures);
     this.PICTURE = picture;
-    this.gameSet = false;
   }
 
   public Room(Game game, RoomData data) {
@@ -99,6 +92,12 @@ public class Room {
     setRoomFixtures(data.getFixtures());
   }
 
+  /**
+   * Sets the Neighbors attribute from JSON class. The order of the numbers in the  directions
+   * array must be n, s, e, w.
+   *
+   * @param directions array of room numbers
+   */
   private void setNeighbors(int[] directions) {
     this.NEIGHBORS.setNeighbor(CardinalDirection.NORTH, directions[0]);
     this.NEIGHBORS.setNeighbor(CardinalDirection.SOUTH, directions[1]);
@@ -106,6 +105,12 @@ public class Room {
     this.NEIGHBORS.setNeighbor(CardinalDirection.WEST, directions[0]);
   }
 
+  /**
+   * Processes a String of Item names (format: 'item1, item2, etc') and adds the corresponding
+   * Item object to the roomItems attribute.
+   *
+   * @param roomItems String of Item names
+   */
   private void setRoomItems(String roomItems) {
     if (roomItems != null) {
       List<String> itemsList = Arrays.asList(roomItems.split("\\s*,\\s*"));
@@ -119,6 +124,12 @@ public class Room {
     }
   }
 
+  /**
+   * Processes a String of Fixture names (format: 'fixture1, fixture2, etc') and adds the
+   * corresponding Fixture object to the roomFixtures attribute.
+   *
+   * @param roomFixtures String of Fixture names
+   */
   private void setRoomFixtures(String roomFixtures) {
     if (roomFixtures != null) {
       List<String> fixturesList = Arrays.asList(roomFixtures.split("\\s*,\\s*"));
@@ -132,6 +143,12 @@ public class Room {
     }
   }
 
+  /**
+   * Sets the obstacle parameter and ensures that there is no more than one enemy XOR one puzzle.
+   *
+   * @param enemy name of Enemy
+   * @param puzzle name of Puzzle
+   */
   private void setObstacle(String enemy, String puzzle) {
 
     if (enemy == null && puzzle == null) {
@@ -147,38 +164,6 @@ public class Room {
     }
   }
 
-  /**
-  private void makeEnemyNeighbors(int[] directions) {
-
-    for (int i = 0; i < directions.length; i++) {
-      if (i == 0) {
-        if (directions[i] <= 0) {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.NORTH, null);
-        } else {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.NORTH, game.getRoom(directions[i]));
-        }
-      } else if (i == 1) {
-        if (directions[i] <= 0) {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.SOUTH, null);
-        } else {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.SOUTH, game.getRoom(directions[i]));
-        }
-      } else if (i == 2) {
-        if (directions[i] <= 0) {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.EAST, null);
-        } else {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.EAST, game.getRoom(directions[i]));
-        }
-      } else if (i == 3) {
-        if (directions[i] <= 0) {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.WEST, null);
-        } else {
-          NEIGHBORS_ENEMY.setNeighbor(CardinalDirection.WEST, game.getRoom(directions[i]));
-        }
-      }
-    }
-  }
-*/
   /**
    * Returns room name.
    *
@@ -215,17 +200,6 @@ public class Room {
   public Room getNeighbor(CardinalDirection direction) {
     return NEIGHBORS.getRoom(direction);
   }
-
-  /**
-  public void setGame(Game2 game) {
-    if (!gameSet) {
-      this.game = game;
-    }
-    else {
-      throw new IllegalArgumentException("game.Game is already set");
-    }
-  }
-   */
 
   @Override
   public String toString() {
