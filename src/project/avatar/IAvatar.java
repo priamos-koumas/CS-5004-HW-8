@@ -1,8 +1,8 @@
 package project.avatar;
 
-import GameEngine.Holder.bag;
-import GameEngine.Item.IItem;
-import GameEngine.Room.Room;
+import project.room.Room;
+import project.elements.IElements;
+import project.holder.Bag;
 
 public interface IAvatar {
 
@@ -24,7 +24,7 @@ public interface IAvatar {
    * @param item
    * @return
    */
-  public boolean addToBag(IItem item);
+  public boolean addToBag(IElements item);
 
   /**
    * reset the weight limit for the bag
@@ -44,7 +44,7 @@ public interface IAvatar {
    */
   public void setHealth(int health);
 
-  public bag getBag();
+  public Bag getBag();
 
   public String toString();
 

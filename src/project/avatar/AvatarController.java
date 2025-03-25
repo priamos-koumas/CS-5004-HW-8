@@ -3,6 +3,7 @@ package project.avatar;
 import GameEngine.Holder.bag;
 import GameEngine.Item.IItem;
 import GameEngine.Room.Room;
+import project.elements.IElements;
 
 public class AvatarController {
 
@@ -27,7 +28,7 @@ public class AvatarController {
 
     else if (instruct.equalsIgnoreCase("T")) {
       String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      for (IItem items : this.player.getLoc().getInventList()) {
+      for (IElements items : this.player.getLoc().getInventList()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
           this.player.getLoc().getInvent().removeItem(items.getName());

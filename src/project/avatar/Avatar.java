@@ -1,14 +1,14 @@
 package project.avatar;
 
-import GameEngine.Holder.bag;
-import GameEngine.Item.IItem;
-import GameEngine.Room.Room;
+import project.elements.IElements;
+import project.holder.Bag;
+import project.room.Room;
 
 public class Avatar implements IAvatar{
 
   private int health;
   private String name;
-  private bag inventory = new bag(10);
+  private Bag inventory = new Bag(10);
   private Room loc;
 
   public Avatar(int health, String name, Room init) {
@@ -44,7 +44,7 @@ public class Avatar implements IAvatar{
    * @return
    */
   @Override
-  public boolean addToBag(IItem item) {
+  public boolean addToBag(IElements item) {
     return this.inventory.addItem(item);
   }
 
@@ -76,7 +76,7 @@ public class Avatar implements IAvatar{
   }
 
   @Override
-  public bag getBag() {
+  public Bag getBag() {
     return this.inventory;
   }
 
