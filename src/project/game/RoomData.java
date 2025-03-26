@@ -50,19 +50,19 @@ public class RoomData {
     return description;
   }
 
-  public String getN() {
+  public int getN() {
     return N;
   }
 
-  public String getS() {
+  public int getS() {
     return S;
   }
 
-  public String getE() {
+  public int getE() {
     return E;
   }
 
-  public String getW() {
+  public int getW() {
     return W;
   }
 
