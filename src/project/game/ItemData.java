@@ -1,5 +1,7 @@
 package project.game;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ItemData {
 
   @SerializedName("name")
@@ -57,5 +59,4 @@ public class ItemData {
   public String getPicture() {
     return picture;
   }
-  // Getters and Setters
 }

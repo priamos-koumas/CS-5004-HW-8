@@ -1,5 +1,7 @@
 package project.game;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MonsterData {
 
   @SerializedName("name")
@@ -93,5 +95,4 @@ public class MonsterData {
     return picture;
   }
 
-  // Getters and Setters
 }

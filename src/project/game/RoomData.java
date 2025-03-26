@@ -12,16 +12,16 @@ public class RoomData {
   private String description;
 
   @SerializedName("N")
-  private String N;
+  private int N;
 
   @SerializedName("S")
-  private String S;
+  private int S;
 
   @SerializedName("E")
-  private String E;
+  private int E;
 
   @SerializedName("W")
-  private String W;
+  private int W;
 
   @SerializedName("puzzle")
   private String puzzle;
@@ -50,19 +50,19 @@ public class RoomData {
     return description;
   }
 
-  public String getN() {
+  public int getN() {
     return N;
   }
 
-  public String getS() {
+  public int getS() {
     return S;
   }
 
-  public String getE() {
+  public int getE() {
     return E;
   }
 
-  public String getW() {
+  public int getW() {
     return W;
   }
 

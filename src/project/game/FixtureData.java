@@ -1,5 +1,7 @@
 package project.game;
 
+import com.google.gson.annotations.SerializedName;
+
 public class FixtureData {
 
   @SerializedName("name")
@@ -42,5 +44,4 @@ public class FixtureData {
     return picture;
   }
 
-  // Getters and Setters
 }

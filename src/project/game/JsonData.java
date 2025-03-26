@@ -1,6 +1,14 @@
 package project.game;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
+
+
+
+/**
+ * https://stackoverflow.com/questions/59812235/how-to-write-java-classes-representing-json-object-with-subobjects
+ */
 public class JsonData {
 
   @SerializedName("name")
