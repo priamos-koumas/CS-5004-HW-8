@@ -46,6 +46,13 @@ public class Game {
     this.rooms = new ArrayList<>();
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
+    setRoomNeighbors();
+  }
+
+  private void setRoomNeighbors() {
+    for (Room room : rooms) {
+      room.createNeighbors(this.rooms);
+    }
   }
 
   private void setItems(List<ItemData> items) {

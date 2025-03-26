@@ -1,5 +1,6 @@
 package project.room;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,14 +28,15 @@ public class RoomNeighbors {
 
   public RoomNeighbors(List<Room> rooms) {
     NEIGHBORS = new HashMap<CardinalDirection, Integer>();
-    this.rooms = rooms;
+    this.rooms = new ArrayList<Room>(rooms);
   }
 
   public void setNeighbor(CardinalDirection direction, int room) {
     if (NEIGHBORS.containsKey(direction)) {
       throw new IllegalArgumentException("Direction " + direction + " is already set");
+    } else {
+      NEIGHBORS.put(direction, room);
     }
-    NEIGHBORS.put(direction, room);
   }
 
   /**
@@ -45,6 +47,13 @@ public class RoomNeighbors {
    * @return target room
    */
   public Room getRoom(CardinalDirection direction) {
+    if (NEIGHBORS.get(direction) < 1) {
+      return null;
+    }
     return rooms.get(NEIGHBORS.get(direction) - 1);
+  }
+
+  public List<Room> getRooms() {
+    return new ArrayList<Room>(rooms);
   }
 }
