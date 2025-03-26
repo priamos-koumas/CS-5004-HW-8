@@ -14,7 +14,7 @@ public class Item extends AbstractContents implements IElements {
     super(name, description);
     this.weight = weight;
     this.maxUses = maxUses;
-    this.usesRemaining = usesRemaining;
+    this.usesRemaining = Math.max(0, usesRemaining);
     this.value = value;
     this.whenUsed = whenUsed;
   }
@@ -61,18 +61,12 @@ public class Item extends AbstractContents implements IElements {
     return value;
   }
 
-  public <T> void interact(T target) {
-
+  public int getMaxUses() {
+    return this.maxUses;
   }
 
-  public int getUsage() {
-    return 0;
-  }
+  //public <T> void interact(T target) {
 
-  @Override
-  public String getName() {
-    return super.getName();
-  }
 
   @Override
   public String toString() {
