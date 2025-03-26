@@ -53,7 +53,7 @@ public class Puzzle extends AbstractObstacle {
 
   @Override
   public String toString() {
-    return "Enemy{" +
+    return "Puzzle{" +
             "name='" + super.getName() + '\'' +
             ", active=" + super.getActiveState() +
             ", affectsTarget=" + super.getAffectsTarget() +
@@ -65,5 +65,4 @@ public class Puzzle extends AbstractObstacle {
             ", target='" + super.getTarget() + '\'' +
             '}';
   }
-
 }

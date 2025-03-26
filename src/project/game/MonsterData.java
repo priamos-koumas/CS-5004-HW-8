@@ -67,5 +67,4 @@ public class MonsterData {
     return picture;
   }
 
-  // Getters and Setters
 }

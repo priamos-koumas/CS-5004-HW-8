@@ -8,10 +8,10 @@ public class RoomData {
   @SerializedName("room_number")
   private String roomNumber;
   private String description;
-  private String N;
-  private String S;
-  private String E;
-  private String W;
+  private int N;
+  private int S;
+  private int E;
+  private int W;
   private String puzzle;
   private String monster;
   private String items;
@@ -30,19 +30,19 @@ public class RoomData {
     return description;
   }
 
-  public String getN() {
+  public int getN() {
     return N;
   }
 
-  public String getS() {
+  public int getS() {
     return S;
   }
 
-  public String getE() {
+  public int getE() {
     return E;
   }
 
-  public String getW() {
+  public int getW() {
     return W;
   }
 
@@ -66,5 +66,4 @@ public class RoomData {
     return picture;
   }
 
-  // Getters and Setters
 }

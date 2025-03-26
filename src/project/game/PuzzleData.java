@@ -52,5 +52,4 @@ public class PuzzleData {
     return picture;
   }
 
-  // Getters and Setters
 }

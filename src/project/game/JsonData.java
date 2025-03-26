@@ -2,6 +2,9 @@ package project.game;
 
 import java.util.List;
 
+/**
+ * https://stackoverflow.com/questions/59812235/how-to-write-java-classes-representing-json-object-with-subobjects
+ */
 public class JsonData {
   private String name;
   private String version;
