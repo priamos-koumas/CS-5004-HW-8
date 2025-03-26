@@ -2,6 +2,8 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import project.obstacle.Enemy;
+
 public class MonsterData {
 
   @SerializedName("name")
@@ -42,7 +44,23 @@ public class MonsterData {
 
   @SerializedName("picture")
   private String picture;
-  
+
+  public MonsterData(Enemy monster) {
+    this.name = monster.getName();
+    this.active = String.valueOf(monster.getActiveState());
+    this.affectsTarget = String.valueOf(monster.getAffectsTarget());
+    this.affectsPlayer = String.valueOf(monster.getAffectsPlayer());
+    this.solution = String.valueOf(monster.getSolution());
+    this.value = String.valueOf(monster.getValue());
+    this.description = String.valueOf(monster.getDescription());
+    this.effects = String.valueOf(monster.getEffects());
+    this.damage = String.valueOf(monster.getDamage());
+    this.target = String.valueOf(monster.getTarget());
+    this.canAttack = String.valueOf(monster.getCanAttack());
+    this.attack = monster.getAttack();
+    this.picture = monster.getImage();
+  }
+
   public String getName() {
     return name;
   }

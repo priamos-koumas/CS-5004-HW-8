@@ -17,6 +17,9 @@ public class JsonData {
   @SerializedName("version")
   private String version;
 
+  @SerializedName("player")
+  private String player;
+
   @SerializedName("rooms")
   private List<RoomData> rooms;
 
@@ -51,6 +54,10 @@ public class JsonData {
 
   public String getVersion() {
     return version;
+  }
+
+  public String getPlayer() {
+    return player;
   }
 
   public List<RoomData> getRooms() {
