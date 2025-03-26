@@ -31,8 +31,8 @@ public class Room {
 
   @SerializedName("description")
   private final String DESCRIPTION;
-//  private final RoomNeighbors NEIGHBORS_ENEMY;
-  private final RoomNeighbors NEIGHBORS;
+  private int[] directions;
+  private RoomNeighbors neighbors;
   private IObstacle obstacle;
   private IHolder<IElements> roomItems;
   private IHolder<IElements> roomFixtures;
@@ -63,7 +63,7 @@ public class Room {
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
     int [] directions = {n, s, e, w};
-    this.NEIGHBORS = new RoomNeighbors(this.game.getRooms());
+    this.neighbors = new RoomNeighbors(this.game.getRooms());
     setObstacle(monster, puzzle);
     this.roomItems = new Bag(13);
     setRoomItems(items);
@@ -78,18 +78,19 @@ public class Room {
     this.NUMBER = Integer.parseInt(data.getRoomNumber());
 
     this.DESCRIPTION = data.getDescription();
-    int[] directions = {Integer.parseInt(data.getN()),
-            Integer.parseInt(data.getS()),
-            Integer.parseInt(data.getE()),
-            Integer.parseInt(data.getW())};
-    this.NEIGHBORS = new RoomNeighbors(game.getRooms());
-    setNeighbors(directions);
+    int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};
+    this.directions = directions;
     this.PICTURE = data.getPicture();
     setObstacle(data.getMonster(), data.getPuzzle());
     this.roomItems = new RoomContents();
     setRoomItems(data.getItems());
     this.roomFixtures = new RoomContents();
     setRoomFixtures(data.getFixtures());
+  }
+
+  public void createNeighbors(List<Room> rooms) {
+    this.neighbors = new RoomNeighbors(rooms);
+    setNeighbors(this.directions);
   }
 
   /**
@@ -99,10 +100,10 @@ public class Room {
    * @param directions array of room numbers
    */
   private void setNeighbors(int[] directions) {
-    this.NEIGHBORS.setNeighbor(CardinalDirection.NORTH, directions[0]);
-    this.NEIGHBORS.setNeighbor(CardinalDirection.SOUTH, directions[1]);
-    this.NEIGHBORS.setNeighbor(CardinalDirection.EAST, directions[2]);
-    this.NEIGHBORS.setNeighbor(CardinalDirection.WEST, directions[3]);
+    this.neighbors.setNeighbor(CardinalDirection.NORTH, directions[0]);
+    this.neighbors.setNeighbor(CardinalDirection.SOUTH, directions[1]);
+    this.neighbors.setNeighbor(CardinalDirection.EAST, directions[2]);
+    this.neighbors.setNeighbor(CardinalDirection.WEST, directions[3]);
   }
 
   /**
@@ -198,7 +199,7 @@ public class Room {
    * @return target room
    */
   public Room getNeighbor(CardinalDirection direction) {
-    return NEIGHBORS.getRoom(direction);
+    return neighbors.getRoom(direction);
   }
 
   @Override
@@ -207,7 +208,7 @@ public class Room {
             ", NAME='" + NAME + '\'' +
             ", NUMBER=" + NUMBER +
             ", DESCRIPTION='" + DESCRIPTION + '\'' +
-            ", NEIGHBORS=" + NEIGHBORS +
+            ", neighbors=" + neighbors +
             ", obstacle=" + obstacle +
             ", roomItems=" + roomItems +
             ", roomFixtures=" + roomFixtures +
