@@ -57,5 +57,4 @@ public class ItemData {
   public String getPicture() {
     return picture;
   }
-  // Getters and Setters
 }

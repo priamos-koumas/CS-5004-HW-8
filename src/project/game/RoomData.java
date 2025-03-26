@@ -86,5 +86,4 @@ public class RoomData {
     return picture;
   }
 
-  // Getters and Setters
 }

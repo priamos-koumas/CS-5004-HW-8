@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import project.game.Game;
 import project.game.JsonData;
+import project.obstacle.Enemy;
+import project.obstacle.Puzzle;
 
 /**
  * To ensure GSON is downloaded go to file->project structure->libraries and check that both
@@ -33,7 +35,14 @@ public class JsonTest2 {
       System.out.println("\n");
 
       //Print out example array
-      System.out.println(game.getPuzzles());
+      for (Puzzle puzzle : game.getPuzzles()) {
+        System.out.println(puzzle);
+      }
+      System.out.println("\n");
+
+      for (Enemy monster: game.getMonsters()) {
+        System.out.println(monster);
+      }
 
     }
     catch (FileNotFoundException e) {

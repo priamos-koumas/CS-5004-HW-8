@@ -42,5 +42,4 @@ public class FixtureData {
     return picture;
   }
 
-  // Getters and Setters
 }

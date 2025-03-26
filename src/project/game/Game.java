@@ -22,7 +22,6 @@ public class Game {
   private List<Enemy> monsters;
   private List<Puzzle> puzzles;
 
-
   /**
    * game.Game objects are created with a name, a version number, and a List of room.Room objects.
    *
@@ -47,7 +46,6 @@ public class Game {
     this.rooms = new ArrayList<>();
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
-
   }
 
   private void setItems(List<ItemData> items) {

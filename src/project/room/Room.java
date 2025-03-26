@@ -78,10 +78,7 @@ public class Room {
     this.NUMBER = Integer.parseInt(data.getRoomNumber());
 
     this.DESCRIPTION = data.getDescription();
-    int[] directions = {Integer.parseInt(data.getN()),
-            Integer.parseInt(data.getS()),
-            Integer.parseInt(data.getE()),
-            Integer.parseInt(data.getW())};
+    int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};
     this.NEIGHBORS = new RoomNeighbors(game.getRooms());
     setNeighbors(directions);
     this.PICTURE = data.getPicture();
