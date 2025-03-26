@@ -6,12 +6,26 @@ import java.util.List;
  * https://stackoverflow.com/questions/59812235/how-to-write-java-classes-representing-json-object-with-subobjects
  */
 public class JsonData {
+
+  @SerializedName("name")
   private String name;
+
+  @SerializedName("version")
   private String version;
+
+  @SerializedName("rooms")
   private List<RoomData> rooms;
+
+  @SerializedName("items")
   private List<ItemData> items;
+
+  @SerializedName("fixtures")
   private List<FixtureData> fixtures;
+
+  @SerializedName("monsters")
   private List<MonsterData> monsters;
+
+  @SerializedName("puzzles")
   private List<PuzzleData> puzzles;
 
   @Override

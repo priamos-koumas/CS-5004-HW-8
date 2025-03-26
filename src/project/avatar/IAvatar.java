@@ -1,5 +1,6 @@
 package project.avatar;
 
+import project.room.CardinalDirection;
 import project.room.Room;
 import project.elements.IElements;
 import project.holder.Bag;
@@ -11,7 +12,7 @@ public interface IAvatar {
    * @param direction
    * @return
    */
-  public boolean moveRoom(Direction direction);
+  public boolean moveRoom(CardinalDirection direction);
 
   /**
    * get room.

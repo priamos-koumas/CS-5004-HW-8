@@ -1,13 +1,29 @@
 package project.game;
 
 public class ItemData {
+
+  @SerializedName("name")
   private String name;
+
+  @SerializedName("weight")
   private String weight;
+
+  @SerializedName("max_uses")
   private String maxUses;
+
+  @SerializedName("uses_remaining")
   private String usesRemaining;
+
+  @SerializedName("value")
   private String value;
+
+  @SerializedName("when_used")
   private String whenUsed;
+
+  @SerializedName("description")
   private String description;
+
+  @SerializedName("picture")
   private String picture;
 
   public String getName() {
