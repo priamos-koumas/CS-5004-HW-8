@@ -1,5 +1,7 @@
 package project.game;
 
+import com.google.gson.annotations.SerializedName;
+
 public class FixtureData {
 
   @SerializedName("name")

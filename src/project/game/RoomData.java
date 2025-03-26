@@ -12,16 +12,16 @@ public class RoomData {
   private String description;
 
   @SerializedName("N")
-  private String N;
+  private int N;
 
   @SerializedName("S")
-  private String S;
+  private int S;
 
   @SerializedName("E")
-  private String E;
+  private int E;
 
   @SerializedName("W")
-  private String W;
+  private int W;
 
   @SerializedName("puzzle")
   private String puzzle;
@@ -86,4 +86,5 @@ public class RoomData {
     return picture;
   }
 
+  // Getters and Setters
 }
