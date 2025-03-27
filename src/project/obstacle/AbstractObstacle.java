@@ -98,6 +98,20 @@ public abstract class AbstractObstacle implements IObstacle {
   }
 
   /**
+   * Checks solution is correct
+   */
+  public String checkSolution(String solution) {
+    if (solution.equals(this.solution)) {
+      this.active = false;
+      this.affectsTarget = false;
+      this.affectsPlayer = false;
+      return "You have solved the puzzle";
+    } else {
+      return "That did not solve the puzzle ";
+    }
+  }
+
+  /**
    * Gets the obstacle value as an integer.
    */
   public int getValue() {
@@ -139,6 +153,26 @@ public abstract class AbstractObstacle implements IObstacle {
     this.target = target;
   }
 
+  /**
+   * This sets the affected target.
+   */
+  public void setAffectsTarget(boolean affectsTarget) {
+    this.affectsTarget = affectsTarget;
+  }
+
+  /**
+   * This sets the affected player.
+   */
+  public void setAffectsPlayer(boolean affectsPlayer) {
+    this.affectsPlayer = affectsPlayer;
+  }
+
+  /**
+   * This sets whether the obstacle is active.
+   */
+  public void setActiveState(boolean active) {
+    this.active = active;
+  }
 
   /**
    * Provides an image of the object.
@@ -146,6 +180,5 @@ public abstract class AbstractObstacle implements IObstacle {
   public String getImage() {
     return this.picture;
   }
-
 
 }
