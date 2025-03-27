@@ -65,7 +65,6 @@ public class Item extends AbstractContents implements IElements {
     return this.maxUses;
   }
 
-  //public <T> void interact(T target) {
 
 
   @Override
