@@ -2,6 +2,8 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import project.elements.Item;
+
 public class ItemData {
 
   @SerializedName("name")
@@ -28,7 +30,15 @@ public class ItemData {
   @SerializedName("picture")
   private String picture;
 
-
+public ItemData(Item item) {
+  this.name = item.getName();
+  this.weight = String.valueOf(item.getWeight());
+  this.maxUses = String.valueOf(item.getMaxUses());
+  this.usesRemaining = String.valueOf(item.getUsesRemaining());
+  this.value = String.valueOf(item.getValue());
+  this.description = item.getDescription();
+  // Picture
+}
 
   public String getName() {
     return name;

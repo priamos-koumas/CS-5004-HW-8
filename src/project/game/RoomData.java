@@ -2,6 +2,11 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import project.obstacle.Enemy;
+import project.obstacle.Puzzle;
+import project.room.CardinalDirection;
+import project.room.Room;
+
 public class RoomData {
   @SerializedName("room_name")
   private String roomName;
@@ -38,6 +43,22 @@ public class RoomData {
 
   @SerializedName("picture")
   private String picture;
+
+  public RoomData(Room room) {
+    this.roomName = room.getRoomName();
+    this.roomNumber = room.getRoomNumber();
+    this.description = room.getDescription();
+    this.N = room.getNeighbor(CardinalDirection.NORTH).getRoomNumber();
+    this.S = room.getNeighbor(CardinalDirection.SOUTH).getRoomNumber();
+    this.E = room.getNeighbor(CardinalDirection.EAST).getRoomNumber();
+    this.W = room.getNeighbor(CardinalDirection.WEST).getRoomNumber();
+//    if (room.getObstacle().getClass() == Enemy) {
+//      this.monster = room.getObstacle().getName();
+//    } else if (room.getObstacle.getClass == Puzzle) {
+//      this.monster = room.getObstacle().getName();
+//    }
+    // INCOMPLETE!!!!!
+  }
 
   public String getRoomName() {
     return roomName;
