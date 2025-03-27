@@ -38,6 +38,11 @@ public interface IObstacle {
   public String getSolution();
 
   /**
+   * Checks solution is correct
+   */
+  public String checkSolution(String solution);
+
+  /**
    * Gets the obstacle value as an integer.
    */
   public int getValue();
