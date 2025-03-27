@@ -151,6 +151,7 @@ public class Game {
     return null;
   }
 
+
   public List<Enemy> getMonsters() {
     return new ArrayList<>(monsters);
   }
@@ -181,7 +182,8 @@ public class Game {
   @Override
   public String toString() {
     return "Game2{" +
-            "data=" + data +
+            "avatar=" + avatar +
+            ", data=" + data +
             ", name='" + name + '\n' +
             ", version='" + version + '\n' +
             ", rooms=" + rooms + "\n" +
