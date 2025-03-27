@@ -39,8 +39,29 @@ public class Room {
   private final String PICTURE;
 
   /**
-   * room.Room's overloaded constructor takes in all the necessary elements that make up the room.Room
-   * as specified below.
+   * Room constructor that takes in a Game object, which is set as the Room's game, and
+   * RoomData object, which stores all the data processed from a JSON file.
+   * @param game
+   * @param data
+   */
+  public Room(Game game, RoomData data) {
+    this.game = game;
+    this.NAME = data.getRoomName();
+    this.NUMBER = data.getRoomNumber();
+
+    this.DESCRIPTION = data.getDescription();
+    int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};
+    this.directions = directions;
+    this.PICTURE = data.getPicture();
+    setObstacle(data.getMonster(), data.getPuzzle());
+    this.roomItems = new RoomContents();
+    setRoomItems(data.getItems());
+    this.roomFixtures = new RoomContents();
+    setRoomFixtures(data.getFixtures());
+  }
+
+  /**
+   * Room constructor that takes in each individual attribute from the JSON file.
    *
    * @param roomName the name of the room
    * @param roomNumber the room number
@@ -62,7 +83,6 @@ public class Room {
     this.NAME = roomName;
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
-    int [] directions = {n, s, e, w};
     this.neighbors = new RoomNeighbors(this.game.getRooms());
     setObstacle(monster, puzzle);
     this.roomItems = new Bag(13);
@@ -72,34 +92,14 @@ public class Room {
     this.PICTURE = picture;
   }
 
-  public Room(Game game, RoomData data) {
-    this.game = game;
-    this.NAME = data.getRoomName();
-    this.NUMBER = data.getRoomNumber();
-
-    this.DESCRIPTION = data.getDescription();
-    int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};
-    this.directions = directions;
-    this.PICTURE = data.getPicture();
-    setObstacle(data.getMonster(), data.getPuzzle());
-    this.roomItems = new RoomContents();
-    setRoomItems(data.getItems());
-    this.roomFixtures = new RoomContents();
-    setRoomFixtures(data.getFixtures());
-  }
-
+  /**
+   * Sets the neighbors for the room. Neighbors cannot be set during Room construction because
+   * other rooms may not be created when this specific room instance is created.
+   *
+   * @param rooms
+   */
   public void createNeighbors(List<Room> rooms) {
     this.neighbors = new RoomNeighbors(rooms);
-    setNeighbors(this.directions);
-  }
-
-  /**
-   * Sets the Neighbors attribute from JSON class. The order of the numbers in the  directions
-   * array must be n, s, e, w.
-   *
-   * @param directions array of room numbers
-   */
-  private void setNeighbors(int[] directions) {
     this.neighbors.setNeighbor(CardinalDirection.NORTH, directions[0]);
     this.neighbors.setNeighbor(CardinalDirection.SOUTH, directions[1]);
     this.neighbors.setNeighbor(CardinalDirection.EAST, directions[2]);
