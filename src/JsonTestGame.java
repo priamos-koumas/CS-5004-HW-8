@@ -31,7 +31,11 @@ public class JsonTestGame {
 
         String json = gson.toJson(newData);
 
-        System.out.println(json);
+        System.out.println(json + "\n");
+
+        Game newGame = gson.fromJson(json, Game.class);
+
+        System.out.println(game.getAvatar() + "\n");
 
       } catch (FileNotFoundException e) {
         e.printStackTrace();

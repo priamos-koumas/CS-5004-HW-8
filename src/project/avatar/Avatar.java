@@ -1,5 +1,6 @@
 package project.avatar;
 
+import java.util.Arrays;
 import java.util.List;
 
 import project.elements.IElements;
@@ -28,15 +29,36 @@ public class Avatar implements IAvatar{
   public Avatar(Game game, AvatarData avatar) {
     this.health = avatar.getHealth();
     this.name = avatar.getName();
-    this.loc = game.getRoom(avatar.getRoom().getRoomNumber());
+    this.loc = game.getRoom(avatar.getRoom());
     setInventory(avatar.getBag());
   }
 
   public Avatar(Game game) {
+    this.game = game;
     this.health = 100;
     this.name = "";
-//    this.loc = this.game.getRoom(1);
+    this.loc = this.game.getRoom(1);
   }
+
+  public Avatar() {
+    this.health = 100;
+    this.name = "";
+  }
+
+
+  private void setInventory(String inventory) {
+    if (inventory != null) {
+      List<String> itemsList = Arrays.asList(inventory.split("\\s*,\\s*"));
+      for (String item : itemsList) {
+        for (IElements i : this.game.getItems()) {
+          if (i.getName().equals(item)) {
+            this.inventory.addItem(i);
+          }
+        }
+      }
+    }
+  }
+
 
   private void setInventory(List<ItemData> items) {
     for (ItemData item : items) {
@@ -60,6 +82,10 @@ public class Avatar implements IAvatar{
     this.loc = this.loc.getNeighbor(direction);
     return true;
 
+  }
+
+  public String getName() {
+    return this.name;
   }
 
   public Room getLoc() {

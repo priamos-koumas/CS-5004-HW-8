@@ -59,7 +59,7 @@ public class RoomData {
     }
     this.items = "";
     for (int i = 0; i < room.getRoomItemsList().size() - 1; i++) {
-      this.items += (room.getRoomItemsList().get(0).getName() + ", ");
+      this.items += (room.getRoomItemsList().get(i).getName() + ", ");
     }
     if (!room.getRoomItemsList().isEmpty()) {
       this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
