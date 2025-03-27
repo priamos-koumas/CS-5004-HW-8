@@ -2,6 +2,8 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import project.elements.Fixtures;
+
 public class FixtureData {
 
   @SerializedName("name")
@@ -19,6 +21,14 @@ public class FixtureData {
   @SerializedName("description")
   private String description;
   private String picture;
+
+  public FixtureData(Fixtures fixture) {
+    this.name = fixture.getName();
+    this.weight = String.valueOf(fixture.getWeight());
+    // puzzle
+    // states
+    this.description = fixture.getDescription();
+  }
 
   public String getName() {
     return name;
