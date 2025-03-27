@@ -202,6 +202,22 @@ public class Room {
     return neighbors.getRoom(direction);
   }
 
+  public IObstacle getObstacle() {
+    return obstacle;
+  }
+
+  public String getPicture() {
+    return PICTURE;
+  }
+
+  public IHolder<IElements> getRoomFixtures() {
+    return roomFixtures;
+  }
+
+  public List<IElements> getRoomFixturesList() {
+    return roomFixtures.getItem();
+  }
+
   @Override
   public String toString() {
     return "room.Room{" +

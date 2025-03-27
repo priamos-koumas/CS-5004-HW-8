@@ -52,12 +52,20 @@ public class RoomData {
     this.S = room.getNeighbor(CardinalDirection.SOUTH).getRoomNumber();
     this.E = room.getNeighbor(CardinalDirection.EAST).getRoomNumber();
     this.W = room.getNeighbor(CardinalDirection.WEST).getRoomNumber();
-//    if (room.getObstacle().getClass() == Enemy) {
-//      this.monster = room.getObstacle().getName();
-//    } else if (room.getObstacle.getClass == Puzzle) {
-//      this.monster = room.getObstacle().getName();
-//    }
-    // INCOMPLETE!!!!!
+    if (room.getObstacle().getClass() == Enemy.class) {
+      this.monster = room.getObstacle().getName();
+    } else if (room.getObstacle().getClass() == Puzzle.class) {
+      this.puzzle = room.getObstacle().getName();
+    }
+    for (int i = 0; i < room.getRoomItemsList().size() - 1; i++) {
+      this.items += (room.getRoomItemsList().get(0).getName() + ", ");
+    }
+    this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
+    for (int i = 0; i < room.getRoomFixturesList().size() - 1; i++) {
+      this.fixtures += (room.getRoomFixturesList().get(i).getName() + ", ");
+    }
+    this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size()).getName();
+    this.picture = room.getPicture();
   }
 
   public String getRoomName() {
@@ -107,6 +115,4 @@ public class RoomData {
   public String getPicture() {
     return picture;
   }
-
-  // Getters and Setters
 }
