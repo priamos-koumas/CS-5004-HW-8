@@ -32,12 +32,12 @@ public class JsonTest3 {
 
       System.out.println(json);
 
-      try (FileWriter writer = new FileWriter("monster_data.json")) {
-        gson.toJson(monster, writer);
-        System.out.println("Data has been written to monster_data.json");
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+//      try (FileWriter writer = new FileWriter("monster_data.json")) {
+//        gson.toJson(monster, writer);
+//        System.out.println("Data has been written to monster_data.json");
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
 
 
 
