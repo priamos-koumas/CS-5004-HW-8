@@ -2,9 +2,16 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import project.avatar.Avatar;
+import project.elements.Fixtures;
+import project.elements.IElements;
+import project.elements.Item;
+import project.obstacle.Enemy;
+import project.obstacle.Puzzle;
+import project.room.Room;
 
 
 /**
@@ -35,6 +42,32 @@ public class JsonData {
 
   @SerializedName("puzzles")
   private List<PuzzleData> puzzles;
+
+  public JsonData(Game game) {
+    this.name = game.getName();
+    this.version = game.getVersion();
+    this.avatar = new AvatarData(game.getAvatar());
+    this.rooms = new ArrayList<RoomData>();
+    for (Room room : game.getRooms()) {
+      this.rooms.add(new RoomData(room));
+    }
+    this.items = new ArrayList<ItemData>();
+    for (Item item : game.getItems()) {
+      this.items.add(new ItemData(item));
+    }
+    this.fixtures = new ArrayList<FixtureData>();
+    for (Fixtures fixture: game.getFixtures()) {
+      this.fixtures.add(new FixtureData(fixture));
+    }
+    this.monsters = new ArrayList<MonsterData>();
+    for (Enemy monster : game.getMonsters()) {
+      this.monsters.add(new MonsterData(monster));
+    }
+    this.puzzles = new ArrayList<PuzzleData>();
+    for (Puzzle puzzle : game.getPuzzles()) {
+      this.puzzles.add(new PuzzleData(puzzle));
+    }
+  }
 
   @Override
   public String toString() {

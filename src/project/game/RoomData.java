@@ -48,23 +48,29 @@ public class RoomData {
     this.roomName = room.getRoomName();
     this.roomNumber = room.getRoomNumber();
     this.description = room.getDescription();
-    this.N = room.getNeighbor(CardinalDirection.NORTH).getRoomNumber();
-    this.S = room.getNeighbor(CardinalDirection.SOUTH).getRoomNumber();
-    this.E = room.getNeighbor(CardinalDirection.EAST).getRoomNumber();
-    this.W = room.getNeighbor(CardinalDirection.WEST).getRoomNumber();
-    if (room.getObstacle().getClass() == Enemy.class) {
+    this.N = room.getNeighborNumber(CardinalDirection.NORTH);
+    this.S = room.getNeighborNumber(CardinalDirection.SOUTH);
+    this.E = room.getNeighborNumber(CardinalDirection.EAST);
+    this.W = room.getNeighborNumber(CardinalDirection.WEST);
+    if (room.getObstacle() instanceof Enemy) {
       this.monster = room.getObstacle().getName();
-    } else if (room.getObstacle().getClass() == Puzzle.class) {
+    } else if (room.getObstacle() instanceof Puzzle) {
       this.puzzle = room.getObstacle().getName();
     }
+    this.items = "";
     for (int i = 0; i < room.getRoomItemsList().size() - 1; i++) {
       this.items += (room.getRoomItemsList().get(0).getName() + ", ");
     }
-    this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
+    if (!room.getRoomItemsList().isEmpty()) {
+      this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
+    }
+    this.fixtures = "";
     for (int i = 0; i < room.getRoomFixturesList().size() - 1; i++) {
       this.fixtures += (room.getRoomFixturesList().get(i).getName() + ", ");
     }
-    this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size()).getName();
+    if (!room.getRoomFixturesList().isEmpty()) {
+      this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size() - 1).getName();
+    }
     this.picture = room.getPicture();
   }
 

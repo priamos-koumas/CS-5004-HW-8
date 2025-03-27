@@ -202,6 +202,10 @@ public class Room {
     return neighbors.getRoom(direction);
   }
 
+  public int getNeighborNumber(CardinalDirection direction) {
+    return neighbors.getRoomNumber(direction);
+  }
+
   public IObstacle getObstacle() {
     return obstacle;
   }
