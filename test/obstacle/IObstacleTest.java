@@ -74,4 +74,25 @@ public class IObstacleTest {
             obstacle2.getEffects());
     Assertions.assertEquals("6:Kitchen", obstacle2.getTarget());
   }
+  // Additional tests
+  // null or blank fields
+  // check solution and changes in field values based on a correct solution.
+  //
+
+  @Test
+  public void testCheckSolution() {
+
+    Assertions.assertTrue(obstacle1.getActiveState());
+    Assertions.assertEquals("Carrot", obstacle1.getSolution());
+    Assertions.assertEquals("You did not clear the monster.", obstacle1.checkSolution("Banana"));
+    Assertions.assertEquals("You have cleared the monster for 300 points!", obstacle1.checkSolution("Carrot"));
+    Assertions.assertFalse(obstacle1.getActiveState());
+
+    Assertions.assertTrue(obstacle2.getActiveState());
+    Assertions.assertEquals("Lamp", obstacle2.getSolution());
+    Assertions.assertEquals("That did not solve the puzzle.", obstacle2.checkSolution("Flame Thrower"));
+    Assertions.assertEquals("You have solved the puzzle for 150 points!", obstacle2.checkSolution("Lamp"));
+    Assertions.assertFalse(obstacle2.getActiveState());
+
+  }
 }
