@@ -57,15 +57,21 @@ public class RoomData {
     } else if (room.getObstacle() instanceof Puzzle) {
       this.puzzle = room.getObstacle().getName();
     }
+    this.items = "";
     for (int i = 0; i < room.getRoomItemsList().size() - 1; i++) {
       this.items += (room.getRoomItemsList().get(0).getName() + ", ");
     }
-    this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
-//    for (int i = 0; i < room.getRoomFixturesList().size() - 1; i++) {
-//      this.fixtures += (room.getRoomFixturesList().get(i).getName() + ", ");
-//    }
-//    this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size()).getName();
-//    this.picture = room.getPicture();
+    if (!room.getRoomItemsList().isEmpty()) {
+      this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
+    }
+    this.fixtures = "";
+    for (int i = 0; i < room.getRoomFixturesList().size() - 1; i++) {
+      this.fixtures += (room.getRoomFixturesList().get(i).getName() + ", ");
+    }
+    if (!room.getRoomFixturesList().isEmpty()) {
+      this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size() - 1).getName();
+    }
+    this.picture = room.getPicture();
   }
 
   public String getRoomName() {

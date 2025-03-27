@@ -28,10 +28,10 @@ public class RoomContents implements IHolder<IElements> {
 
   @Override
   public List<IElements> getItem() {
-    List<IElements> contentsList = new ArrayList<>();
-    for (String key : contents.keySet()) {
-      contentsList.add((IElements) contents.values());
-    }
+    List<IElements> contentsList = new ArrayList<>(contents.values());
+//    for (String key : contents.keySet()) {
+//      contentsList.add((IElements) contents.values());
+//    }
     return contentsList;
   }
 

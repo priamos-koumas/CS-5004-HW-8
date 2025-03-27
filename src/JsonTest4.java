@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,17 +23,26 @@ public class JsonTest4 {
 
     try {
 
-      Gson gson = new Gson();
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
       try(FileReader reader = new FileReader("align_quest_game_elements.json")) {
 
         JsonData data = gson.fromJson(reader, JsonData.class);
         Game game = new Game(data);
 
-        Room room = game.getRoom(1);
+        Room room = game.getRoom(12);
 
         String json = gson.toJson(new RoomData(room));
-        System.out.println(json);
+
+
+        RoomData roomData = gson.fromJson(json, RoomData.class);
+
+        Room newRoom = new Room(game, roomData);
+
+        System.out.println(room + "\n");
+        System.out.println(json + "\n");
+        System.out.println(newRoom);
+
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
