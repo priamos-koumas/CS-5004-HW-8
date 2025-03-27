@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import project.avatar.Avatar;
 
 
 /**
@@ -17,8 +18,8 @@ public class JsonData {
   @SerializedName("version")
   private String version;
 
-  @SerializedName("player")
-  private String player;
+  @SerializedName("avatar")
+  private AvatarData avatar;
 
   @SerializedName("rooms")
   private List<RoomData> rooms;
@@ -56,8 +57,8 @@ public class JsonData {
     return version;
   }
 
-  public String getPlayer() {
-    return player;
+  public AvatarData getAvatar() {
+    return avatar;
   }
 
   public List<RoomData> getRooms() {

@@ -75,7 +75,7 @@ public class Room {
   public Room(Game game, RoomData data) {
     this.game = game;
     this.NAME = data.getRoomName();
-    this.NUMBER = Integer.parseInt(data.getRoomNumber());
+    this.NUMBER = data.getRoomNumber();
 
     this.DESCRIPTION = data.getDescription();
     int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};

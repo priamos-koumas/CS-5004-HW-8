@@ -28,6 +28,8 @@ public class ItemData {
   @SerializedName("picture")
   private String picture;
 
+
+
   public String getName() {
     return name;
   }

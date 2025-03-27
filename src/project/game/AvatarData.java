@@ -13,4 +13,20 @@ public class AvatarData {
   public AvatarData(Avatar avatar) {
 
   }
+
+  public int getHealth() {
+    return health;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public List<ItemData> getBag() {
+    return bag;
+  }
+
+  public RoomData getRoom() {
+    return room;
+  }
 }

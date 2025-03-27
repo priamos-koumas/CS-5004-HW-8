@@ -1,12 +1,19 @@
 package project.avatar;
 
+import java.util.List;
+
 import project.elements.IElements;
+import project.elements.Item;
+import project.game.AvatarData;
+import project.game.Game;
+import project.game.ItemData;
 import project.holder.Bag;
 import project.room.CardinalDirection;
 import project.room.Room;
 
 public class Avatar implements IAvatar{
 
+  private Game game;
   private int health;
   private String name;
   private Bag inventory = new Bag(10);
@@ -16,6 +23,21 @@ public class Avatar implements IAvatar{
     this.health = health;
     this.name = name;
     this.loc = init;
+  }
+
+  public Avatar(Game game, AvatarData avatar) {
+    this.health = avatar.getHealth();
+    this.name = avatar.getName();
+    this.loc = game.getRoom(avatar.getRoom().getRoomNumber());
+    this.inventory = new Bag(13);
+    setInventory(avatar.getBag());
+  }
+
+  private void setInventory(List<ItemData> items) {
+    for (ItemData item : items) {
+      Item itemObject = this.game.getItem("item");
+      this.inventory.addItem(itemObject);
+    }
   }
 
   /**

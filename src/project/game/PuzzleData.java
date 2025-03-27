@@ -2,6 +2,8 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import project.obstacle.Puzzle;
+
 public class PuzzleData {
 
   @SerializedName("name")
@@ -33,6 +35,19 @@ public class PuzzleData {
 
   @SerializedName("picture")
   private String picture;
+
+  public PuzzleData(Puzzle puzzle) {
+    this.name = puzzle.getName();
+    this.active = String.valueOf(puzzle.getActiveState());
+    this.affectsTarget = String.valueOf(puzzle.getAffectsTarget());
+    this.affectsPlayer = String.valueOf(puzzle.getAffectsPlayer());
+    this.solution = String.valueOf(puzzle.getSolution());
+    this.value = String.valueOf(puzzle.getValue());
+    this.description = String.valueOf(puzzle.getDescription());
+    this.effects = String.valueOf(puzzle.getEffects());
+    this.target = String.valueOf(puzzle.getTarget());
+    this.picture = puzzle.getImage();
+  }
 
   public String getName() {
     return name;
