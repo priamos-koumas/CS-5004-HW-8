@@ -3,6 +3,7 @@ package project.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import project.avatar.Avatar;
 import project.elements.Fixtures;
 import project.elements.Item;
 import project.obstacle.Enemy;
@@ -16,6 +17,7 @@ public class Game {
   private JsonData data;
   private String name;
   private String version;
+  private Avatar avatar;
   private List<Room> rooms;
   private List<Item> items;
   private List<Fixtures> fixtures;
@@ -47,6 +49,11 @@ public class Game {
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
     setRoomNeighbors();
+    if (data.getAvatar() == null) {
+      this.avatar = new Avatar(this);
+    } else {
+      this.avatar = new Avatar(this, data.getAvatar());
+    }
   }
 
   private void setRoomNeighbors() {
@@ -90,6 +97,9 @@ public class Game {
     }
   }
 
+  public Avatar getAvatar() {
+    return avatar;
+  }
   /**
    * Returns a shallow copy of the game.Game's rooms in an ArrayList.
    *
@@ -180,5 +190,13 @@ public class Game {
             ", monsters=" + monsters + "\n" +
             ", puzzles=" + puzzles + "\n" +
             '}';
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getVersion() {
+    return this.version;
   }
 }

@@ -16,7 +16,7 @@ public class Avatar implements IAvatar{
   private Game game;
   private int health;
   private String name;
-  private Bag inventory = new Bag(10);
+  private Bag inventory = new Bag(13);
   private Room loc;
 
   public Avatar(int health, String name, Room init) {
@@ -29,8 +29,13 @@ public class Avatar implements IAvatar{
     this.health = avatar.getHealth();
     this.name = avatar.getName();
     this.loc = game.getRoom(avatar.getRoom().getRoomNumber());
-    this.inventory = new Bag(13);
     setInventory(avatar.getBag());
+  }
+
+  public Avatar(Game game) {
+    this.health = 100;
+    this.name = "";
+//    this.loc = this.game.getRoom(1);
   }
 
   private void setInventory(List<ItemData> items) {
