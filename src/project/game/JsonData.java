@@ -36,6 +36,9 @@ public class JsonData {
   @SerializedName("puzzles")
   private List<PuzzleData> puzzles;
 
+  public JsonData(Game game) {
+  }
+
   @Override
   public String toString() {
     return "JsonData{" +

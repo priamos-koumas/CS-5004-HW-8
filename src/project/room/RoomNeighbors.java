@@ -53,6 +53,10 @@ public class RoomNeighbors {
     return rooms.get(NEIGHBORS.get(direction) - 1);
   }
 
+  public int getRoomNumber(CardinalDirection direction) {
+    return NEIGHBORS.get(direction);
+  }
+
   public List<Room> getRooms() {
     return new ArrayList<Room>(rooms);
   }
