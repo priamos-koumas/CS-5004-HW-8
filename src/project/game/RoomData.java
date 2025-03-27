@@ -5,8 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class RoomData {
   @SerializedName("room_name")
   private String roomName;
+
   @SerializedName("room_number")
-  private String roomNumber;
+  private int roomNumber;
 
   @SerializedName("description")
   private String description;
@@ -42,7 +43,7 @@ public class RoomData {
     return roomName;
   }
 
-  public String getRoomNumber() {
+  public int getRoomNumber() {
     return roomNumber;
   }
 

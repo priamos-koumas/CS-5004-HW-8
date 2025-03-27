@@ -2,6 +2,8 @@ package project.game;
 
 import com.google.gson.annotations.SerializedName;
 
+import com.google.gson.annotations.SerializedName;
+
 import project.obstacle.Enemy;
 
 public class MonsterData {
