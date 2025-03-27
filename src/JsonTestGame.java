@@ -6,10 +6,7 @@ import java.io.FileReader;
 
 import project.game.Game;
 import project.game.JsonData;
-import project.game.MonsterData;
-import project.obstacle.Enemy;
 import project.game.RoomData;
-import project.room.CardinalDirection;
 import project.room.Room;
 
 /**
@@ -18,7 +15,7 @@ import project.room.Room;
  * uppermost left hand corner, select "from Maven..." and in the search bar type
  * "google.code.gson" and download the most recent edition
  */
-public class JsonTest4 {
+public class JsonTestGame {
   public static void main(String[] args) throws FileNotFoundException {
 
     try {
@@ -30,18 +27,11 @@ public class JsonTest4 {
         JsonData data = gson.fromJson(reader, JsonData.class);
         Game game = new Game(data);
 
-        Room room = game.getRoom(12);
+        JsonData newData = new JsonData(game);
 
-        String json = gson.toJson(new RoomData(room));
+        String json = gson.toJson(newData);
 
-
-        RoomData roomData = gson.fromJson(json, RoomData.class);
-
-        Room newRoom = new Room(game, roomData);
-
-        System.out.println(room + "\n");
-        System.out.println(json + "\n");
-        System.out.println(newRoom);
+        System.out.println(json);
 
       } catch (FileNotFoundException e) {
         e.printStackTrace();

@@ -36,6 +36,7 @@ public ItemData(Item item) {
   this.maxUses = String.valueOf(item.getMaxUses());
   this.usesRemaining = String.valueOf(item.getUsesRemaining());
   this.value = String.valueOf(item.getValue());
+  this.whenUsed = item.getWhenUsed();
   this.description = item.getDescription();
   // Picture
 }

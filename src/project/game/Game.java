@@ -191,4 +191,12 @@ public class Game {
             ", puzzles=" + puzzles + "\n" +
             '}';
   }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getVersion() {
+    return this.version;
+  }
 }
