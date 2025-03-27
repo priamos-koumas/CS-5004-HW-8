@@ -65,6 +65,21 @@ public class Enemy extends AbstractObstacle {
     return this.attack;
   }
 
+  /**
+   * Checks solution is correct
+   */
+  @Override
+  public String checkSolution(String solution) {
+    if (solution.equals(this.getSolution())) {
+      this.setActiveState(false);
+      this.setAffectsTarget(false);
+      this.setAffectsPlayer(false);
+      return "You have cleared the monster!";
+    } else {
+      return "You did not clear the monster.";
+    }
+  }
+
   @Override
   public String toString() {
     return "Enemy{" +
