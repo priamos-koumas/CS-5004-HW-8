@@ -29,6 +29,7 @@ public class Avatar implements IAvatar{
   }
 
   public Avatar(Game game, AvatarData avatar) {
+    this.game = game;
     this.health = avatar.getHealth();
     this.name = avatar.getName();
     this.loc = game.getRoom(avatar.getRoom());
