@@ -10,8 +10,8 @@ import gamedriver.game.Game;
 import gamedriver.game.JsonData;
 import gamedriver.obstacle.IObstacle;
 
-public class MainTest {
-/*
+public class MainTest2 {
+
   public static void main(String[] args) {
 
     FileReader reader;
@@ -31,16 +31,8 @@ public class MainTest {
     game.getAvatar().setName();
 
     GameCommandReaderNew userReader = new GameCommandReaderNew();
-    AvatarController control = new AvatarController(game);
+    AvatarController control = new AvatarController(game, userReader);
+    control.go();
 
-    while(userReader.getDataFromUser()) {
-      control.Control(userReader.getOperator(), userReader.getOperand1());
-      if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
-        IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
-        System.out.println(obstacle.getEffects());
-        game.getAvatar().setHealth(game.getAvatar().getHealth() + obstacle.getDamage());
-        System.out.println(game.getAvatar().toString());
-      }
-    }
-  }*/
+  }
 }

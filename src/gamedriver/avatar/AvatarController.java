@@ -1,25 +1,42 @@
 package gamedriver.avatar;
 
+import gamedriver.GameCommandReaderNew;
 import gamedriver.game.Game;
+import gamedriver.game.JsonData;
 import gamedriver.holder.Bag;
 import gamedriver.obstacle.IObstacle;
 import gamedriver.room.CardinalDirection;
 import gamedriver.elements.IElements;
 
+import static java.awt.SystemColor.control;
 import static java.lang.System.exit;
 
 public class AvatarController {
-  private final Game game;
+  private Game game;
+  private GameCommandReaderNew userReader;
   private Avatar player;
 
-  public AvatarController(Game game) {
+  public AvatarController(Game game, GameCommandReaderNew userReader) {
     this.game = game;
+    this.userReader = userReader;
     this.player = this.game.getAvatar();
   }
 
   public AvatarController(Avatar avatar) {
     this.game = null;
     this.player = avatar;
+  }
+
+  public void go() {
+    while(userReader.getDataFromUser()) {
+      this.Control(userReader.getOperator(), userReader.getOperand1());
+      if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
+        IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
+        System.out.println(obstacle.getEffects());
+        game.getAvatar().setHealth(game.getAvatar().getHealth() + obstacle.getDamage());
+        System.out.println(game.getAvatar().toString());
+      }
+    }
   }
 
   public String Control (String ... instruction) {
@@ -138,9 +155,12 @@ public class AvatarController {
     else if (instruct.equalsIgnoreCase("R")) {
 
       System.out.println("Game restoring");
-      this.game.restore();
+      boolean loaded = this.game.restore();
+      if (loaded == false) {
+        return "Game file not found.";
+      }
+      this.player = this.game.getAvatar();
       return "Game restoring";
-
     }
     return "";
 

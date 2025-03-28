@@ -50,7 +50,7 @@
       "description":"A USB thumb drive for computers", "picture": null },
     { "name":"Algorithms Book", "weight": "2", "max_uses": "1000", "uses_remaining": "1000", "value" : "500", "when_used" : "You read the Algo Book and make note of computational theories.",
       "description":"A book on computer algorithms, signed by Professor Keith. \nThe inscription reads: \"You'll need this in CS5800. Best wishes to you, Aligner!\n P.S.: Don't forget: a recursive solution needs a base case!", "picture": "algorithms.png" },
-    { "name":"Hair Clippers", "weight": "2", "max_uses": "10", "uses_remaining": "1", "value" : "5","when_used" : "You activate the clippers. It makes a loud buzzing sound as you use them!",
+    { "name":"Hair Clippers", "weight": "2", "max_uses": "10", "uses_remaining": "4", "value" : "5","when_used" : "You activate the clippers. It makes a loud buzzing sound as you use them!",
       "description":"Cordless Wahl hair clippers for pets or humans. The battery low light is blinking.", "picture": "hair-clippers.png" },
     { "name":"Carrot", "weight": "10", "max_uses": "1", "uses_remaining": "1", "value" : "5", "when_used" : "You take a small bite the carrot and then share it.",
       "description":"A carrot. But not just any carrot, but a HUGE carrot! Bigger than you've seen before.", "picture": null },
