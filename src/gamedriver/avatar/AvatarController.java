@@ -2,6 +2,7 @@ package gamedriver.avatar;
 
 import gamedriver.game.Game;
 import gamedriver.holder.Bag;
+import gamedriver.obstacle.IObstacle;
 import gamedriver.room.CardinalDirection;
 import gamedriver.elements.IElements;
 

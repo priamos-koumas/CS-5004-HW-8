@@ -7,6 +7,7 @@ import gamedriver.GameCommandReaderNew;
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
+import gamedriver.obstacle.IObstacle;
 
 public class MainTest {
 
@@ -15,7 +16,7 @@ public class MainTest {
     FileReader reader;
     {
       try {
-        reader = new FileReader("align_quest_game_elements.json");
+        reader = new FileReader("DanielSave_File.json");
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
