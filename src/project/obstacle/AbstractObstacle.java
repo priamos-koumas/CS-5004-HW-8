@@ -18,7 +18,7 @@ public abstract class AbstractObstacle implements IObstacle {
   private boolean affectsPlayer; // make a boolean
 
   private String solution;
-  private int value; // make an int
+  private int value = 0; // make an int
   private String description;
   private String effects;
   private String target;
@@ -33,10 +33,19 @@ public abstract class AbstractObstacle implements IObstacle {
     this.affectsTarget = booleanChecker(affects_target);
     this.affectsPlayer = booleanChecker(affects_player);
     this.solution = solution;
-    this.value = Integer.parseInt(value);
+    if (value == null) {
+      this.value = 0;
+    } else {
+      this.value = Integer.parseInt(value);
+    }
     this.description = description;
     this.effects = effects;
-    this.target = target;
+    if (target == null || target.isEmpty()) {
+      throw new IllegalArgumentException("Puzzle or Enemy target room cannot be null or"
+              + "empty in order to show up in a room.");
+    } else {
+      this.target = target;
+    }
     this.picture = picture;
   }
 
