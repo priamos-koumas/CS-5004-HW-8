@@ -223,11 +223,16 @@ public class Room {
   }
 
   public String solveObstacle(String solution) {
-    String response = this.obstacle.checkSolution(solution);
-    if (!this.obstacle.getActiveState()) {
-      this.neighbors.unlockRooms();
+    if (obstacle != null) {
+      String response = this.obstacle.checkSolution(solution);
+      if (!this.obstacle.getActiveState()) {
+        this.neighbors.unlockRooms();
+      }
+
+      return response;
     }
-    return response;
+
+    return "Nothing happened!";
   }
 
   @Override
