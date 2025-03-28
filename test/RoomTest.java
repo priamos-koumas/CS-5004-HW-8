@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import project.game.Game;
-import project.game.JsonData;
-import project.room.CardinalDirection;
-import project.room.Room;
+import gamedriver.game.Game;
+import gamedriver.game.JsonData;
+import gamedriver.room.CardinalDirection;
+import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 

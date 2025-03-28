@@ -4,12 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
 
-import project.game.Game;
-import project.room.CardinalDirection;
-import project.room.Room;
-import project.room.RoomNeighbors;
+import gamedriver.game.Game;
+import gamedriver.room.CardinalDirection;
+import gamedriver.room.RoomNeighbors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

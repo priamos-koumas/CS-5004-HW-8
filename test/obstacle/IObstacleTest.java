@@ -1,7 +1,7 @@
 package obstacle;
-import project.obstacle.IObstacle;
-import project.obstacle.Enemy;
-import project.obstacle.Puzzle;
+import gamedriver.obstacle.IObstacle;
+import gamedriver.obstacle.Enemy;
+import gamedriver.obstacle.Puzzle;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

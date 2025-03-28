@@ -3,10 +3,10 @@ import com.google.gson.Gson;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import project.GameCommandReaderNew;
-import project.avatar.AvatarController;
-import project.game.Game;
-import project.game.JsonData;
+import gamedriver.GameCommandReaderNew;
+import gamedriver.avatar.AvatarController;
+import gamedriver.game.Game;
+import gamedriver.game.JsonData;
 
 public class MainTest {
 

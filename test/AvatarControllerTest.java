@@ -5,13 +5,11 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import project.avatar.Avatar;
-import project.avatar.AvatarController;
-import project.avatar.IAvatar;
-import project.game.Game;
-import project.game.GameOld;
-import project.game.JsonData;
-import project.room.Room;
+import gamedriver.avatar.Avatar;
+import gamedriver.avatar.AvatarController;
+import gamedriver.game.Game;
+import gamedriver.game.JsonData;
+import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
