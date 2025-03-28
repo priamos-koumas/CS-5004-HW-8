@@ -61,4 +61,14 @@ public class Fixtures extends AbstractContents {
   public int getWeight() {
     return this.weight;
   }
+
+  @Override
+  public void decrementUsesRemaining() {
+    return;
+  }
+
+  @Override
+  public int usesRemaining(){
+    return 1;
+  }
 }
