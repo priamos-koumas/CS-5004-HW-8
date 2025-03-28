@@ -4,7 +4,6 @@
   "avatar": {
     "health": 100,
     "name": "",
-    "bag": "Hair Clippers, Lamp",
     "room": 3
   },
   "rooms": [
@@ -41,7 +40,6 @@
       "E": 4,
       "W": 0,
       "monster": "Teddy Bear",
-      "items": "",
       "fixtures": "",
       "picture": "foyer.png"
     },
