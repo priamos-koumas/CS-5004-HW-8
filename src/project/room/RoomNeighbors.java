@@ -53,6 +53,14 @@ public class RoomNeighbors {
     return rooms.get(NEIGHBORS.get(direction) - 1);
   }
 
+  public void unlockRooms() {
+    for (CardinalDirection direction : NEIGHBORS.keySet()) {
+      if (NEIGHBORS.get(direction) < 0) {
+        NEIGHBORS.put(direction, Math.abs(NEIGHBORS.get(direction)));
+      }
+    }
+  }
+
   public int getRoomNumber(CardinalDirection direction) {
     return NEIGHBORS.get(direction);
   }

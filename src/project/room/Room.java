@@ -222,6 +222,14 @@ public class Room {
     return roomFixtures.getItem();
   }
 
+  public String solveObstacle(String solution) {
+    String response = this.obstacle.checkSolution(solution);
+    if (!this.obstacle.getActiveState()) {
+      this.neighbors.unlockRooms();
+    }
+    return response;
+  }
+
   @Override
   public String toString() {
     return "room.Room{" +
