@@ -95,9 +95,9 @@ public class Game {
     }
   }
 
-  private void setItems(List<ItemData> items) {
-    for (ItemData item : items) {
-      Item object = new Item(item);
+  private void setItems(List<ItemData> itemData, List<Item> item) {
+    for (ItemData itemData : items) {
+      Item object = new Item(itemData);
       this.items.add(object);
     }
   }
