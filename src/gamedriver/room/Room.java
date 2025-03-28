@@ -238,24 +238,10 @@ public class Room {
   @Override
   public String toString() {
 
-    /*
-    return "room.Room{" +
-            ", NAME='" + NAME + '\'' +
-            ", NUMBER=" + NUMBER +
-            ", DESCRIPTION='" + DESCRIPTION + '\'' +
-            ", neighbors=" + neighbors +
-            ", obstacle=" + obstacle +
-            ", roomItems=" + roomItems +
-            ", roomFixtures=" + roomFixtures +
-            ", PICTURE='" + PICTURE + '\'' +
-            '}' + "\n";
-
-     */
-
     if (roomItems != null && !roomItems.getItem().isEmpty()) {
       return "You are in " + NAME + ".\n"
               + DESCRIPTION + "\n"
-              + roomItems.toString() + "\n";
+              + roomItems.toString();
     } else {
       return "You are in " + NAME + ".\n"
               + DESCRIPTION + "\n"

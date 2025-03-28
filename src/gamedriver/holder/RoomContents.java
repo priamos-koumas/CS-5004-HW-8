@@ -41,6 +41,8 @@ public class RoomContents implements IHolder<IElements> {
               + "\nDescription: " + exist.getDescription();
     }
 
+    result += "\n";
+
     return result;
   }
 
