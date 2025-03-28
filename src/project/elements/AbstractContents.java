@@ -13,7 +13,7 @@ abstract class AbstractContents implements IElements {
 
   public void Item(ItemData data) {
     if (data.getName() == null || data.getName().isEmpty()) {
-      this.name = "Default Character";
+      this.name = "Default Name";
     }
     if (data.getDescription() == null || data.getDescription().isEmpty()) {
       this.description = "Description Not Available";
