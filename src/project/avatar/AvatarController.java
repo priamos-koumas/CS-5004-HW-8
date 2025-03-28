@@ -1,5 +1,6 @@
 package project.avatar;
 
+import project.elements.Item;
 import project.game.Game;
 import project.holder.Bag;
 import project.room.CardinalDirection;
@@ -65,8 +66,12 @@ public class AvatarController {
       for (IElements item : this.player.getBag().getItem()) {
         if (item.getName().equalsIgnoreCase(targerItem)) {
           String outcome = this.player.getLoc().solveObstacle(item.getName());
-          this.player.getBag().removeItem(item.getName());
           System.out.println(outcome);
+          item.decrementUsesRemaining();
+          if (item.usesRemaining() == 0) {
+            this.player.getBag().removeItem(item.getName());
+            System.out.println("Maximum usage limit reached. " + item.getName() + " is destroyed");
+          }
           return outcome;
         }
       }

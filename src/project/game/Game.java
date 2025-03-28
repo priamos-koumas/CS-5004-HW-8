@@ -212,7 +212,7 @@ public class Game {
   }
 
   public void save() {
-    try (FileWriter writer = new FileWriter(this.avatar.getName() + " Save File.json")) {
+    try (FileWriter writer = new FileWriter(this.avatar.getName() + "Save_File.json")) {
 
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       JsonData gameData = new JsonData(this);
@@ -224,7 +224,7 @@ public class Game {
   }
 
     public boolean restore() {
-    try (FileReader reader = new FileReader(this.avatar.getName() + " Save File.json")) {
+    try (FileReader reader = new FileReader(this.avatar.getName() + "Save_File.json")) {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       JsonData gameData = gson.fromJson(reader, JsonData.class);
       this.switchGame(gameData);

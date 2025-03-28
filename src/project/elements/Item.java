@@ -57,6 +57,10 @@ public class Item extends AbstractContents implements IElements {
     }
   }
 
+  public int usesRemaining() {
+    return this.usesRemaining;
+  }
+
   public int getUsesRemaining() {
     return this.usesRemaining;
   }
