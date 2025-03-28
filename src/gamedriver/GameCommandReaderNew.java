@@ -31,7 +31,9 @@ public class GameCommandReaderNew {
                 "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
                 "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
                 "(A)nswer a question or provide a text solution. \n" +
-                "To end the game, enter (Q)uit to quit and exit.\n");
+                "To end the game, enter (Q)uit to quit and exit.\n" +
+                "To save the game, enter sa(V)e to quit and exit.\n" +
+                "To save the game, enter (R)estore to quit and exit.\n");
         for (int i = 0; i <= 1; i++) {
           if (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
