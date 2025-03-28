@@ -247,21 +247,15 @@ public class Room {
 
      */
 
-    if (roomItems != null) {
-      return "room.Room{" +
-              ", NAME='" + NAME + '\'' +
-              ", NUMBER=" + NUMBER +
-              ", DESCRIPTION='" + DESCRIPTION + '\'' +
-              ", roomItems=" + roomItems.toString() ;
+    if (roomItems != null && !roomItems.getItem().isEmpty()) {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + roomItems.toString() + "\n";
+    } else {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + "There are no items in this room.";
     }
-
-    return "room.Room{" +
-            ", NAME='" + NAME + '\'' +
-            ", NUMBER=" + NUMBER +
-            ", DESCRIPTION='" + DESCRIPTION + '\'' +
-            ", roomItems= Empty";
-
-
   }
 
   public IHolder<IElements> getRoomItems() {
