@@ -131,8 +131,6 @@ public class AvatarController {
 
       System.out.println("Game saving");
       this.game.save();
-      exit(1);
-
     }
 
     else if (instruct.equalsIgnoreCase("R")) {
