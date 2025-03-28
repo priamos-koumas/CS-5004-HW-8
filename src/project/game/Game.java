@@ -20,7 +20,8 @@ import project.obstacle.Puzzle;
 import project.room.Room;
 
 /**
- * The game.Game class is used to convert the game data from a given JSON file to Java classes.
+ * The Game class the entry point to the video game builder model, responsible for creating the
+ * objects necessary to run the game and for interacting with the controller.
  */
 public class Game {
   private String name;
@@ -33,7 +34,10 @@ public class Game {
   private List<Puzzle> puzzles;
 
   /**
-   * game.Game objects are created with a name, a version number, and a List of room.Room objects.
+   * Game instances are constructed with a JsonData object. JsonData objects are an intermediate
+   * class which contain all the data needed from a correctly made JSON file to the Game class.
+   * Game objects receive a name, a version number, a player, and a number of lists containing
+   * data for other necessary classes.
    *
    * @param data
    */
@@ -95,8 +99,8 @@ public class Game {
     }
   }
 
-  private void setItems(List<ItemData> items) {
-    for (ItemData item : items) {
+  private void setItems(List<ItemData> itemData) {
+    for (ItemData item : itemData) {
       Item object = new Item(item);
       this.items.add(object);
     }
