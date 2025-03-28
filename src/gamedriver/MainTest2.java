@@ -27,9 +27,6 @@ public class MainTest2 {
     JsonData data = gson.fromJson(reader, JsonData.class);
     Game game = new Game(data);
 
-    System.out.println("Please enter your name: ");
-    game.getAvatar().setName();
-
     GameCommandReaderNew userReader = new GameCommandReaderNew();
     AvatarController control = new AvatarController(game, userReader);
     control.go();

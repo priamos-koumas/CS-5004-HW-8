@@ -28,6 +28,10 @@ public class AvatarController {
   }
 
   public void go() {
+
+    System.out.println("Please enter your name: ");
+    game.getAvatar().setName();
+
     while(userReader.getDataFromUser()) {
       this.Control(userReader.getOperator(), userReader.getOperand1());
       if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
