@@ -223,15 +223,22 @@ public class Room {
   }
 
   public String solveObstacle(String solution) {
-    String response = this.obstacle.checkSolution(solution);
-    if (!this.obstacle.getActiveState()) {
-      this.neighbors.unlockRooms();
+    if (obstacle != null) {
+      String response = this.obstacle.checkSolution(solution);
+      if (!this.obstacle.getActiveState()) {
+        this.neighbors.unlockRooms();
+      }
+
+      return response;
     }
-    return response;
+
+    return "Nothing happened!";
   }
 
   @Override
   public String toString() {
+
+    /*
     return "room.Room{" +
             ", NAME='" + NAME + '\'' +
             ", NUMBER=" + NUMBER +
@@ -242,6 +249,18 @@ public class Room {
             ", roomFixtures=" + roomFixtures +
             ", PICTURE='" + PICTURE + '\'' +
             '}' + "\n";
+
+     */
+
+    if (roomItems != null && !roomItems.getItem().isEmpty()) {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + roomItems.toString() + "\n";
+    } else {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + "There are no items in this room.";
+    }
   }
 
   public IHolder<IElements> getRoomItems() {
