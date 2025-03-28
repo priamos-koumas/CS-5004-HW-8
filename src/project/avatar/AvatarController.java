@@ -17,7 +17,12 @@ public class AvatarController {
     this.player = this.game.getAvatar();
   }
 
-  public void Control (String ... instruction) {
+  public AvatarController(Avatar avatar) {
+    this.game = null;
+    this.player = avatar;
+  }
+
+  public String Control (String ... instruction) {
     String instruct = (instruction.length > 0) ? instruction[0] : "";
 
     if (instruct.equalsIgnoreCase("W") || instruct.equalsIgnoreCase("E") ||
@@ -26,7 +31,7 @@ public class AvatarController {
         if (dir.getText().equalsIgnoreCase(instruct)) {
 
           System.out.println(this.player.moveRoom(dir));
-          return;
+          return this.player.moveRoom(dir);
         }
       }
     }
@@ -38,20 +43,21 @@ public class AvatarController {
           this.player.addToBag(items);
           this.player.getLoc().getRoomItems().removeItem(items.getName());
           System.out.println("Successfully pick up");
-          return;
+          return "Successfully pick up";
         }
       }
       System.out.println("There is nothing here");
+      return "There is nothing here";
     }
 
     else if (instruct.equalsIgnoreCase("I")) {
       System.out.println(player.getBag().toString());
-      return;
+      return player.getBag().toString();
     }
 
     else if (instruct.equalsIgnoreCase("L")) {
       System.out.println(player.getLoc().toString());
-      return;
+      return player.getLoc().toString();
     }
 
     else if (instruct.equalsIgnoreCase("U")) {
@@ -61,7 +67,7 @@ public class AvatarController {
           String outcome = this.player.getLoc().solveObstacle(item.getName());
           this.player.getBag().removeItem(item.getName());
           System.out.println(outcome);
-          return;
+          return outcome;
         }
       }
     }
@@ -72,9 +78,12 @@ public class AvatarController {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.getBag().removeItem(items.getName());
           this.player.getLoc().getRoomItems().addItem(items);
-          return;
+          System.out.println("Item Dropped");
+          return "Item Dropped";
         }
       }
+      System.out.println("There is no such thing in your bag");
+      return "There is no such thing in your bag";
     }
 
     else if (instruct.equalsIgnoreCase("X")) {
@@ -83,12 +92,13 @@ public class AvatarController {
       for (IElements items : bag1.getItem()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           System.out.println(items.getDescription());
-          return;
+          return items.getDescription();
         }
       }
 
       if(furtherInstruct.equalsIgnoreCase("self")) {
         System.out.println(player.toString());
+        return player.toString();
       }
     }
 
@@ -96,14 +106,20 @@ public class AvatarController {
       String answer = (instruction.length > 0) ? instruction[1] : "";
       String outcome = this.player.getLoc().solveObstacle(answer);
       System.out.println(outcome);
+      return outcome;
     }
 
     else if (instruct.equalsIgnoreCase("Q")) {
-      System.out.println("Game Ended without saving");
-      exit(1);
+      if ( this.game != null) {
+        System.out.println("Game saving");
+        this.game.save();
+        exit(1);
+      }
+      System.out.println("Quit without saving");
+      exit(0);
     }
 
-
+    return "";
 
   }
 
