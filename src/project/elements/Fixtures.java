@@ -51,6 +51,7 @@ public class Fixtures extends AbstractContents {
 
   @Override
   public String toString() {
+
     return "Fixtures{" +
             "weight=" + weight +
             '}';

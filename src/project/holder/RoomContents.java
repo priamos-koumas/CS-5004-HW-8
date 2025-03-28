@@ -32,4 +32,16 @@ public class RoomContents implements IHolder<IElements> {
     return contentsList;
   }
 
+  @Override
+  public String toString() {
+    String result = "";
+
+    for (IElements exist: this.getItem()) {
+      result = result + "\nName: " + exist.getName()
+              + "\nDescription: " + exist.getDescription();
+    }
+
+    return result;
+  }
+
 }

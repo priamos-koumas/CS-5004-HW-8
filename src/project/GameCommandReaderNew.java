@@ -27,7 +27,11 @@ public class GameCommandReaderNew {
     public boolean getDataFromUser() {
       try {
         Scanner scanner = new Scanner(this.in);
-        this.out.append("Format: Please enter command or Q to quit: ");
+        this.out.append("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
+                "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
+                "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
+                "(A)nswer a question or provide a text solution. \n" +
+                "To end the game, enter (Q)uit to quit and exit.\n");
         for (int i = 0; i <= 1; i++) {
           if (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
@@ -35,10 +39,6 @@ public class GameCommandReaderNew {
             if (i == 0) {
               this.data[0] = firstLetter;
 
-              if (data[0].equalsIgnoreCase("Q")) {
-                return false;
-
-              }
               this.data[1] = line.substring(firstLetter.length()).trim();
               return true;
             }
@@ -81,6 +81,7 @@ public class GameCommandReaderNew {
             new GameCommandReaderNew(stringReader, sb);
 
     reader.getDataFromUser();
+
     System.out.println(sb);
     System.out.println(reader.getOperator());
     System.out.println(reader.getOperand1());

@@ -2,7 +2,6 @@ package project.obstacle;
 
 import project.game.MonsterData;
 
-
 /**
  * The enemy class supports the creation, removal and solving of enemies within
  * the game.

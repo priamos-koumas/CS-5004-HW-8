@@ -6,6 +6,8 @@ import project.room.CardinalDirection;
 import project.room.Room;
 import project.elements.IElements;
 
+import static java.lang.System.exit;
+
 public class AvatarController {
   private final Game game;
   private Avatar player;
@@ -22,6 +24,7 @@ public class AvatarController {
             instruct.equalsIgnoreCase("N")|| instruct.equalsIgnoreCase("S")) {
       for (CardinalDirection dir : CardinalDirection.values()) {
         if (dir.getText().equalsIgnoreCase(instruct)) {
+
           System.out.println(this.player.moveRoom(dir));
           return;
         }
@@ -34,9 +37,11 @@ public class AvatarController {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
           this.player.getLoc().getRoomItems().removeItem(items.getName());
+          System.out.println("Successfully pick up");
           return;
         }
       }
+      System.out.println("There is nothing here");
     }
 
     else if (instruct.equalsIgnoreCase("I")) {
@@ -54,6 +59,7 @@ public class AvatarController {
       for (IElements item : this.player.getBag().getItem()) {
         if (item.getName().equalsIgnoreCase(targerItem)) {
           String outcome = this.player.getLoc().solveObstacle(item.getName());
+          this.player.getBag().removeItem(item.getName());
           System.out.println(outcome);
           return;
         }
@@ -93,7 +99,8 @@ public class AvatarController {
     }
 
     else if (instruct.equalsIgnoreCase("Q")) {
-      return; //still need to figure out how to quit game.
+      System.out.println("Game Ended without saving");
+      exit(1);
     }
 
 
