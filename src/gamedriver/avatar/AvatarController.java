@@ -125,18 +125,21 @@ public class AvatarController {
 
       System.out.println("Game Quit");
       exit(0);
+
     }
 
     else if (instruct.equalsIgnoreCase("V")) {
 
       System.out.println("Game saving");
       this.game.save();
+      return "Game saving";
     }
 
     else if (instruct.equalsIgnoreCase("R")) {
 
       System.out.println("Game restoring");
       this.game.restore();
+      return "Game restoring";
 
     }
     return "";
