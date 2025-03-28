@@ -1,7 +1,16 @@
 package project.game;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.*;
 
 import project.avatar.Avatar;
 import project.elements.Fixtures;
@@ -14,7 +23,6 @@ import project.room.Room;
  * The game.Game class is used to convert the game data from a given JSON file to Java classes.
  */
 public class Game {
-  private JsonData data;
   private String name;
   private String version;
   private Avatar avatar;
@@ -30,7 +38,32 @@ public class Game {
    * @param data
    */
   public Game(JsonData data) {
-//    this.data = data;
+    this.name = data.getName();
+    this.version = data.getVersion();
+    this.items = new ArrayList<Item>();
+    List<ItemData> itemData = data.getItems();
+    setItems(itemData);
+    this.fixtures = new ArrayList<>();
+    List<FixtureData> fixtureData = data.getFixtures();
+    setFixtures(fixtureData);
+    this.monsters = new ArrayList<>();
+    List<MonsterData> monsterData = data.getMonsters();
+    setMonsters(monsterData);
+    this.puzzles = new ArrayList<>();
+    List<PuzzleData> puzzleData = data.getPuzzles();
+    setPuzzles(puzzleData);
+    this.rooms = new ArrayList<>();
+    List<RoomData> roomData = data.getRooms();
+    setRooms(roomData);
+    setRoomNeighbors();
+    if (data.getAvatar() == null) {
+      this.avatar = new Avatar(this);
+    } else {
+      this.avatar = new Avatar(this, data.getAvatar());
+    }
+  }
+
+  public void switchGame(JsonData data) {
     this.name = data.getName();
     this.version = data.getVersion();
     this.items = new ArrayList<Item>();
@@ -178,12 +211,36 @@ public class Game {
     throw new IllegalArgumentException("Puzzle not found: " + name);
   }
 
+  public void save() {
+    try (FileWriter writer = new FileWriter(this.avatar.getName() + " Save File.json")) {
+
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      JsonData gameData = new JsonData(this);
+      gson.toJson(gameData, writer);
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+    public boolean restore() {
+    try (FileReader reader = new FileReader(this.avatar.getName() + " Save File.json")) {
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      JsonData gameData = gson.fromJson(reader, JsonData.class);
+      this.switchGame(gameData);
+
+      return true;
+    } catch (FileNotFoundException e) {
+      return false;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    }
 
   @Override
   public String toString() {
     return "Game2{" +
             "avatar=" + avatar +
-            ", data=" + data +
             ", name='" + name + '\n' +
             ", version='" + version + '\n' +
             ", rooms=" + rooms + "\n" +
