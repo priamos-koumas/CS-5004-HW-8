@@ -2,6 +2,7 @@ package gamedriver.avatar;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import gamedriver.elements.IElements;
 import gamedriver.elements.Item;
@@ -14,6 +15,7 @@ import gamedriver.room.Room;
 
 public class Avatar implements IAvatar{
 
+  private int score = 0;
   private Game game;
   private int health;
   private String name;
@@ -43,6 +45,12 @@ public class Avatar implements IAvatar{
   public Avatar() {
     this.health = 100;
     this.name = "";
+  }
+
+  public void setName() {
+    Scanner scanner = new Scanner(System.in);
+    String name = scanner.nextLine();
+    this.name = name;
   }
 
 
@@ -151,9 +159,15 @@ public class Avatar implements IAvatar{
       status =  HEALTH_STATUS.AWAKE.getText();
 
     String result = "Name: " + this.name
-            + "\n Health: " + this.health + " feeling " + status
-            + "\n Current Loc: " + this.loc.getDescription()
-            + "\n Inventory: " + this.inventory.toString();
+            + "\n Health: " + this.health + " feeling " + status;
     return result;
+  }
+
+  public void setScore (int score) {
+    this.score = this.score + score;
+  }
+
+  public int getScore() {
+    return this.score;
   }
 }

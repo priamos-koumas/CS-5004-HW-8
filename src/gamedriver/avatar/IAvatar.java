@@ -49,4 +49,10 @@ public interface IAvatar {
 
   public String toString();
 
+  public void setName();
+
+  public void setScore (int score);
+
+  public int getScore();
+
 }

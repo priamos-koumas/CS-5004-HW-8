@@ -33,6 +33,12 @@ public class MainTest {
 
     while(userReader.getDataFromUser()) {
       control.Control(userReader.getOperator(), userReader.getOperand1());
+      if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
+        IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
+        System.out.println(obstacle.getEffects());
+        game.getAvatar().setHealth(game.getAvatar().getHealth() + obstacle.getDamage());
+        System.out.println(game.getAvatar().toString());
+      }
     }
   }
 }

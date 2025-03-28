@@ -30,6 +30,8 @@ public class AvatarController {
         if (dir.getText().equalsIgnoreCase(instruct)) {
 
           System.out.println(this.player.moveRoom(dir));
+          System.out.println("You are now in: " + player.getLoc().getRoomName());
+          System.out.println(player.getLoc().getDescription());
           return this.player.moveRoom(dir);
         }
       }
@@ -64,6 +66,12 @@ public class AvatarController {
       for (IElements item : this.player.getBag().getItem()) {
         if (item.getName().equalsIgnoreCase(targerItem)) {
           String outcome = this.player.getLoc().solveObstacle(item.getName());
+
+          IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
+          if (obstacle != null
+                  && !(obstacle.getActiveState())) {
+            this.player.setScore(obstacle.getValue() + this.player.getScore());
+          }
           System.out.println(outcome);
           item.decrementUsesRemaining();
           if (item.usesRemaining() == 0) {
@@ -113,15 +121,25 @@ public class AvatarController {
     }
 
     else if (instruct.equalsIgnoreCase("Q")) {
-      if ( this.game != null) {
-        System.out.println("Game saving");
-        this.game.save();
-        exit(1);
-      }
-      System.out.println("Quit without saving");
+
+      System.out.println("Game Quit");
       exit(0);
     }
 
+    else if (instruct.equalsIgnoreCase("V")) {
+
+      System.out.println("Game saving");
+      this.game.save();
+      exit(1);
+
+    }
+
+    else if (instruct.equalsIgnoreCase("R")) {
+
+      System.out.println("Game restoring");
+      this.game.restore();
+
+    }
     return "";
 
   }
