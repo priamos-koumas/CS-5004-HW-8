@@ -47,7 +47,7 @@ public class AvatarController {
       for (CardinalDirection dir : CardinalDirection.values()) {
         if (dir.getText().equalsIgnoreCase(instruct)) {
 
-          System.out.println(this.player.moveRoom(dir));
+//          System.out.println(this.player.moveRoom(dir));  THIS WAS CAUSING PLAYER TO MOVE TWICE
           System.out.println("You are now in: " + player.getLoc().getRoomName());
           System.out.println(player.getLoc().getDescription());
           return this.player.moveRoom(dir);
