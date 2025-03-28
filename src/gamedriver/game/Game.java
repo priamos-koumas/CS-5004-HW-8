@@ -18,7 +18,7 @@ import gamedriver.obstacle.Puzzle;
 import gamedriver.room.Room;
 
 /**
- * The Game class is used to convert the game data from a given JSON file to Java classes.
+ * The Game class is the entry point to the video game model.
  */
 public class Game {
   private String name;
@@ -31,29 +31,45 @@ public class Game {
   private List<Puzzle> puzzles;
 
   /**
-   * game.Game objects are created with a name, a version number, and a List of room.Room objects.
+   * Game object are constructed with JsonData classes. JsonData acts as an intermediary between
+   * a JSON file and the model. The game's name and version are set, followed by storage lists
+   * of Item, Fixture, Monster, Puzzle, and Room instances, also created by their own Data files.
+   * Then the avatar attribute is set. The avatar is either set as a default Avatar if it is a new
+   * game or loaded from an AvatarData class from a loaded game.
    *
-   * @param data
+   * @param data attribute data for Game class
    */
   public Game(JsonData data) {
     this.name = data.getName();
     this.version = data.getVersion();
+
+    // Create item list
     this.items = new ArrayList<Item>();
     List<ItemData> itemData = data.getItems();
     setItems(itemData);
+
+    // Create fixture list
     this.fixtures = new ArrayList<>();
     List<FixtureData> fixtureData = data.getFixtures();
     setFixtures(fixtureData);
+
+    // Create monster list
     this.monsters = new ArrayList<>();
     List<MonsterData> monsterData = data.getMonsters();
     setMonsters(monsterData);
+
+    // Create puzzle list
     this.puzzles = new ArrayList<>();
     List<PuzzleData> puzzleData = data.getPuzzles();
     setPuzzles(puzzleData);
+
+    // Create room list
     this.rooms = new ArrayList<>();
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
     setRoomNeighbors();
+
+    // Create avatar
     if (data.getAvatar() == null) {
       this.avatar = new Avatar(this);
     } else {
@@ -61,6 +77,12 @@ public class Game {
     }
   }
 
+  /**
+   * Used by the AvatarController class to load a game. Changes the data of this
+   * game from current data to a new JSON data set.
+   *
+   * @param data Game attribute data
+   */
   public void switchGame(JsonData data) {
     this.name = data.getName();
     this.version = data.getVersion();
@@ -87,12 +109,23 @@ public class Game {
     }
   }
 
+  /**
+   * Sets every room's neighbor attribute. Must be done after ALL rooms are created because
+   * the neighbor attribute stores Room objects, which must be already existing when the
+   * neighbor attribute is created.
+   */
   private void setRoomNeighbors() {
     for (Room room : rooms) {
       room.createNeighbors(this.rooms);
     }
   }
 
+  /**
+   * Fills the items attribute with Item objects that correspond to the data
+   * in the ItemData class.
+   *
+   * @param items ItemData used to create Item objects
+   */
   private void setItems(List<ItemData> items) {
     for (ItemData itemData : items) {
       Item object = new Item(itemData);
@@ -100,6 +133,12 @@ public class Game {
     }
   }
 
+  /**
+   * Fills the fixtures attribute with Fixtures objects that correspond to the data
+   * in the FixtureData class.
+   *
+   * @param fixtures FixtureData used to create Fixtures objects
+   */
   private void setFixtures(List<FixtureData> fixtures) {
     for (FixtureData fixture : fixtures) {
       Fixtures object = new Fixtures(fixture);
@@ -107,6 +146,12 @@ public class Game {
     }
   }
 
+  /**
+   * Fills the monsters attribute with Enemy objects that correspond to the data
+   * in the MonsterData class.
+   *
+   * @param monsters MonsterData used to create Enemy objects
+   */
   private void setMonsters(List<MonsterData> monsters) {
     for (MonsterData monster : monsters) {
       Enemy object = new Enemy(monster);
@@ -114,6 +159,12 @@ public class Game {
     }
   }
 
+  /**
+   * Fills the puzzles attribute with Puzzle classes that correspond to the data
+   * in the PuzzleData class.
+   *
+   * @param puzzles PuzzleData used to create Puzzle Objects
+   */
   private void setPuzzles(List<PuzzleData> puzzles) {
     for (PuzzleData puzzle : puzzles) {
       Puzzle object = new Puzzle(puzzle);
@@ -121,6 +172,12 @@ public class Game {
     }
   }
 
+  /**
+   * Fills the rooms attribute with Room classes that correspond to the data
+   * in the RoomData class.
+   *
+   * @param rooms RoomData used to create Room objects
+   */
   private void setRooms(List<RoomData> rooms) {
     for (RoomData room : rooms) {
       Room object = new Room(this, room);
@@ -128,9 +185,15 @@ public class Game {
     }
   }
 
+  /**
+   * Returns this game's avatar attribute.
+   *
+   * @return game's Avatar object
+   */
   public Avatar getAvatar() {
     return avatar;
   }
+
   /**
    * Returns a shallow copy of the game.Game's rooms in an ArrayList.
    *
@@ -156,10 +219,23 @@ public class Game {
     return rooms.get(index);
   }
 
+  /**
+   * Returns a shallow copy of the items attribute.
+   *
+   * @return copy of item list
+   */
   public List<Item> getItems() {
     return new ArrayList<>(items);
   }
 
+  /**
+   * Returns an item with the given string name or null if the item does
+   * not exist.
+   *
+   * @param name item name
+   *
+   * @return desired item
+   */
   public Item getItem(String name) {
     for (Item item : items) {
       if (item.getName().equalsIgnoreCase(name)) {
@@ -169,10 +245,22 @@ public class Game {
     return null;
   }
 
+  /**
+   * Return shallow copy of fixtures attribute.
+   *
+   * @return copy of fixtures list
+   */
   public List<Fixtures> getFixtures() {
     return new ArrayList<>(fixtures);
   }
 
+  /**
+   * Returns a specific Fixture matching the given String name or returns null if
+   * fixture does not exist.
+   *
+   * @param name Fixture name
+   * @return desire fixture
+   */
   public Fixtures getFixture(String name) {
     for (Fixtures fixture : fixtures) {
       if (fixture.getName().equalsIgnoreCase(name)) {
@@ -182,11 +270,22 @@ public class Game {
     return null;
   }
 
-
+  /**
+   * Returns a shallow copy of the monsters attribute.
+   *
+   * @return copy of the monsters list
+   */
   public List<Enemy> getMonsters() {
     return new ArrayList<>(monsters);
   }
 
+  /**
+   * Returns a specific Enemy matching the given String name or returns null if the Enemy
+   * is not found.
+   *
+   * @param name monster name
+   * @return desired monster
+   */
   public Enemy getMonster(String name) {
     for (Enemy monster: monsters) {
       if (monster.getName().equalsIgnoreCase(name)) {
@@ -196,24 +295,45 @@ public class Game {
     return null;
   }
 
+  /**
+   * Returns a shallow copy of the puzzles attribute.
+   *
+   * @return copy of puzzle list
+   */
   public List<Puzzle> getPuzzles() {
     return new ArrayList<>(puzzles);
   }
 
+  /**
+   * Returns a specific Puzzle with the matching string name or null if the Puzzle does not exist.
+   *
+   * @param name fixture name
+   * @return desired fixture
+   */
   public Puzzle getPuzzle(String name) {
     for (Puzzle puzzle : puzzles) {
       if (puzzle.getName().equalsIgnoreCase(name)) {
         return puzzle;
       }
     }
-    throw new IllegalArgumentException("Puzzle not found: " + name);
+    return null;
   }
 
+  /**
+   * Saves the current Game instance in a json file through a JsonData class.
+   */
   public void save() {
+
+    // Save current game in file name "game_name_save_file.json"
     try (FileWriter writer = new FileWriter(this.getName() + "_save_file.json")) {
 
+      // Create Gson object that converts objects into PrettyPrinting json files
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+      // Create a JsonData file based on the current Game status
       JsonData gameData = new JsonData(this);
+
+      // Send the JsonData to a json file
       gson.toJson(gameData, writer);
 
     } catch (IOException e) {
@@ -221,14 +341,30 @@ public class Game {
     }
   }
 
+  /**
+   * Restores a previous game by changing all the data in the current Game object with the
+   * data from a JsonData object create from a json file.
+   * @return
+   */
     public boolean restore() {
+
+    // Get file with name specifications from save() method
     try (FileReader reader = new FileReader(this.getName() + "_save_file.json")) {
+
+      // Create gson that sets pretty printing
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+      // Create a JsonData object from the json file
       JsonData gameData = gson.fromJson(reader, JsonData.class);
+
+      // Change all data from current Game to data from gameData
       this.switchGame(gameData);
 
+      // Return true if successful
       return true;
     } catch (FileNotFoundException e) {
+
+      // Return false if file is not found
       return false;
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -249,10 +385,20 @@ public class Game {
             '}';
   }
 
+  /**
+   * Return game name.
+   *
+   * @return game name
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * Return game version.
+   *
+   * @return game version
+   */
   public String getVersion() {
     return this.version;
   }
