@@ -5,6 +5,7 @@ import project.game.FixtureData;
 public class Fixtures extends AbstractContents {
   int weight;
 
+
   public Fixtures(String name, String description, int weight) {
     super(name, description);
     this.weight = weight;
@@ -14,6 +15,8 @@ public class Fixtures extends AbstractContents {
     super(fixture.getName(), fixture.getDescription());
     if (fixture.getWeight() != null) {
       this.weight = Integer.parseInt(fixture.getWeight());
+    } else {
+      throw new IllegalArgumentException("Must know weight of fixture.");
     }
   }
 
