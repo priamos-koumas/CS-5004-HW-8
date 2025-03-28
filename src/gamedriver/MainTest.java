@@ -1,9 +1,10 @@
+package gamedriver;
+
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import gamedriver.GameCommandReaderNew;
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
