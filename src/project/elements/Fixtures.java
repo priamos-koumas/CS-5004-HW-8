@@ -4,28 +4,26 @@ import project.game.FixtureData;
 
 public class Fixtures extends AbstractContents {
   int weight;
+  private String puzzle;
+  private String states;
 
-
-  public Fixtures(String name, String description, int weight) {
+  public Fixtures(String name, String description, int weight, String puzzle, String states) {
     super(name, description);
     this.weight = weight;
+    this.puzzle = puzzle;
+    this.states = states;
   }
 
-  public Fixtures(FixtureData fixture) {
-    super(fixture.getName(), fixture.getDescription());
-    if (fixture.getWeight() != null) {
-      this.weight = Integer.parseInt(fixture.getWeight());
-    } else {
-      throw new IllegalArgumentException("Must know weight of fixture.");
-    }
+  public boolean isFixtureMovable() {
+    return weight <= 200;
   }
 
-  public int getWeight() {
-    return weight;
+  public String getPuzzle() {
+    return puzzle;
   }
 
-  public boolean fixtureImmovable() {
-    return weight > 200;
+  public String getStates() {
+    return states;
   }
 
   @Override
@@ -33,5 +31,10 @@ public class Fixtures extends AbstractContents {
     return "Fixtures{" +
             "weight=" + weight +
             '}';
+  }
+
+  @Override
+  public int getWeight() {
+    return this.weight;
   }
 }
