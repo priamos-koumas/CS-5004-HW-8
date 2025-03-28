@@ -2,7 +2,6 @@ package project.obstacle;
 
 import project.game.MonsterData;
 
-
 /**
  * The enemy class supports the creation, removal and solving of enemies within
  * the game.
@@ -22,7 +21,11 @@ public class Enemy extends AbstractObstacle {
             target, picture);
 
     // Not sent to abstract
-    this.damage = Integer.parseInt(damage);
+    if (damage == null) {
+      this.damage = 0;
+    } else {
+      this.damage = Integer.parseInt(damage);
+    }
     this.canAttack = booleanChecker(can_attack);
     this.attack = attack;
   }

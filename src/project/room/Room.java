@@ -232,6 +232,8 @@ public class Room {
 
   @Override
   public String toString() {
+
+    /*
     return "room.Room{" +
             ", NAME='" + NAME + '\'' +
             ", NUMBER=" + NUMBER +
@@ -242,6 +244,24 @@ public class Room {
             ", roomFixtures=" + roomFixtures +
             ", PICTURE='" + PICTURE + '\'' +
             '}' + "\n";
+
+     */
+
+    if (roomItems != null) {
+      return "room.Room{" +
+              ", NAME='" + NAME + '\'' +
+              ", NUMBER=" + NUMBER +
+              ", DESCRIPTION='" + DESCRIPTION + '\'' +
+              ", roomItems=" + roomItems.toString() ;
+    }
+
+    return "room.Room{" +
+            ", NAME='" + NAME + '\'' +
+            ", NUMBER=" + NUMBER +
+            ", DESCRIPTION='" + DESCRIPTION + '\'' +
+            ", roomItems= Empty";
+
+
   }
 
   public IHolder<IElements> getRoomItems() {

@@ -1,16 +1,20 @@
 package project.avatar;
 
+import project.game.Game;
 import project.holder.Bag;
 import project.room.CardinalDirection;
 import project.room.Room;
 import project.elements.IElements;
 
-public class AvatarController {
+import static java.lang.System.exit;
 
+public class AvatarController {
+  private final Game game;
   private Avatar player;
 
-  public AvatarController(Avatar player) {
-    this.player = player;
+  public AvatarController(Game game) {
+    this.game = game;
+    this.player = this.game.getAvatar();
   }
 
   public void Control (String ... instruction) {
@@ -20,7 +24,8 @@ public class AvatarController {
             instruct.equalsIgnoreCase("N")|| instruct.equalsIgnoreCase("S")) {
       for (CardinalDirection dir : CardinalDirection.values()) {
         if (dir.getText().equalsIgnoreCase(instruct)) {
-          this.player.moveRoom(dir);
+
+          System.out.println(this.player.moveRoom(dir));
           return;
         }
       }
@@ -32,9 +37,11 @@ public class AvatarController {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
           this.player.getLoc().getRoomItems().removeItem(items.getName());
+          System.out.println("Successfully pick up");
           return;
         }
       }
+      System.out.println("There is nothing here");
     }
 
     else if (instruct.equalsIgnoreCase("I")) {
@@ -48,7 +55,15 @@ public class AvatarController {
     }
 
     else if (instruct.equalsIgnoreCase("U")) {
-      return; //Still need to figure out how to use an item
+      String targerItem = (instruction.length > 0) ? instruction[1] : "";
+      for (IElements item : this.player.getBag().getItem()) {
+        if (item.getName().equalsIgnoreCase(targerItem)) {
+          String outcome = this.player.getLoc().solveObstacle(item.getName());
+          this.player.getBag().removeItem(item.getName());
+          System.out.println(outcome);
+          return;
+        }
+      }
     }
 
     else if (instruct.equalsIgnoreCase("D")) {
@@ -78,12 +93,14 @@ public class AvatarController {
     }
 
     else if (instruct.equalsIgnoreCase("A")) {
-      String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      return; //still need to figure out how to output answer.
+      String answer = (instruction.length > 0) ? instruction[1] : "";
+      String outcome = this.player.getLoc().solveObstacle(answer);
+      System.out.println(outcome);
     }
 
     else if (instruct.equalsIgnoreCase("Q")) {
-      return; //still need to figure out how to quit game.
+      System.out.println("Game Ended without saving");
+      exit(1);
     }
 
 

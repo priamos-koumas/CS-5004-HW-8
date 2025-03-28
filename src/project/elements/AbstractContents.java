@@ -1,8 +1,11 @@
 package project.elements;
 
+import com.google.gson.annotations.SerializedName;
+
 import project.game.ItemData;
 
 abstract class AbstractContents implements IElements {
+
   private String name;
   private String description;
 
@@ -28,5 +31,5 @@ abstract class AbstractContents implements IElements {
   @Override
   public String getName() {
     return name;
-  }
-}
+  } }
+

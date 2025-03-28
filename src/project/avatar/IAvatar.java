@@ -12,7 +12,7 @@ public interface IAvatar {
    * @param direction
    * @return
    */
-  public boolean moveRoom(CardinalDirection direction);
+  public String moveRoom(CardinalDirection direction);
 
   /**
    * get room.
