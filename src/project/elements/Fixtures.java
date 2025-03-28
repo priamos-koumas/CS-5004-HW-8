@@ -14,6 +14,29 @@ public class Fixtures extends AbstractContents {
     this.states = states;
   }
 
+  public Fixtures(FixtureData data) {
+    super(data.getName(), data.getDescription());
+
+    if (data.getWeight() != null) {
+      this.weight = Integer.parseInt(data.getWeight());
+    } else {
+      throw new IllegalArgumentException("Weight cannot be null");
+    }
+
+    if (data.getPuzzle() != null) {
+      this.puzzle = data.getPuzzle();
+    } else {
+      this.puzzle = null;
+    }
+
+    if (data.getStates() != null) {
+      this.states = data.getStates();
+    } else {
+      this.states = null;
+    }
+
+  }
+
   public boolean isFixtureMovable() {
     return weight <= 200;
   }
