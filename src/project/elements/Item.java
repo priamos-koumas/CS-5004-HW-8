@@ -23,17 +23,29 @@ public class Item extends AbstractContents implements IElements {
     super(data.getName(), data.getDescription());
     if (data.getWeight() != null) {
       this.weight = Integer.parseInt(data.getWeight());
+    } else {
+      throw new IllegalArgumentException("Must have a weight value.");
     }
     if (data.getMaxUses() != null) {
       this.maxUses = Integer.parseInt(data.getMaxUses());
+    } else {
+      this.maxUses = 1000000000;
     }
     if (data.getUsesRemaining() != null) {
       this.usesRemaining = Integer.parseInt(data.getUsesRemaining());
+    } else {
+      this.usesRemaining = 1000000000;
     }
     if (data.getValue() != null) {
       this.value = Integer.parseInt(data.getValue());
+    } else {
+      throw new IllegalArgumentException("Must know value of item.");
     }
-    this.whenUsed = data.getWhenUsed();
+    if (data.getWhenUsed() != null) {
+      this.whenUsed = data.getWhenUsed();
+    } else {
+      throw new IllegalArgumentException("Must know when to use item.");
+    }
   }
 
   public void decrementUsesRemaining() {
