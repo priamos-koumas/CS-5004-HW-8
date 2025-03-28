@@ -18,6 +18,14 @@ public class RoomNeighbors {
    * RoomNeighbor's overloaded constructor takes in the room numbers of the four neighboring rooms
    * as integers, in the order north, south, east, and west in accordance with the JSON format.
    */
+//  public RoomNeighbors(int N, int S, int E, int W) {
+//    NEIGHBORS = new HashMap<CardinalDirection, Integer>();
+//    NEIGHBORS.put(CardinalDirection.NORTH, N);
+//    NEIGHBORS.put(CardinalDirection.SOUTH, S);
+//    NEIGHBORS.put(CardinalDirection.EAST, E);
+//    NEIGHBORS.put(CardinalDirection.WEST, W);
+//  }
+
   public RoomNeighbors(List<Room> rooms) {
     NEIGHBORS = new HashMap<CardinalDirection, Integer>();
     this.rooms = new ArrayList<Room>(rooms);
@@ -43,6 +51,14 @@ public class RoomNeighbors {
       return null;
     }
     return rooms.get(NEIGHBORS.get(direction) - 1);
+  }
+
+  public void unlockRooms() {
+    for (CardinalDirection direction : NEIGHBORS.keySet()) {
+      if (NEIGHBORS.get(direction) < 0) {
+        NEIGHBORS.put(direction, Math.abs(NEIGHBORS.get(direction)));
+      }
+    }
   }
 
   public int getRoomNumber(CardinalDirection direction) {
