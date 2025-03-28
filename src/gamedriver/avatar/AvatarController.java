@@ -29,8 +29,7 @@ public class AvatarController {
 
   public void go() {
 
-    System.out.println("Please enter your name: ");
-    game.getAvatar().setName();
+    // Need to ask for name here
 
     while(userReader.getDataFromUser()) {
       this.Control(userReader.getOperator(), userReader.getOperand1());
