@@ -1,16 +1,14 @@
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.StringReader;
 
 import project.GameCommandReaderNew;
 import project.avatar.AvatarController;
 import project.game.Game;
 import project.game.JsonData;
 
-public class MianTest {
+public class MainTest {
 
   public static void main(String[] args) {
 
