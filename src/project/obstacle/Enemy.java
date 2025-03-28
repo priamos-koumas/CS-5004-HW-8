@@ -70,11 +70,11 @@ public class Enemy extends AbstractObstacle {
    */
   @Override
   public String checkSolution(String solution) {
-    if (solution.equals(this.getSolution())) {
+    if (solution.equalsIgnoreCase(this.getSolution())) {
       this.setActiveState(false);
       this.setAffectsTarget(false);
       this.setAffectsPlayer(false);
-      return "You have cleared the monster!";
+      return "You have cleared the monster for " + this.getValue() + " points!";
     } else {
       return "You did not clear the monster.";
     }

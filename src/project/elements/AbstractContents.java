@@ -1,5 +1,7 @@
 package project.elements;
 
+import project.game.ItemData;
+
 abstract class AbstractContents implements IElements {
   private String name;
   private String description;
@@ -9,7 +11,14 @@ abstract class AbstractContents implements IElements {
     this.description = description;
   }
 
-
+  public void Item(ItemData data) {
+    if (data.getName() == null || data.getName().isEmpty()) {
+      this.name = "Default Name";
+    }
+    if (data.getDescription() == null || data.getDescription().isEmpty()) {
+      this.description = "Description Not Available";
+    }
+  }
 
   @Override
   public String getDescription() {

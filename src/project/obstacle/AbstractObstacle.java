@@ -101,13 +101,13 @@ public abstract class AbstractObstacle implements IObstacle {
    * Checks solution is correct
    */
   public String checkSolution(String solution) {
-    if (solution.equals(this.solution)) {
+    if (solution.equalsIgnoreCase(this.solution)) {
       this.active = false;
       this.affectsTarget = false;
       this.affectsPlayer = false;
-      return "You have solved the puzzle";
+      return "You have solved the puzzle for " + this.getValue() + " points!";
     } else {
-      return "That did not solve the puzzle ";
+      return "That did not solve the puzzle.";
     }
   }
 
