@@ -73,14 +73,14 @@ public class Avatar implements IAvatar{
    * @return
    */
   @Override
-  public boolean moveRoom(CardinalDirection direction) {
+  public String moveRoom(CardinalDirection direction) {
 
     if (this.loc.getNeighbor(direction) == null) {
-      return false;
+      return "fail to move";
     }
 
     this.loc = this.loc.getNeighbor(direction);
-    return true;
+    return "Successfully move to next destination";
 
   }
 
