@@ -16,7 +16,7 @@ public class MainTest {
     FileReader reader;
     {
       try {
-        reader = new FileReader("DanielSave_File.json");
+        reader = new FileReader("align_quest_game_elements.json");
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
