@@ -5,13 +5,13 @@ import java.util.List;
 
 import gamedriver.elements.IElements;
 
-public class abstractItemHolder implements IHolder<IElements> {
+public class AbstractItemHolder implements IHolder<IElements> {
 
   private List<IElements> itemlist = new ArrayList<>();
   private int weightLimit;
   private int usage = 0;
 
-  public abstractItemHolder (int weightLimit) {
+  public AbstractItemHolder(int weightLimit) {
     this.weightLimit = weightLimit;
   }
 
