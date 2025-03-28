@@ -86,5 +86,4 @@ public class GameCommandReaderNew {
     System.out.println(reader.getOperator());
     System.out.println(reader.getOperand1());
   }
-
 }
