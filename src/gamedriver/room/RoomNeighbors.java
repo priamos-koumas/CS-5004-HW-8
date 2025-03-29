@@ -54,7 +54,7 @@ public class RoomNeighbors {
     if (NEIGHBORS.get(direction) < 1) {
       return null;
     }
-    return rooms.get(NEIGHBORS.get(direction) - 1);
+    return rooms.get(NEIGHBORS.get(direction));
   }
 
   /**
