@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gamedriver.avatar.Avatar;
 import gamedriver.elements.Fixtures;
@@ -24,7 +26,7 @@ public class Game {
   private String name;
   private String version;
   private Avatar avatar;
-  private List<Room> rooms;
+  private Map<Integer, Room> rooms;
   private List<Item> items;
   private List<Fixtures> fixtures;
   private List<Enemy> monsters;
@@ -74,7 +76,7 @@ public class Game {
     setPuzzles(puzzleData);
 
     // Create room list
-    this.rooms = new ArrayList<>();
+    this.rooms = new HashMap<Integer, Room>();
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
     setRoomNeighbors();
@@ -117,7 +119,7 @@ public class Game {
     this.puzzles = new ArrayList<>();
     List<PuzzleData> puzzleData = data.getPuzzles();
     setPuzzles(puzzleData);
-    this.rooms = new ArrayList<>();
+    this.rooms = new HashMap<Integer, Room>();
     List<RoomData> roomData = data.getRooms();
     setRooms(roomData);
     setRoomNeighbors();
@@ -134,7 +136,7 @@ public class Game {
    * neighbor attribute is created.
    */
   private void setRoomNeighbors() {
-    for (Room room : rooms) {
+    for (Room room : rooms.values()) {
       room.createNeighbors(this.rooms);
     }
   }
@@ -191,9 +193,11 @@ public class Game {
    * @param puzzles PuzzleData used to create Puzzle Objects
    */
   private void setPuzzles(List<PuzzleData> puzzles) {
-    for (PuzzleData puzzle : puzzles) {
-      Puzzle object = new Puzzle(puzzle);
-      this.puzzles.add(object);
+    if (puzzles != null) {
+      for (PuzzleData puzzle : puzzles) {
+        Puzzle object = new Puzzle(puzzle);
+        this.puzzles.add(object);
+      }
     }
   }
 
@@ -206,8 +210,11 @@ public class Game {
   private void setRooms(List<RoomData> rooms) {
     if (rooms != null) {
       for (RoomData room : rooms) {
+        if (room.getRoomNumber() < 0) {
+          throw new IllegalArgumentException("Room numbers must be positive");
+        }
         Room object = new Room(this, room);
-        this.rooms.add(object);
+        this.rooms.put(object.getRoomNumber(), object);
       }
     } else {
       throw new IllegalArgumentException("There must be at least one room in a game");
@@ -228,8 +235,8 @@ public class Game {
    *
    * @return game.Game's rooms
    */
-  public List<Room> getRooms() {
-    return new ArrayList<Room>(rooms);
+  public HashMap<Integer, Room> getRooms() {
+    return new HashMap<Integer, Room>(rooms);
   }
 
   /**
@@ -241,8 +248,8 @@ public class Game {
    * @return desire room.Room
    */
   public Room getRoom(int roomNumber) {
-    int index = roomNumber - 1;
-    if (index < 0 || index >= rooms.size()) {
+    int index = roomNumber;
+    if (index <= 0 || index > rooms.size()) {
       throw new IndexOutOfBoundsException("Invalid room number: " + roomNumber);
     }
     return rooms.get(index);

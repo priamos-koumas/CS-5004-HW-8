@@ -1,8 +1,6 @@
 package gamedriver.room;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,7 +10,7 @@ import java.util.Map;
  */
 public class RoomNeighbors {
   private final Map<CardinalDirection, Integer> NEIGHBORS; // Rewrite so value is [Integer, Room]
-  private List<Room> rooms;
+  private Map<Integer, Room> rooms;
 
   /**
    * RoomNeighbors constructor takes in a list including all the Room objects in a Game. The
@@ -20,9 +18,9 @@ public class RoomNeighbors {
    *
    * @param rooms list of game's room objects
    */
-  public RoomNeighbors(List<Room> rooms) {
+  public RoomNeighbors(Map<Integer, Room> rooms) {
     NEIGHBORS = new HashMap<CardinalDirection, Integer>();
-    this.rooms = new ArrayList<Room>(rooms);
+    this.rooms = new HashMap<Integer, Room>(rooms);
   }
 
   /**
@@ -87,7 +85,7 @@ public class RoomNeighbors {
    *
    * @return list of rooms
    */
-  public List<Room> getRooms() {
-    return new ArrayList<Room>(rooms);
+  public HashMap<Integer, Room> getRooms() {
+    return new HashMap<Integer, Room>(rooms);
   }
 }

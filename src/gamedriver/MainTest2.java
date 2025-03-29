@@ -17,7 +17,7 @@ public class MainTest2 {
     FileReader reader;
     {
       try {
-        reader = new FileReader("align_quest_game_elements.json");
+        reader = new FileReader("json_files/simple_hallway.json");
       } catch (FileNotFoundException e) {
         throw new RuntimeException(e);
       }
