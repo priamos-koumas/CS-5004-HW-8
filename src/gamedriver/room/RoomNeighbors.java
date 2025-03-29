@@ -35,7 +35,10 @@ public class RoomNeighbors {
   public void setNeighbor(CardinalDirection direction, int room) {
     if (NEIGHBORS.containsKey(direction)) {
       throw new IllegalArgumentException("Direction " + direction + " is already set");
-    } else {
+    } else if (Math.abs(room) > rooms.size()) {
+      throw new IllegalArgumentException("Room " + room + " does not exist");
+    }
+    else {
       NEIGHBORS.put(direction, room);
     }
   }

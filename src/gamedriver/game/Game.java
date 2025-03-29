@@ -40,8 +40,18 @@ public class Game {
    * @param data attribute data for Game class
    */
   public Game(JsonData data) {
-    this.name = data.getName();
-    this.version = data.getVersion();
+
+    if (data.getName() != null) {
+      this.name = data.getName();
+    } else {
+      this.name = "";
+    }
+
+    if (data.getVersion() != null) {
+      this.version = data.getVersion();
+    } else {
+      this.version = "";
+    }
 
     // Create item list
     this.items = new ArrayList<Item>();
@@ -84,8 +94,17 @@ public class Game {
    * @param data Game attribute data
    */
   public void switchGame(JsonData data) {
-    this.name = data.getName();
-    this.version = data.getVersion();
+    if (data.getName() != null) {
+      this.name = data.getName();
+    } else {
+      this.name = "";
+    }
+
+    if (data.getVersion() != null) {
+      this.version = data.getVersion();
+    } else {
+      this.version = "";
+    }
     this.items = new ArrayList<Item>();
     List<ItemData> itemData = data.getItems();
     setItems(itemData);
@@ -127,9 +146,11 @@ public class Game {
    * @param items ItemData used to create Item objects
    */
   private void setItems(List<ItemData> items) {
-    for (ItemData itemData : items) {
-      Item object = new Item(itemData);
-      this.items.add(object);
+    if (items != null) {
+      for (ItemData itemData : items) {
+        Item object = new Item(itemData);
+        this.items.add(object);
+      }
     }
   }
 
@@ -140,9 +161,11 @@ public class Game {
    * @param fixtures FixtureData used to create Fixtures objects
    */
   private void setFixtures(List<FixtureData> fixtures) {
-    for (FixtureData fixture : fixtures) {
-      Fixtures object = new Fixtures(fixture);
-      this.fixtures.add(object);
+    if (fixtures != null) {
+      for (FixtureData fixture : fixtures) {
+        Fixtures object = new Fixtures(fixture);
+        this.fixtures.add(object);
+      }
     }
   }
 
@@ -153,9 +176,11 @@ public class Game {
    * @param monsters MonsterData used to create Enemy objects
    */
   private void setMonsters(List<MonsterData> monsters) {
-    for (MonsterData monster : monsters) {
-      Enemy object = new Enemy(monster);
-      this.monsters.add(object);
+    if (monsters != null) {
+      for (MonsterData monster : monsters) {
+        Enemy object = new Enemy(monster);
+        this.monsters.add(object);
+      }
     }
   }
 
@@ -179,9 +204,13 @@ public class Game {
    * @param rooms RoomData used to create Room objects
    */
   private void setRooms(List<RoomData> rooms) {
-    for (RoomData room : rooms) {
-      Room object = new Room(this, room);
-      this.rooms.add(object);
+    if (rooms != null) {
+      for (RoomData room : rooms) {
+        Room object = new Room(this, room);
+        this.rooms.add(object);
+      }
+    } else {
+      throw new IllegalArgumentException("There must be at least one room in a game");
     }
   }
 
