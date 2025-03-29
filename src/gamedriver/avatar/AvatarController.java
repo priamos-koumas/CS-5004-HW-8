@@ -131,10 +131,13 @@ public class AvatarController {
           if (item.usesRemaining() == 0) {
             this.player.getBag().removeItem(item.getName());
             System.out.println("Maximum usage limit reached. " + item.getName() + " is destroyed");
+            return "Maximum usage limit reached. " + item.getName() + " is destroyed";
           }
           return outcome;
         }
       }
+      System.out.println("There is no such thing in your bag");
+      return "There is no such thing in your bag";
     }
 
     //Drop item.
