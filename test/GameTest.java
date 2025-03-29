@@ -60,7 +60,7 @@ class GameTest {
     JsonData data = gson.fromJson(reader, JsonData.class);
     Game noNameGame = new Game(data);
 
-    assertEquals("", noNameGame.getName());
+    assertEquals("Untitled", noNameGame.getName());
   }
 
   @Test
@@ -80,7 +80,7 @@ class GameTest {
     JsonData data = gson.fromJson(reader, JsonData.class);
     Game noVersionGame = new Game(data);
 
-    assertEquals("", noVersionGame.getVersion());
+    assertEquals("Unversioned", noVersionGame.getVersion());
   }
 
   @Test

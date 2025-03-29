@@ -46,13 +46,13 @@ public class Game {
     if (data.getName() != null) {
       this.name = data.getName();
     } else {
-      this.name = "";
+      this.name = "Untitled";
     }
 
     if (data.getVersion() != null) {
       this.version = data.getVersion();
     } else {
-      this.version = "";
+      this.version = "Unversioned";
     }
 
     // Create item list
