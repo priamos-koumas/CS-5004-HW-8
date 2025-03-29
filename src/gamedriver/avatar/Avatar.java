@@ -151,14 +151,6 @@ public class Avatar implements IAvatar{
     return this.inventory.addItem(item);
   }
 
-  /**
-   * reset the weight limit for the bag
-   * @param volume setter for the weight limit
-   */
-  @Override
-  public void setBagVolume(int volume) {
-    this.inventory.setWeightLimit(volume);
-  }
 
   /**
    * get the health info.

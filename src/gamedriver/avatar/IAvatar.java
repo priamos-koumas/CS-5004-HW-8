@@ -27,11 +27,6 @@ public interface IAvatar {
    */
   public boolean addToBag(IElements item);
 
-  /**
-   * reset the weight limit for the bag
-   * @param volume
-   */
-  public void setBagVolume(int volume);
 
   /**
    * get the health info.

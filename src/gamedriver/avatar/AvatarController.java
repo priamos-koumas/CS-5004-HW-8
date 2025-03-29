@@ -58,6 +58,11 @@ public class AvatarController {
         game.getAvatar().setHealth(game.getAvatar().getHealth() + obstacle.getDamage());
         System.out.println(game.getAvatar().toString());
       }
+      if (game.getAvatar().getHealth() == 0) {
+        System.out.println("Game Over \n" + "Your score is: ");
+        System.out.println(game.getAvatar().getScore());
+        exit(0);
+      }
     }
   }
 
