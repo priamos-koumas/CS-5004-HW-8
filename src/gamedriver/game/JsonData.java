@@ -46,7 +46,7 @@ public class JsonData {
     this.version = game.getVersion();
     this.avatar = new AvatarData(game.getAvatar());
     this.rooms = new ArrayList<RoomData>();
-    for (Room room : game.getRooms()) {
+    for (Room room : game.getRooms().values()) {
       this.rooms.add(new RoomData(room));
     }
     this.items = new ArrayList<ItemData>();

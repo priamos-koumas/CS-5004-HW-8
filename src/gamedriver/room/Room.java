@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import gamedriver.elements.IElements;
 import gamedriver.game.Game;
@@ -106,9 +107,28 @@ public class Room {
    *
    * @param rooms list of all room's in Game
    */
-  public void createNeighbors(List<Room> rooms) {
+  public void createNeighbors(Map<Integer, Room> rooms) {
     this.neighbors = new RoomNeighbors(rooms);
     setNeighbors(this.directions);
+  }
+
+  /**
+   * Sets room number attribute.
+   *
+   * @param number given room number
+   * @return room number if it is a valid room number
+   */
+  private int setRoomNumber(int number) {
+    if (number <= 0) {
+      throw new IllegalArgumentException("Room number must be positive");
+    } else if (number == 1 && game.getRooms().isEmpty()) {
+      return number;
+    } else if (game.getItems().size() < number - 1) {
+      throw new IllegalArgumentException(
+              "Room numbers must be in ascending order in JSON file, starting at 1");
+    } else {
+      return number;
+    }
   }
 
   /**
