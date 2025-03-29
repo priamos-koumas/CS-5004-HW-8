@@ -113,25 +113,6 @@ public class Room {
   }
 
   /**
-   * Sets room number attribute.
-   *
-   * @param number given room number
-   * @return room number if it is a valid room number
-   */
-  private int setRoomNumber(int number) {
-    if (number <= 0) {
-      throw new IllegalArgumentException("Room number must be positive");
-    } else if (number == 1 && game.getRooms().isEmpty()) {
-      return number;
-    } else if (game.getItems().size() < number - 1) {
-      throw new IllegalArgumentException(
-              "Room numbers must be in ascending order in JSON file, starting at 1");
-    } else {
-      return number;
-    }
-  }
-
-  /**
    * Sets the neighbor rooms based on the numbers from the JSON data. The order of the numbers in
    * the directions array must be n, s, e, w.
    *

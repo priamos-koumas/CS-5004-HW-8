@@ -212,6 +212,8 @@ public class Game {
       for (RoomData room : rooms) {
         if (room.getRoomNumber() < 0) {
           throw new IllegalArgumentException("Room numbers must be positive");
+        } else if (rooms.contains(room.getRoomNumber())) {
+          throw new IllegalArgumentException("Room numbers must be unique");
         }
         Room object = new Room(this, room);
         this.rooms.put(object.getRoomNumber(), object);

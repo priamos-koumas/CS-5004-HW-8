@@ -5,13 +5,17 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import gamedriver.elements.Fixtures;
 import gamedriver.elements.Item;
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
+import gamedriver.obstacle.Enemy;
+import gamedriver.obstacle.Puzzle;
 import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -120,6 +124,43 @@ class GameTest {
   }
 
   @Test
+  void testInvalidRoomNumbers() {
+    FileReader negativeReader;
+    FileReader zeroReader;
+    FileReader repeatReader;
+    {
+      try {
+        negativeReader = new FileReader("json_files/empty_rooms_negative_room_number.json");
+        zeroReader = new FileReader("json_files/empty_rooms_zero_room_number.json");
+        repeatReader = new FileReader("json_files/empty_rooms_repeat_room_number.json");
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
+    Gson gson = new Gson();
+    JsonData negativeData = gson.fromJson(negativeReader, JsonData.class);
+    JsonData zeroData = gson.fromJson(zeroReader, JsonData.class);
+    JsonData repeatData = gson.fromJson(repeatReader, JsonData.class);
+
+    // Test game with negative room number
+    assertThrows(IllegalArgumentException.class, () -> {
+      Game negativeGame = new Game(negativeData);
+    });
+
+    // Test game with zero room number
+    assertThrows(IllegalArgumentException.class, () -> {
+      Game zeroGame = new Game(zeroData);
+    });
+
+    // Test game with repeat room number
+    assertThrows(IllegalArgumentException.class, () -> {
+      Game repeatGame = new Game(repeatData);
+    });
+
+  }
+
+  @Test
   void testAvatarConstruction() {
 
     // Test null Avatar
@@ -199,6 +240,16 @@ class GameTest {
 
   @Test
   void getItem() {
+
+    assertDoesNotThrow(() -> {
+      Item item = game.getItem("Hair Clippers");
+      item.getName();
+      item.getDescription();
+      item.getUsesRemaining();
+      item.getMaxUses();
+    });
+
+    assertNull(game.getItem("Book"));
   }
 
   @Test
@@ -209,6 +260,15 @@ class GameTest {
 
   @Test
   void getFixture() {
+    assertDoesNotThrow(() -> {
+      Fixtures fixture = game.getFixture("Painting");
+      fixture.getDescription();
+      fixture.getName();
+      fixture.getWeight();
+      fixture.getStates();
+    });
+
+    assertNull(game.getFixture("Fireplace"));
   }
 
   @Test
@@ -219,6 +279,14 @@ class GameTest {
 
   @Test
   void getMonster() {
+    assertDoesNotThrow(() -> {
+      Enemy monster = game.getMonster("Teddy Bear");
+      monster.getName();
+      monster.getDescription();
+      monster.getDamage();
+      monster.getValue();
+    });
+    assertNull(game.getMonster("Generic Monster"));
   }
 
   @Test
@@ -229,21 +297,25 @@ class GameTest {
 
   @Test
   void getPuzzle() {
-  }
-
-  @Test
-  void save() {
-  }
-
-  @Test
-  void restore() {
+    assertDoesNotThrow(() -> {
+      Puzzle puzzle = game.getPuzzle("Lock");
+      puzzle.getDescription();
+      puzzle.getName();
+      puzzle.getValue();
+      puzzle.getValue();
+    });
+    assertNull(game.getPuzzle("Puzzle"));
   }
 
   @Test
   void getName() {
+    assertEquals("Simple Hallway", game.getName());
+    assertEquals("Empty Rooms", emptyGame.getName());
   }
 
   @Test
   void getVersion() {
+    assertEquals("1.0.0", game.getVersion());
+    assertEquals("1.0.0", emptyGame.getVersion());
   }
 }
