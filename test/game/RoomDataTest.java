@@ -15,7 +15,9 @@ import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * RoomDataTest tests the Room class.
+ */
 public class RoomDataTest {
   FileReader reader;
 

@@ -7,6 +7,7 @@ import java.io.FileReader;
 
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
+import gamedriver.obstacle.IObstacle;
 import gamedriver.room.CardinalDirection;
 import gamedriver.room.Room;
 
@@ -30,7 +31,8 @@ class RoomTest {
   Room room1 = game.getRoom(1);
   Room room2 = game.getRoom(2);
   Room room3 = game.getRoom(3);
-
+  Room room4 = game.getRoom(4);
+  Room room6 = game.getRoom(6);
 
   @Test
   void getRoomName() {
@@ -75,43 +77,58 @@ class RoomTest {
   }
 
   @Test
-  void createAndSetNeighbors() {
-
-  }
-
-  @Test
-  void getNeighbor() {
-  }
-
-  @Test
   void getNeighborNumber() {
+
+    assertEquals(2, room1.getNeighborNumber(CardinalDirection.NORTH));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.SOUTH));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.WEST));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.EAST));
+
+    // Should return negative numbers for blocked rooms
+    assertEquals(-5, room4.getNeighborNumber(CardinalDirection.EAST));
   }
 
   @Test
   void getObstacle() {
-  }
 
-  @Test
-  void getPicture() {
+    assertNull(room1.getObstacle());
+    assertEquals(game.getMonster("Teddy Bear"), room3.getObstacle());
   }
 
   @Test
   void getRoomFixtures() {
+
+    assertTrue(room3.getRoomFixtures().getItem().isEmpty());
+    assertEquals(room1.getRoomFixtures().getItem().get(0), game.getFixture("Billboard"));
   }
 
   @Test
   void getRoomFixturesList() {
+
+    assertTrue(room3.getRoomFixturesList().isEmpty());
+    assertEquals(room1.getRoomFixturesList().get(0), game.getFixture("Billboard"));
   }
 
   @Test
   void getRoomItems() {
+    assertTrue(room6.getRoomItems().getItem().isEmpty());
+    assertEquals(room1.getRoomItems().getItem().get(0), game.getItem("Hair Clippers"));
+
+
   }
 
   @Test
   void getRoomItemsList() {
+    assertTrue(room6.getRoomItemsList().isEmpty());
+    assertEquals(room1.getRoomItemsList().get(0), game.getItem("Hair Clippers"));
   }
 
   @Test
   void solveObstacle() {
+
+    assertEquals("Nothing happened!", room1.solveObstacle("Hair Clippers"));
+    assertEquals("You have cleared the monster for 200 points!", room3.solveObstacle("Hair Clippers"));
+    assertEquals("You did not clear the monster.", room3.solveObstacle("Book"));
+
   }
 }
