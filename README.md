@@ -13,6 +13,6 @@ aspect and attribute of the given JSON files, such as AvatarData, ItemData, Fixt
 being taken into consideration when developing their designated classes and how they will 
 communicate with the rest of the UML, which was mainly developed during the completion of 
 homework 7. Obviously throughout the In the development process from homework 7 to 8, there have 
-been some methods added to the variety of classes, along with extra attributes, but the main takeaway 
-is how the group was able to evolve our original UML, taking into consideration the basics and 
-intertwining these concepts with JSON files to maximize the development process.
+been some methods added to the variety of classes, along with extra attributes, but the main 
+takeaway is how the group was able to evolve our original UML, taking into consideration the basics 
+and intertwining these concepts with JSON files to maximize the development process.
