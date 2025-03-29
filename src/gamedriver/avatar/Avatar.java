@@ -78,6 +78,14 @@ public class Avatar implements IAvatar{
     this.name = name;
   }
 
+  /**
+   * name setter.
+   * @param name
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   /**
    * Set Inventory.
