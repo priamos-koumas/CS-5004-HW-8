@@ -58,9 +58,16 @@ public class AvatarController {
       game.getAvatar().setName();
     }
     game.getAvatar().setName(this.userReader.getName());
-
+    System.out.println("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
+            "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
+            "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
+            "(A)nswer a question or provide a text solution. \n" +
+            "To end the game, enter (Q)uit to quit and exit.\n" +
+            "To save the game, enter sa(V)e to quit and exit.\n" +
+            "To restore the game, enter (R)estore.\n");
     while(userReader.getDataFromUser()) {
       this.Control(userReader.getOperator(), userReader.getOperand1());
+
       if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
         IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
         System.out.println(obstacle.getEffects());
@@ -72,6 +79,13 @@ public class AvatarController {
         System.out.println(game.getAvatar().getScore());
         exit(0);
       }
+      System.out.println("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
+              "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
+              "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
+              "(A)nswer a question or provide a text solution. \n" +
+              "To end the game, enter (Q)uit to quit and exit.\n" +
+              "To save the game, enter sa(V)e to quit and exit.\n" +
+              "To restore the game, enter (R)estore.\n");
     }
   }
 
@@ -194,6 +208,7 @@ public class AvatarController {
     else if (instruct.equalsIgnoreCase("Q")) {
 
       if ( !this.save ) {
+        /*
         System.out.println("Game haven't save yet \n");
         System.out.println("Do you really want to Quit (Yes/No)?");
         Scanner scanner = new Scanner(System.in);
@@ -212,6 +227,7 @@ public class AvatarController {
           System.out.println("I guess you're gonna keep playing");
           return "I guess you're gonna keep playing";
         }
+        */
 
       }
       System.out.println("Game Quit \n");

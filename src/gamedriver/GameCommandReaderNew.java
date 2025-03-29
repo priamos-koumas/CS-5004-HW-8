@@ -26,7 +26,9 @@ public class GameCommandReaderNew {
       this.in2 = new BufferedReader(in);
       this.out = out;
       this.data = new String[2];
-      this.isBufferedName = true;
+      if (in instanceof BufferedReader) {
+        this.isBufferedName = true;
+      }
     }
 
     //https://stackoverflow.com/questions/16104616/using-bufferedreader-to-read-text-file
@@ -42,14 +44,6 @@ public class GameCommandReaderNew {
               return true;
             }
         }
-        this.out.append("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
-                "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
-                "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
-                "(A)nswer a question or provide a text solution. \n" +
-                "To end the game, enter (Q)uit to quit and exit.\n" +
-                "To save the game, enter sa(V)e to quit and exit.\n" +
-                "To restore the game, enter (R)estore.\n");
-
         String line = in2.readLine();
         if (line == null || line.isEmpty()) {
           return false;
