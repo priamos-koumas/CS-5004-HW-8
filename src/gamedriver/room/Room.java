@@ -57,7 +57,10 @@ public class Room {
     this.NAME = roomName;
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
+    int[] directions = {n, s, e, w};
+    this.directions = directions;
     this.neighbors = new RoomNeighbors(this.game.getRooms());
+    setNeighbors(directions);
     setObstacle(monster, puzzle);
     this.roomItems = new Bag(13);
     setRoomItems(items);
@@ -128,10 +131,18 @@ public class Room {
    * @param roomItems String of Item names
    */
   private void setRoomItems(String roomItems) {
+
+    // Check that roomItems exists
     if (roomItems != null) {
+
+      // Create a list of strings containing the names of items
       List<String> itemsList = Arrays.asList(roomItems.split("\\s*,\\s*"));
+
+      // Check each name and see if it matches any items in the Game's item list
       for (String item : itemsList) {
         for (IElements i : this.game.getItems()) {
+
+          // Add the Item to roomItems if the name matches
           if (i.getName().equals(item)) {
             this.roomItems.addItem(i);
           }
@@ -147,10 +158,18 @@ public class Room {
    * @param roomFixtures String of Fixture names
    */
   private void setRoomFixtures(String roomFixtures) {
+
+    // Check that roomFixtures exists
     if (roomFixtures != null) {
+
+      // Create a list of strings containing the names of fixtures
       List<String> fixturesList = Arrays.asList(roomFixtures.split("\\s*,\\s*"));
+
+      // Check each name and see if it matches any fixtures in the Game's fixture list
       for (String fixture : fixturesList) {
         for (IElements i : this.game.getFixtures()) {
+
+          // Add the fixture to roomFixtures if the name matches
           if (i.getName().equals(fixture)) {
             this.roomFixtures.addItem(i);
           }
@@ -167,12 +186,19 @@ public class Room {
    */
   private void setObstacle(String enemy, String puzzle) {
 
+    // Case where there is no obstacle
     if (enemy == null && puzzle == null) {
       this.obstacle = null;
+
+    // Case where there is a monster
     } else if (puzzle == null) {
       this.obstacle = game.getMonster(enemy);
+
+    // Case where there is a puzzle
     } else if (enemy == null) {
       this.obstacle = game.getPuzzle(puzzle);
+
+    // Throw an error if more than one is included
     } else {
       throw new IllegalArgumentException(
               "Only one enemy or one puzzle may be included, not both"
@@ -287,8 +313,9 @@ public class Room {
    * stating the outcome (success or failure) or if nothing happened (i.e., there is no obstacle
    * present.
    *
-   * @param solution
-   * @return
+   * @param solution solution to room obstacle
+   *
+   * @return String reporting success or failure
    */
   public String solveObstacle(String solution) {
 
