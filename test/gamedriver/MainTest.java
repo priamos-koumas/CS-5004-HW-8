@@ -1,15 +1,5 @@
 package gamedriver;
 
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
-import gamedriver.avatar.AvatarController;
-import gamedriver.game.Game;
-import gamedriver.game.JsonData;
-import gamedriver.obstacle.IObstacle;
-
 public class MainTest {
 /*
   public static void main(String[] args) {

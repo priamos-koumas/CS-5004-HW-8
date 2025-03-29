@@ -1,19 +1,9 @@
 package gamedriver;
 
-import com.google.gson.Gson;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 
-import gamedriver.avatar.AvatarController;
-import gamedriver.game.Game;
-import gamedriver.game.JsonData;
-import gamedriver.obstacle.IObstacle;
-
-public class MainTest2 {
+public class Main {
 
   public static void main(String[] args) {
 
