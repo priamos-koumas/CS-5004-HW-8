@@ -13,10 +13,11 @@ import gamedriver.room.Room;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoomTest {
+
   FileReader reader;
   {
     try {
-      reader = new FileReader("align_quest_game_elements.json");
+      reader = new FileReader("json_files/align_quest_game_elements.json");
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -26,9 +27,10 @@ class RoomTest {
   JsonData data = gson.fromJson(reader, JsonData.class);
   Game game = new Game(data);
 
-  Room room1 = game.getRooms().get(0);
-  Room room2 = game.getRooms().get(1);
-  Room room3 = game.getRooms().get(2);
+  Room room1 = game.getRoom(1);
+  Room room2 = game.getRoom(2);
+  Room room3 = game.getRoom(3);
+
 
   @Test
   void getRoomName() {
@@ -64,7 +66,7 @@ class RoomTest {
   @Test
   void testGetNeighbor() {
 
-    assertEquals(game.getRoom(2), room1.getNeighbor(CardinalDirection.NORTH));
+    assertEquals(game.getRoom(2).getRoomNumber(), room1.getNeighbor(CardinalDirection.NORTH).getRoomNumber());
     assertEquals(game.getRoom(1), room2.getNeighbor(CardinalDirection.SOUTH));
     assertEquals(game.getRoom(3), room2.getNeighbor(CardinalDirection.NORTH));
     assertEquals(game.getRoom(4), room3.getNeighbor(CardinalDirection.EAST));
@@ -72,4 +74,44 @@ class RoomTest {
 
   }
 
+  @Test
+  void createAndSetNeighbors() {
+
+  }
+
+  @Test
+  void getNeighbor() {
+  }
+
+  @Test
+  void getNeighborNumber() {
+  }
+
+  @Test
+  void getObstacle() {
+  }
+
+  @Test
+  void getPicture() {
+  }
+
+  @Test
+  void getRoomFixtures() {
+  }
+
+  @Test
+  void getRoomFixturesList() {
+  }
+
+  @Test
+  void getRoomItems() {
+  }
+
+  @Test
+  void getRoomItemsList() {
+  }
+
+  @Test
+  void solveObstacle() {
+  }
 }
