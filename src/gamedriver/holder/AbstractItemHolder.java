@@ -65,17 +65,10 @@ public class AbstractItemHolder implements IHolder<IElements> {
     return this.itemlist;
   }
 
-  /**
-   * set weight limit.
-   * @param limit
-   */
-  public void setWeightLimit(int limit) {
-    this.weightLimit = limit;
-  }
 
   /**
    * to String method.
-   * @return
+   * @return Inventory status
    */
   @Override
   public String toString() {
