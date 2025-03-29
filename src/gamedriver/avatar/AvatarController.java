@@ -1,5 +1,8 @@
 package gamedriver.avatar;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import gamedriver.GameCommandReaderNew;
@@ -80,10 +83,11 @@ public class AvatarController {
       for (CardinalDirection dir : CardinalDirection.values()) {
         if (dir.getText().equalsIgnoreCase(instruct)) {
 
-//          System.out.println(this.player.moveRoom(dir));  THIS WAS CAUSING PLAYER TO MOVE TWICE
+          String result = this.player.moveRoom(dir);
+          System.out.println(result);
           System.out.println("You are now in: " + player.getLoc().getRoomName());
           System.out.println(player.getLoc().getDescription());
-          return this.player.moveRoom(dir);
+          return result;
         }
       }
     }
@@ -216,8 +220,16 @@ public class AvatarController {
 
       System.out.println("Game saving");
       this.game.save();
-      this.save = true;
-      return "Game saving";
+
+      Path path = Paths.get(this.game.getName() + "_save_file.json");
+
+      if (Files.exists(path)) {
+        this.save = true;
+        return "Game saving";
+      } else {
+        System.out.println("Saving Failed");
+        return "Saving Failed";
+      }
     }
 
     //Restore

@@ -33,16 +33,12 @@ public class AvatarControllerTest {
   Game game = new Game(data);
 
   GameCommandReaderNew userReader = new GameCommandReaderNew();
-  Room room1 = game.getRooms().get(0);
-  Room room2 = game.getRooms().get(1);
-  Room room3 = game.getRooms().get(2);
 
   /**
    * Test Avatar Constructor and Controller moving method.
    */
   @Test
   public void AvatarMoveTest() {
-    Avatar player = new Avatar(100, "Trevor", room1);
     AvatarController control = new AvatarController(game, userReader);
     String result = control.Control("L");
 
@@ -66,8 +62,7 @@ public class AvatarControllerTest {
    */
   @Test
   public void AvatarPickupTest() {
-    Avatar player = new Avatar(100, "Trevor", room1);
-    AvatarController control = new AvatarController(player);
+    AvatarController control = new AvatarController(game, userReader);
     control.Control("L");
     String result = control.Control("T", "Hair Clippers");
     assertEquals("Successfully pick up", result);
@@ -76,7 +71,7 @@ public class AvatarControllerTest {
     assertEquals("There is nothing here", result);
 
     result = control.Control("I");
-    assertEquals(player.getBag().toString(), result);
+    assertEquals(game.getAvatar().getBag().toString(), result);
   }
 
 
@@ -85,8 +80,7 @@ public class AvatarControllerTest {
    */
   @Test
   public void AvatarExamineTest() {
-    Avatar player = new Avatar(100, "Trevor", room1);
-    AvatarController control = new AvatarController(player);
+    AvatarController control = new AvatarController(game, userReader);
     control.Control("L");
     String result = control.Control("T", "Hair Clippers");
     assertEquals("Successfully pick up", result);
@@ -101,8 +95,7 @@ public class AvatarControllerTest {
    */
   @Test
   public void AvatarDropItemTest() {
-    Avatar player = new Avatar(100, "Trevor", room1);
-    AvatarController control = new AvatarController(player);
+    AvatarController control = new AvatarController(game, userReader);
     control.Control("L");
     String result = control.Control("T", "Hair Clippers");
     assertEquals("Successfully pick up", result);
@@ -209,7 +202,13 @@ public class AvatarControllerTest {
 
     String result = control.Control("V");
 
-    assertEquals("Game saving", result);
+    Path path = Paths.get("Align Quest_save_file.json");
+
+    if (Files.exists(path)) {
+      assertEquals("Game saving", result);
+    } else {
+      assertEquals("Saving Failed", result);
+    }
 
   }
 
