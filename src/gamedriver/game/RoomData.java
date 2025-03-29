@@ -7,6 +7,11 @@ import gamedriver.obstacle.Puzzle;
 import gamedriver.room.CardinalDirection;
 import gamedriver.room.Room;
 
+/**
+ * RoomData is an intermediary class between a JSON file and the Room class. Stores
+ * all needed data to create a Room from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class RoomData {
   @SerializedName("room_name")
   private String roomName;
@@ -44,6 +49,12 @@ public class RoomData {
   @SerializedName("picture")
   private String picture;
 
+  /**
+   * RoomData constructor takes a Room and converts its data back into Room for
+   * storage in a JSON.
+   *
+   * @param room Room object being saved
+   */
   public RoomData(Room room) {
     this.roomName = room.getRoomName();
     this.roomNumber = room.getRoomNumber();

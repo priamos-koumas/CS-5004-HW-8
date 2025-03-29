@@ -11,8 +11,10 @@ import gamedriver.obstacle.Enemy;
 import gamedriver.obstacle.Puzzle;
 import gamedriver.room.Room;
 
-
 /**
+ * JsonData is an intermediary class between a JSON file and the Game class. Stores
+ * all needed data to create a Game from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
  * https://stackoverflow.com/questions/59812235/how-to-write-java-classes-representing-json-object-with-subobjects
  */
 public class JsonData {
@@ -41,6 +43,12 @@ public class JsonData {
   @SerializedName("puzzles")
   private List<PuzzleData> puzzles;
 
+  /**
+   * JsonData constructor takes a Game and converts its data back into JsonData for
+   * storage in a JSON.
+   *
+   * @param game Game object being saved
+   */
   public JsonData(Game game) {
     this.name = game.getName();
     this.version = game.getVersion();

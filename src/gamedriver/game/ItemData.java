@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import gamedriver.elements.Item;
 
+/**
+ * ItemData is an intermediary class between a JSON file and the Item class. Stores
+ * all needed data to create an Item from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class ItemData {
 
   @SerializedName("name")
@@ -30,6 +35,12 @@ public class ItemData {
   @SerializedName("picture")
   private String picture;
 
+  /**
+   * ItemData constructor takes an Item and converts its data back into ItemData for
+   * storage in a JSON.
+   *
+   * @param item Item object being saved
+   */
 public ItemData(Item item) {
   this.name = item.getName();
   this.weight = String.valueOf(item.getWeight());

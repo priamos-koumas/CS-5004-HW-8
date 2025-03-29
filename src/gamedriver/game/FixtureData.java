@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import gamedriver.elements.Fixtures;
 
+/**
+ * FixtureData is an intermediary class between a JSON file and the Fixtures class. Stores
+ * all needed data to create a Fixtures from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class FixtureData {
 
   @SerializedName("name")
@@ -22,6 +27,12 @@ public class FixtureData {
   private String description;
   private String picture;
 
+  /**
+   * FixtureData constructor takes a Fixtures and converts its data back into FixtureData for
+   * storage in a JSON.
+   *
+   * @param fixture Fixtures object being saved
+   */
   public FixtureData(Fixtures fixture) {
     this.name = fixture.getName();
     this.weight = String.valueOf(fixture.getWeight());

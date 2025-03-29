@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import gamedriver.obstacle.Puzzle;
 
+/**
+ * PuzzleData is an intermediary class between a JSON file and the Puzzle class. Stores
+ * all needed data to create a Puzzle from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class PuzzleData {
 
   @SerializedName("name")
@@ -36,6 +41,12 @@ public class PuzzleData {
   @SerializedName("picture")
   private String picture;
 
+  /**
+   * PuzzleData constructor takes a Puzzle and converts its data back into PuzzleData for
+   * storage in a JSON.
+   *
+   * @param puzzle Puzzle object being saved
+   */
   public PuzzleData(Puzzle puzzle) {
     this.name = puzzle.getName();
     this.active = String.valueOf(puzzle.getActiveState());

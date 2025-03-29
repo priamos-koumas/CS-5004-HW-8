@@ -4,6 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import gamedriver.obstacle.Enemy;
 
+/**
+ * MonsterData is an intermediary class between a JSON file and the Enemy class. Stores
+ * all needed data to create an Enemy from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class MonsterData {
 
   @SerializedName("name")
@@ -45,6 +50,12 @@ public class MonsterData {
   @SerializedName("picture")
   private String picture;
 
+  /**
+   * MonsterData constructor takes an Enemy and converts its data back into MonsterData for
+   * storage in a JSON.
+   *
+   * @param monster Enemy object being saved
+   */
   public MonsterData(Enemy monster) {
     this.name = monster.getName();
     this.active = String.valueOf(monster.getActiveState());
