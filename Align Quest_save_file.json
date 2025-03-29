@@ -3,9 +3,9 @@
   "version": "1.0.9",
   "avatar": {
     "health": 100,
-    "name": "Paul",
-    "bag": "Hair Clippers",
-    "room": 2
+    "name": "",
+    "bag": "",
+    "room": 1
   },
   "rooms": [
     {
@@ -16,7 +16,7 @@
       "S": 0,
       "E": 0,
       "W": 0,
-      "items": "",
+      "items": "Hair Clippers",
       "fixtures": "Billboard",
       "picture": "courtyard.png"
     },

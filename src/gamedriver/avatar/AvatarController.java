@@ -50,8 +50,12 @@ public class AvatarController {
    */
   public void go() {
 
-    System.out.println("Please enter your name: ");
-    game.getAvatar().setName();
+    userReader.getDataFromUser();
+    if (this.userReader.getName() == "") {
+      System.out.println("Please enter your name: ");
+      game.getAvatar().setName();
+    }
+    game.getAvatar().setName(this.userReader.getName());
 
     while(userReader.getDataFromUser()) {
       this.Control(userReader.getOperator(), userReader.getOperand1());

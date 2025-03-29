@@ -13,7 +13,7 @@ public class GameCommandReaderNew {
     private Appendable out;
     private BufferedReader in2;
     private boolean isBufferedName = false;
-    private String username;
+    private String username = "";
     private int j = 0;
 
     public GameCommandReaderNew() {
@@ -38,10 +38,10 @@ public class GameCommandReaderNew {
           if (j == 0) {
             String name = in2.readLine();
             if (name != null) {
-              data[0] = name;
               this.username = name;
               this.j = 1;
               isBufferedName = false;
+              this.getName();
             }
           }
         }

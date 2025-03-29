@@ -23,7 +23,7 @@ public class MainTest2 {
     String s3 = "L\nt Hair clippers\nN\nq\nYes\n";
     String s4 = "L\nt Hair clippers\nN\nv\nYes\n";
     String s5 = "L\nt Hair clippers\nN\nN\nL\nu Hair Clippers\nL\n";
-    String s6 = "Vince\nL\nt hair clippers\nN\nt thumb drive\nN\nL\nu hair clippers\nt Lamp\nE\nTkey\nE\nT Algorithms Book\nW\nN\nU Lamp\nW\nQ\n";
+    String s6 = "Vince\nx self\nL\nt hair clippers\nN\nt thumb drive\nN\nL\nu hair clippers\nt Lamp\nE\nTkey\nE\nT Algorithms Book\nW\nN\nU Lamp\nW\nQ\n";
 
     BufferedReader stringReader = new BufferedReader(new StringReader(s6));
     GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", stringReader, System.out);
