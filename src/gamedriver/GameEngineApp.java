@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.Reader;
 
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.Game;
@@ -12,10 +13,10 @@ import gamedriver.game.JsonData;
 public class GameEngineApp {
 
   private String gameFileName = "align_quest_game_elements.json";
-  private Readable source;
+  private Reader source;
   private Appendable output;
 
-  public GameEngineApp(String gameFileName, Readable source, Appendable output) {
+  public GameEngineApp(String gameFileName, Reader source, Appendable output) {
 	this.gameFileName = gameFileName;
 	this.source = source;
 	this.output = output;
