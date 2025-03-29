@@ -2,6 +2,9 @@ package gamedriver.elements;
 
 import gamedriver.game.ItemData;
 
+/**
+ * Set up attributes for items.
+ */
 public class Item extends AbstractContents implements IElements {
   private int weight;
   private int maxUses;
@@ -9,6 +12,16 @@ public class Item extends AbstractContents implements IElements {
   private int value;
   private String whenUsed;
 
+  /**
+   * Set up constructor method for item class.
+   * @param name item name
+   * @param description item description
+   * @param weight item weight
+   * @param maxUses item maximum amount of uses
+   * @param usesRemaining item's amount of uses remaining
+   * @param value value of the item
+   * @param whenUsed when the item should be used
+   */
   public Item(String name, String description, int weight, int maxUses, int usesRemaining,
               int value, String whenUsed) {
     super(name, description);
@@ -19,6 +32,10 @@ public class Item extends AbstractContents implements IElements {
     this.whenUsed = whenUsed;
   }
 
+  /**
+   * What value of item should be in case certain parameters are null.
+   * @param data ItemData type
+   */
   public Item(ItemData data) {
     super(data.getName(), data.getDescription());
     if (data.getWeight() != null) {
@@ -48,6 +65,9 @@ public class Item extends AbstractContents implements IElements {
     }
   }
 
+  /**
+   * Method use to decrement the amount of uses that are remaining every time an item is used.
+   */
   public void decrementUsesRemaining() {
     if (this.usesRemaining > 0) {
       this.usesRemaining--;
@@ -57,32 +77,59 @@ public class Item extends AbstractContents implements IElements {
     }
   }
 
+  /**
+   * Used for contorller.
+   * @return uses remaining
+   */
   public int usesRemaining() {
     return this.usesRemaining;
   }
 
+  /**
+   * Getter method to see how many uses are remaining for a certain item.
+   * @return usesRemaining.
+   */
   public int getUsesRemaining() {
     return this.usesRemaining;
   }
 
+  /**
+   * Getter method used to see when an item should be used.
+   * @return whenUsed
+   */
   public String getWhenUsed() {
     return this.whenUsed;
   }
 
+  /**
+   * Getter method to get the value of the item's weight.
+   * @return weight
+   */
   public int getWeight() {
     return weight;
   }
 
+  /**
+   * Getter method to get item value.
+   * @return value
+   */
   public int getValue() {
     return value;
   }
 
+  /**
+   * Getter method use to get max amount of item uses.
+   * @return max amount of uses
+   */
   public int getMaxUses() {
     return this.maxUses;
   }
 
 
-
+  /**
+   * To string method to print item's parameters
+   * @return printed statement of all attributes.
+   */
   @Override
   public String toString() {
     return "Item{" +
