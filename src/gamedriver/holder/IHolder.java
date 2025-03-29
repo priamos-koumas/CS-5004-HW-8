@@ -24,11 +24,10 @@ public interface IHolder <T> {
    */
   public <T> List<T> getItem();
 
-//  /**
-//   * set weight limit.
-//   * @param limit
-//   */
-//  public void setWeightLimit(int limit);
 
+  /**
+   * To String.
+   * @return all the item name and description.
+   */
   public String toString();
 }

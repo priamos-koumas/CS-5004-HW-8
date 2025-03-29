@@ -13,6 +13,9 @@ import gamedriver.holder.Bag;
 import gamedriver.room.CardinalDirection;
 import gamedriver.room.Room;
 
+/**
+ * Avatar class.
+ */
 public class Avatar implements IAvatar{
 
   private int score = 0;
@@ -22,12 +25,23 @@ public class Avatar implements IAvatar{
   private Bag inventory = new Bag(13);
   private Room loc;
 
+  /**
+   * Avatar constructor for testing.
+   * @param health player health set to be 100
+   * @param name Player name
+   * @param init initial location
+   */
   public Avatar(int health, String name, Room init) {
     this.health = health;
     this.name = name;
     this.loc = init;
   }
 
+  /**
+   * Avatar constructor.
+   * @param game
+   * @param avatar
+   */
   public Avatar(Game game, AvatarData avatar) {
     this.game = game;
     this.health = avatar.getHealth();
@@ -36,6 +50,10 @@ public class Avatar implements IAvatar{
     setInventory(avatar.getBag());
   }
 
+  /**
+   * Avatar constructor without name.
+   * @param game
+   */
   public Avatar(Game game) {
     this.game = game;
     this.health = 100;
@@ -43,11 +61,17 @@ public class Avatar implements IAvatar{
     this.loc = this.game.getRoom(1);
   }
 
+  /**
+   * Avatar constructor without game and name.
+   */
   public Avatar() {
     this.health = 100;
     this.name = "";
   }
 
+  /**
+   * Name setter.
+   */
   public void setName() {
     Scanner scanner = new Scanner(System.in);
     String name = scanner.nextLine();
@@ -55,6 +79,10 @@ public class Avatar implements IAvatar{
   }
 
 
+  /**
+   * Set Inventory.
+   * @param inventory Inventory
+   */
   private void setInventory(String inventory) {
     if (inventory != null) {
       List<String> itemsList = Arrays.asList(inventory.split("\\s*,\\s*"));
@@ -69,6 +97,10 @@ public class Avatar implements IAvatar{
   }
 
 
+  /**
+   * set inventory with Item
+   * @param items
+   */
   private void setInventory(List<ItemData> items) {
     for (ItemData item : items) {
       Item itemObject = this.game.getItem("item");
@@ -78,7 +110,7 @@ public class Avatar implements IAvatar{
 
   /**
    * move to the given direction.
-   * @param direction
+   * @param direction Cardinal Direction enum
    * @return
    */
   @Override
@@ -93,18 +125,26 @@ public class Avatar implements IAvatar{
 
   }
 
+  /**
+   * Name getter.
+   * @return player name
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * getter for current location
+   * @return current location room
+   */
   public Room getLoc() {
     return this.loc;
   }
 
   /**
    * add item to bag.
-   * @param item
-   * @return
+   * @param item IElement
+   * @return True if success.
    */
   @Override
   public boolean addToBag(IElements item) {
@@ -113,7 +153,7 @@ public class Avatar implements IAvatar{
 
   /**
    * reset the weight limit for the bag
-   * @param volume
+   * @param volume setter for the weight limit
    */
   @Override
   public void setBagVolume(int volume) {
@@ -122,7 +162,7 @@ public class Avatar implements IAvatar{
 
   /**
    * get the health info.
-   * @return
+   * @return return health info
    */
   @Override
   public int getHealth() {
@@ -131,13 +171,17 @@ public class Avatar implements IAvatar{
 
   /**
    * set the health info.
-   * @param health
+   * @param health health setter
    */
   @Override
   public void setHealth(int health) {
     this.health = health;
   }
 
+  /**
+   * return player inventory status.
+   * @return bag
+   */
   @Override
   public Bag getBag() {
     return this.inventory;
@@ -145,7 +189,7 @@ public class Avatar implements IAvatar{
 
   /**
    * to String method
-   * @return
+   * @return Player status
    */
   @Override
   public String toString() {
@@ -164,10 +208,18 @@ public class Avatar implements IAvatar{
     return result;
   }
 
+  /**
+   * Setter for player's score
+   * @param score player's score
+   */
   public void setScore (int score) {
     this.score = this.score + score;
   }
 
+  /**
+   * getter for the score.
+   * @return score.
+   */
   public int getScore() {
     return this.score;
   }

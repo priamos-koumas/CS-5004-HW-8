@@ -45,14 +45,33 @@ public interface IAvatar {
    */
   public void setHealth(int health);
 
+  /**
+   * return player inventory status.
+   * @return bag
+   */
   public Bag getBag();
 
+  /**
+   * to String method
+   * @return Player status
+   */
   public String toString();
 
+  /**
+   * Name setter.
+   */
   public void setName();
 
+  /**
+   * Setter for player's score
+   * @param score player's score
+   */
   public void setScore (int score);
 
+  /**
+   * getter for the score.
+   * @return score.
+   */
   public int getScore();
 
 }
