@@ -3,54 +3,65 @@ package gamedriver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.Scanner;
 
 public class GameCommandReaderNew {
 
     private String [] data;
-    private Readable in;
+    //private Readable in;
     private Appendable out;
+    private BufferedReader in2;
 
     public GameCommandReaderNew() {
-      this.in = new InputStreamReader(System.in);
+      //this.in = new InputStreamReader(System.in);
       this.out = System.out;
       this.data = new String[2];
+      this.in2 = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public GameCommandReaderNew(Readable in, Appendable out) {
-      this.in = in;
+    public GameCommandReaderNew(Reader in, Appendable out) {
+      //this.in = in;
+      this.in2 = new BufferedReader(in);
       this.out = out;
       this.data = new String[2];
-    }
 
+
+    }
+    //https://stackoverflow.com/questions/16104616/using-bufferedreader-to-read-text-file
+   // https://www.geeksforgeeks.org/java-io-bufferedreader-class-java/
+  // https://www.baeldung.com/java-buffered-reader
     public boolean getDataFromUser() {
       try {
-        Scanner scanner = new Scanner(this.in);
         this.out.append("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
                 "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
                 "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
                 "(A)nswer a question or provide a text solution. \n" +
                 "To end the game, enter (Q)uit to quit and exit.\n" +
                 "To save the game, enter sa(V)e to quit and exit.\n" +
-                "To save the game, enter (R)estore to quit and exit.\n");
+                "To restore the game, enter (R)estore.\n");
         for (int i = 0; i <= 1; i++) {
-          if (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            String firstLetter = getFirstLetter(line);
-            if (i == 0) {
-              this.data[0] = firstLetter;
-
-              this.data[1] = line.substring(firstLetter.length()).trim();
-              return true;
-            }
+          String line = in2.readLine();
+          //line = line.trim();
+          if (line == null || line.isEmpty()) {
+            return false;
+          } else {
+            line = line.trim();
+          }
+          String firstLetter = getFirstLetter(line);
+          if (i == 0) {
+            this.data[0] = firstLetter;
+            this.data[1] = line.substring(firstLetter.length()).trim();
+            return true;
           }
         }
-        return true;
+        return false;
+
       } catch (IOException e) {
         e.printStackTrace();
+        return false;
       }
-      return false;
     }
 
     public String getOperator() {

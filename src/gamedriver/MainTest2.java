@@ -18,15 +18,20 @@ public class MainTest2 {
   public static void main(String[] args) {
 
     // smoke tests - first send synthetic data via a string
-    //String s = "Sir Mix-A-Lot\nT NOTEBOOK\nN\nT HAIR CLIPPERS\nT KEY\nD NOTEBOOK\nQuit";
-    //BufferedReader stringReader = new BufferedReader(new StringReader(s));
-    //GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", stringReader, System.out);
-    //gameEngineApp.start();
+   // String s = "Sir Mix-A-Lot\nT NOTEBOOK\nN\nT HAIR CLIPPERS\nT KEY\nD NOTEBOOK\nQuit";
+    String s2 = "L\nq\nYes\n";
+    String s3 = "L\nt Hair clippers\nN\nq\nYes\n";
+    String s4 = "L\nt Hair clippers\nN\nv\nYes\n";
+    String s5 = "L\nt Hair clippers\nN\nN\nL\nu Hair Clippers\nL\n";
+    BufferedReader stringReader = new BufferedReader(new StringReader(s5));
+    GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", stringReader, System.out);
+    gameEngineApp.start();
+
 
 
     // Next, comment the above and uncomment this to do some ad-hoc testing by hand via System.in
-     GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", new InputStreamReader(System.in), System.out);
-     gameEngineApp.start();
+//     GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", new InputStreamReader(System.in), System.out);
+//     gameEngineApp.start();
 
     //}
     //
