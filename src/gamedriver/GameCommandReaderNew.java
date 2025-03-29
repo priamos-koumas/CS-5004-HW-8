@@ -10,30 +10,41 @@ import java.util.Scanner;
 public class GameCommandReaderNew {
 
     private String [] data;
-    //private Readable in;
     private Appendable out;
     private BufferedReader in2;
+    private boolean isBufferedName = false;
+    private String username;
+    private int j = 0;
 
     public GameCommandReaderNew() {
-      //this.in = new InputStreamReader(System.in);
       this.out = System.out;
       this.data = new String[2];
       this.in2 = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public GameCommandReaderNew(Reader in, Appendable out) {
-      //this.in = in;
       this.in2 = new BufferedReader(in);
       this.out = out;
       this.data = new String[2];
-
-
+      this.isBufferedName = true;
     }
+
     //https://stackoverflow.com/questions/16104616/using-bufferedreader-to-read-text-file
-   // https://www.geeksforgeeks.org/java-io-bufferedreader-class-java/
-  // https://www.baeldung.com/java-buffered-reader
+    // https://www.geeksforgeeks.org/java-io-bufferedreader-class-java/
+    // https://www.baeldung.com/java-buffered-reader
     public boolean getDataFromUser() {
       try {
+        if (isBufferedName) {
+          if (j == 0) {
+            String name = in2.readLine();
+            if (name != null) {
+              data[0] = name;
+              this.username = name;
+              this.j = 1;
+              isBufferedName = false;
+            }
+          }
+        }
         this.out.append("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
                 "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
                 "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
@@ -43,18 +54,15 @@ public class GameCommandReaderNew {
                 "To restore the game, enter (R)estore.\n");
         for (int i = 0; i <= 1; i++) {
           String line = in2.readLine();
-          //line = line.trim();
           if (line == null || line.isEmpty()) {
             return false;
           } else {
             line = line.trim();
           }
           String firstLetter = getFirstLetter(line);
-          if (i == 0) {
-            this.data[0] = firstLetter;
-            this.data[1] = line.substring(firstLetter.length()).trim();
-            return true;
-          }
+          this.data[0] = firstLetter;
+          this.data[1] = line.substring(firstLetter.length()).trim();
+          return true;
         }
         return false;
 
@@ -69,7 +77,11 @@ public class GameCommandReaderNew {
     }
     public String getOperand1() {
       return data[1];
-  }
+    }
+
+    public String getName() {
+      return this.username;
+    }
 
 
     //https://stackoverflow.com/questions/5067942/what-is-the-best-way-to-extract-the-first-word-from-a-string-in-java#comment17287574_5067993

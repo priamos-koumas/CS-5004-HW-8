@@ -18,12 +18,14 @@ public class MainTest2 {
   public static void main(String[] args) {
 
     // smoke tests - first send synthetic data via a string
-   // String s = "Sir Mix-A-Lot\nT NOTEBOOK\nN\nT HAIR CLIPPERS\nT KEY\nD NOTEBOOK\nQuit";
+    String s = "Sir Mix-A-Lot\nT NOTEBOOK\nN\nT HAIR CLIPPERS\nT KEY\nD NOTEBOOK\nQuit";
     String s2 = "L\nq\nYes\n";
     String s3 = "L\nt Hair clippers\nN\nq\nYes\n";
     String s4 = "L\nt Hair clippers\nN\nv\nYes\n";
     String s5 = "L\nt Hair clippers\nN\nN\nL\nu Hair Clippers\nL\n";
-    BufferedReader stringReader = new BufferedReader(new StringReader(s5));
+    String s6 = "Vince\nL\nt hair clippers\nN\nt thumb drive\nN\nL\nu hair clippers\nt Lamp\nE\nTkey\nE\nT Algorithms Book\nW\nN\nU Lamp\nW\nQ\n";
+
+    BufferedReader stringReader = new BufferedReader(new StringReader(s6));
     GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", stringReader, System.out);
     gameEngineApp.start();
 
