@@ -50,7 +50,9 @@ public class AvatarController {
    */
   public void go() {
 
-    userReader.getDataFromUser();
+    if (userReader.isBufferedName()) {
+      userReader.getDataFromUser();
+    }
     if (this.userReader.getName() == "") {
       System.out.println("Please enter your name: ");
       game.getAvatar().setName();
@@ -247,6 +249,7 @@ public class AvatarController {
       this.player = this.game.getAvatar();
       return "Game restoring";
     }
+    System.out.println("Empty");
     return "";
 
   }

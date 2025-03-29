@@ -35,15 +35,12 @@ public class GameCommandReaderNew {
     public boolean getDataFromUser() {
       try {
         if (isBufferedName) {
-          if (j == 0) {
             String name = in2.readLine();
             if (name != null) {
               this.username = name;
-              this.j = 1;
               isBufferedName = false;
-              this.getName();
+              return true;
             }
-          }
         }
         this.out.append("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
                 "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
@@ -52,24 +49,27 @@ public class GameCommandReaderNew {
                 "To end the game, enter (Q)uit to quit and exit.\n" +
                 "To save the game, enter sa(V)e to quit and exit.\n" +
                 "To restore the game, enter (R)estore.\n");
-        for (int i = 0; i <= 1; i++) {
-          String line = in2.readLine();
-          if (line == null || line.isEmpty()) {
-            return false;
-          } else {
-            line = line.trim();
-          }
-          String firstLetter = getFirstLetter(line);
-          this.data[0] = firstLetter;
-          this.data[1] = line.substring(firstLetter.length()).trim();
-          return true;
+
+        String line = in2.readLine();
+        if (line == null || line.isEmpty()) {
+          return false;
+        } else {
+          line = line.trim();
         }
-        return false;
+        String firstLetter = getFirstLetter(line);
+        this.data[0] = firstLetter;
+        this.data[1] = line.substring(firstLetter.length()).trim();
+        return true;
+
 
       } catch (IOException e) {
         e.printStackTrace();
         return false;
       }
+    }
+
+    public boolean isBufferedName(){
+      return this.isBufferedName;
     }
 
     public String getOperator() {
