@@ -27,24 +27,23 @@ public class MainTest2 {
     // GameEngineApp gameEngineApp = new GameEngineApp("./resources/museum.json", new InputStreamReader(System.in), System.out);
     // gameEngineApp.start();
 
-    }
-
-    FileReader reader;
-    {
-      try {
-        reader = new FileReader("align_quest_game_elements.json");
-      } catch (FileNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    Gson gson = new Gson();
-    JsonData data = gson.fromJson(reader, JsonData.class);
-    Game game = new Game(data);
-
-    GameCommandReaderNew userReader = new GameCommandReaderNew();
-    AvatarController control = new AvatarController(game, userReader);
-    control.go();
-
+    //}
+    //
+    //FileReader reader;
+    //{
+    //  try {
+    //    reader = new FileReader("align_quest_game_elements.json");
+    //  } catch (FileNotFoundException e) {
+    //    throw new RuntimeException(e);
+    //  }
+    //}
+    //
+    //Gson gson = new Gson();
+    //JsonData data = gson.fromJson(reader, JsonData.class);
+    //Game game = new Game(data);
+    //
+    //GameCommandReaderNew userReader = new GameCommandReaderNew();
+    //AvatarController control = new AvatarController(game, userReader);
+    //control.go();
   }
 }
