@@ -1,6 +1,7 @@
 package gamedriver;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 
 public class Main {
@@ -8,7 +9,9 @@ public class Main {
   public static void main(String[] args) {
 
     // smoke tests - first send synthetic data via a string
-    String s = "Team DEV-P\nL\nt hair clippers\nx self\nN\nt thumb drive\nN\nL\nu hair clippers\nt Lamp\nE\nTkey\nE\nT Algorithms Book\nW\nN\nU Lamp\nW\nQ\nYes\n";
+
+
+    String s = "Team DEV-P\nT hair clippers\nN\nt modulo 2\nt thumb drive\nN\nu hair clippers\nt lamp\nE\nT key\nu modulo 2\nE\nT Algorithms Book\nW\nN\nU lamp\nW\nS\nt Carrot\nN\nu Carrot\nN\nu thumb drive\nE\nQ\n";
 
     StringBuffer sb = new StringBuffer();
 
@@ -19,15 +22,12 @@ public class Main {
     System.out.println(sb.toString());
 
 
+    //StringBuffer sb = new StringBuffer();
+    //// Next, comment the above and uncomment this to do some ad-hoc testing by hand via System.in
+    //GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", new InputStreamReader(System.in), sb);
+    //gameEngineApp.start();
+    //System.out.println(sb.toString());
 
-/*
-    StringBuffer sb = new StringBuffer();
-    // Next, comment the above and uncomment this to do some ad-hoc testing by hand via System.in
-     GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", new InputStreamReader(System.in), sb);
-     gameEngineApp.start();
-    System.out.println(sb.toString());
-
- */
 
 
 
