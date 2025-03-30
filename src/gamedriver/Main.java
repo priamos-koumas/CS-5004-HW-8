@@ -11,7 +11,7 @@ public class Main {
     // smoke tests - first send synthetic data via a string
 
 
-    String s = "Team DEV-P\nT hair clippers\nN\nt modulo 2\nt thumb drive\nN\nu hair clippers\nt lamp\nE\nT key\nu modulo 2\nE\nT Algorithms Book\nW\nN\nU lamp\nW\nS\nt Carrot\nN\nu Carrot\nN\nu thumb drive\nE\nQ\n";
+    String s = "Team DEV-P\nT hair clippers\nN\nt modulo 2\nt thumb drive\nN\nu hair clippers\nt lamp\nE\nT key\nu modulo 2\nE\nT Algorithms Book\nW\nN\nU lamp\nW\nS\nt Carrot\nN\nu Carrot\nN\nu thumb drive\nE\na 'Base Case'\nE\nL\nt Golden Ticket\nN\nL\nN\nL\na Golden Ticket\nL\n";
 
     StringBuffer sb = new StringBuffer();
 
