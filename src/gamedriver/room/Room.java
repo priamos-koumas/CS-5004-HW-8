@@ -2,6 +2,7 @@ package gamedriver.room;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +30,8 @@ public class Room {
   private int[] directions;
   private RoomNeighbors neighbors;
   private IObstacle obstacle;
-  private IHolder<IElements> roomItems;
-  private IHolder<IElements> roomFixtures;
+  private List<IElements> roomItems;
+  private List<IElements> roomFixtures;
   private final String PICTURE;
 
   /**
@@ -63,9 +64,9 @@ public class Room {
     this.neighbors = new RoomNeighbors(this.game.getRooms());
     setNeighbors(directions);
     setObstacle(monster, puzzle);
-    this.roomItems = new Bag(13);
+    this.roomItems = new ArrayList<>();
     setRoomItems(items);
-    this.roomFixtures = new RoomContents();
+    this.roomFixtures = new ArrayList<>();
     setRoomFixtures(fixtures);
     this.PICTURE = picture;
   }
@@ -94,11 +95,11 @@ public class Room {
     setObstacle(data.getMonster(), data.getPuzzle());
 
     // Fill roomItems attribute with Item instances created with ItemData instances
-    this.roomItems = new RoomContents();
+    this.roomItems = new ArrayList<>();
     setRoomItems(data.getItems());
 
     // Fill roomFixtures attribute with Fixtures instances created with FixtureData instances
-    this.roomFixtures = new RoomContents();
+    this.roomFixtures = new ArrayList<>();
     setRoomFixtures(data.getFixtures());
   }
 
@@ -145,7 +146,7 @@ public class Room {
 
           // Add the Item to roomItems if the name matches
           if (i.getName().equals(item)) {
-            this.roomItems.addItem(i);
+            this.roomItems.add(i);
           }
         }
       }
@@ -172,7 +173,7 @@ public class Room {
 
           // Add the fixture to roomFixtures if the name matches
           if (i.getName().equals(fixture)) {
-            this.roomFixtures.addItem(i);
+            this.roomFixtures.add(i);
           }
         }
       }
@@ -278,17 +279,8 @@ public class Room {
    *
    * @return roomFixtures
    */
-  public IHolder<IElements> getRoomFixtures() {
+  public List<IElements> getRoomFixtures() {
     return roomFixtures;
-  }
-
-  /**
-   * Returns the roomFixtures attribute in list form.
-   *
-   * return list of room fixtures
-   */
-  public List<IElements> getRoomFixturesList() {
-    return roomFixtures.getItem();
   }
 
   /**
@@ -296,17 +288,8 @@ public class Room {
    *
    * @return roomItems
    */
-  public IHolder<IElements> getRoomItems() {
+  public List<IElements> getRoomItems() {
     return this.roomItems;
-  }
-
-  /**
-   * Returns the roomItems attribute in list form
-   *
-   * @return list of items in room
-   */
-  public List<IElements> getRoomItemsList() {
-    return this.roomItems.getItem();
   }
 
   /**
@@ -341,7 +324,7 @@ public class Room {
   @Override
   public String toString() {
 
-    if (roomItems != null && !roomItems.getItem().isEmpty()) {
+    if (roomItems != null && !roomItems.isEmpty()) {
       return "You are in " + NAME + ".\n"
               + DESCRIPTION + "\n"
               + roomItems.toString();

@@ -32,6 +32,7 @@ public class GameCommandReader {
     public boolean getDataFromUser() {
       try {
         line = in2.readLine();
+        sendOut(line);
         if (line == null || line.isEmpty()) {
           return false;
         } else {

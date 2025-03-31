@@ -98,29 +98,16 @@ class RoomTest {
   @Test
   void getRoomFixtures() {
 
-    assertTrue(room3.getRoomFixtures().getItem().isEmpty());
-    assertEquals(room1.getRoomFixtures().getItem().get(0), game.getFixture("Billboard"));
-  }
-
-  @Test
-  void getRoomFixturesList() {
-
-    assertTrue(room3.getRoomFixturesList().isEmpty());
-    assertEquals(room1.getRoomFixturesList().get(0), game.getFixture("Billboard"));
+    assertTrue(room3.getRoomFixtures().isEmpty());
+    assertEquals(room1.getRoomFixtures().get(0), game.getFixture("Billboard"));
   }
 
   @Test
   void getRoomItems() {
-    assertTrue(room6.getRoomItems().getItem().isEmpty());
-    assertEquals(room1.getRoomItems().getItem().get(0), game.getItem("Hair Clippers"));
+    assertTrue(room6.getRoomItems().isEmpty());
+    assertEquals(room1.getRoomItems().get(0), game.getItem("Hair Clippers"));
 
 
-  }
-
-  @Test
-  void getRoomItemsList() {
-    assertTrue(room6.getRoomItemsList().isEmpty());
-    assertEquals(room1.getRoomItemsList().get(0), game.getItem("Hair Clippers"));
   }
 
   @Test

@@ -9,7 +9,7 @@ public interface IHolder <T> {
    * if true add the item in to the storage list.
    * @param item
    */
-  public boolean addItem(T item);
+  public String addItem(T item);
 
   /**
    * Check if the item is in the holder.

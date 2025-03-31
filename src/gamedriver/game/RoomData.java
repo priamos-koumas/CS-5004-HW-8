@@ -69,18 +69,18 @@ public class RoomData {
       this.puzzle = room.getObstacle().getName();
     }
     this.items = "";
-    for (int i = 0; i < room.getRoomItemsList().size() - 1; i++) {
-      this.items += (room.getRoomItemsList().get(i).getName() + ", ");
+    for (int i = 0; i < room.getRoomItems().size() - 1; i++) {
+      this.items += (room.getRoomItems().get(i).getName() + ", ");
     }
-    if (!room.getRoomItemsList().isEmpty()) {
-      this.items += room.getRoomItemsList().get(room.getRoomItemsList().size() - 1).getName();
+    if (!room.getRoomItems().isEmpty()) {
+      this.items += room.getRoomItems().get(room.getRoomItems().size() - 1).getName();
     }
     this.fixtures = "";
-    for (int i = 0; i < room.getRoomFixturesList().size() - 1; i++) {
-      this.fixtures += (room.getRoomFixturesList().get(i).getName() + ", ");
+    for (int i = 0; i < room.getRoomFixtures().size() - 1; i++) {
+      this.fixtures += (room.getRoomFixtures().get(i).getName() + ", ");
     }
-    if (!room.getRoomFixturesList().isEmpty()) {
-      this.fixtures += room.getRoomFixturesList().get(room.getRoomFixturesList().size() - 1).getName();
+    if (!room.getRoomFixtures().isEmpty()) {
+      this.fixtures += room.getRoomFixtures().get(room.getRoomFixtures().size() - 1).getName();
     }
     this.picture = room.getPicture();
   }

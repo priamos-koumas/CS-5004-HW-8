@@ -22,10 +22,11 @@ public interface IAvatar {
 
   /**
    * add item to bag.
+   *
    * @param item
    * @return
    */
-  public boolean addToBag(IElements item);
+  public String addToBag(IElements item);
 
 
   /**

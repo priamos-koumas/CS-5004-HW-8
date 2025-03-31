@@ -21,15 +21,14 @@ public class AbstractItemHolder implements IHolder<IElements> {
    * @param item item
    */
   @Override
-  public boolean addItem(IElements item) {
-    if (this.weightLimit < this.usage) {
-      System.out.println("Not enough space in the bag");
-      return false;
+  public String addItem(IElements item) {
+    if (this.weightLimit < this.usage + item.getWeight()) {
+      return "Not enough space in the bag";
     }
 
     itemlist.add(item);
     this.usage = this.usage + item.getWeight();
-    return true;
+    return "Sucessfully added " + item.getName() + " to the bag";
 
   }
 

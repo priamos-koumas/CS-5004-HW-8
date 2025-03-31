@@ -151,11 +151,12 @@ public class Avatar implements IAvatar{
 
   /**
    * add item to bag.
+   *
    * @param item IElement
    * @return True if success.
    */
   @Override
-  public boolean addToBag(IElements item) {
+  public String addToBag(IElements item) {
     return this.inventory.addItem(item);
   }
 

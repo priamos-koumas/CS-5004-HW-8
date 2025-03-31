@@ -109,10 +109,10 @@ public class AvatarController {
     //Pick-up item.
     else if (instruct.equalsIgnoreCase("T")) {
       String furtherInstruct = (instruction.length > 0) ? instruction[1] : "";
-      for (IElements items : this.player.getLoc().getRoomItemsList()) {
+      for (IElements items : this.player.getLoc().getRoomItems()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
-          this.player.getLoc().getRoomItems().removeItem(items.getName());
+          this.player.getLoc().getRoomItems().remove(items);
           userReader.sendOut("Successfully pick up");
           return "Successfully pick up";
         }
@@ -164,7 +164,7 @@ public class AvatarController {
       for (IElements items : this.player.getBag().getItem()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.getBag().removeItem(items.getName());
-          this.player.getLoc().getRoomItems().addItem(items);
+          this.player.getLoc().getRoomItems().add(items);
           userReader.sendOut("Item Dropped");
           return "Item Dropped";
         }
