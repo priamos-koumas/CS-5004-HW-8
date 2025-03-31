@@ -5,18 +5,20 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import project.game.Game;
-import project.game.JsonData;
-import project.room.CardinalDirection;
-import project.room.Room;
+import gamedriver.game.Game;
+import gamedriver.game.JsonData;
+import gamedriver.obstacle.IObstacle;
+import gamedriver.room.CardinalDirection;
+import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoomTest {
+
   FileReader reader;
   {
     try {
-      reader = new FileReader("align_quest_game_elements.json");
+      reader = new FileReader("json_files/align_quest_game_elements.json");
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -26,9 +28,11 @@ class RoomTest {
   JsonData data = gson.fromJson(reader, JsonData.class);
   Game game = new Game(data);
 
-  Room room1 = game.getRooms().get(0);
-  Room room2 = game.getRooms().get(1);
-  Room room3 = game.getRooms().get(2);
+  Room room1 = game.getRoom(1);
+  Room room2 = game.getRoom(2);
+  Room room3 = game.getRoom(3);
+  Room room4 = game.getRoom(4);
+  Room room6 = game.getRoom(6);
 
   @Test
   void getRoomName() {
@@ -64,7 +68,7 @@ class RoomTest {
   @Test
   void testGetNeighbor() {
 
-    assertEquals(game.getRoom(2), room1.getNeighbor(CardinalDirection.NORTH));
+    assertEquals(game.getRoom(2).getRoomNumber(), room1.getNeighbor(CardinalDirection.NORTH).getRoomNumber());
     assertEquals(game.getRoom(1), room2.getNeighbor(CardinalDirection.SOUTH));
     assertEquals(game.getRoom(3), room2.getNeighbor(CardinalDirection.NORTH));
     assertEquals(game.getRoom(4), room3.getNeighbor(CardinalDirection.EAST));
@@ -72,4 +76,59 @@ class RoomTest {
 
   }
 
+  @Test
+  void getNeighborNumber() {
+
+    assertEquals(2, room1.getNeighborNumber(CardinalDirection.NORTH));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.SOUTH));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.WEST));
+    assertEquals(0, room1.getNeighborNumber(CardinalDirection.EAST));
+
+    // Should return negative numbers for blocked rooms
+    assertEquals(-5, room4.getNeighborNumber(CardinalDirection.EAST));
+  }
+
+  @Test
+  void getObstacle() {
+
+    assertNull(room1.getObstacle());
+    assertEquals(game.getMonster("Teddy Bear"), room3.getObstacle());
+  }
+
+  @Test
+  void getRoomFixtures() {
+
+    assertTrue(room3.getRoomFixtures().getItem().isEmpty());
+    assertEquals(room1.getRoomFixtures().getItem().get(0), game.getFixture("Billboard"));
+  }
+
+  @Test
+  void getRoomFixturesList() {
+
+    assertTrue(room3.getRoomFixturesList().isEmpty());
+    assertEquals(room1.getRoomFixturesList().get(0), game.getFixture("Billboard"));
+  }
+
+  @Test
+  void getRoomItems() {
+    assertTrue(room6.getRoomItems().getItem().isEmpty());
+    assertEquals(room1.getRoomItems().getItem().get(0), game.getItem("Hair Clippers"));
+
+
+  }
+
+  @Test
+  void getRoomItemsList() {
+    assertTrue(room6.getRoomItemsList().isEmpty());
+    assertEquals(room1.getRoomItemsList().get(0), game.getItem("Hair Clippers"));
+  }
+
+  @Test
+  void solveObstacle() {
+
+    assertEquals("Nothing happened!", room1.solveObstacle("Hair Clippers"));
+    assertEquals("You have cleared the monster for 200 points!", room3.solveObstacle("Hair Clippers"));
+    assertEquals("You did not clear the monster.", room3.solveObstacle("Book"));
+
+  }
 }

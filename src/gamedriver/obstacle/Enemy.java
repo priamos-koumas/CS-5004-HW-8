@@ -40,6 +40,11 @@ public class Enemy extends AbstractObstacle {
     this.attack = monster.getAttack();
   }
 
+  /**
+   * This ensures the string data which is true or false is represented properly.
+   * @param s is a string.
+   * @return a boolean.
+   */
   private boolean booleanChecker(String s) {
     if (s == null) {
       return false;
@@ -83,6 +88,13 @@ public class Enemy extends AbstractObstacle {
     }
   }
 
+<<<<<<<< HEAD:src/project/obstacle/Enemy.java
+========
+  /**
+   * This is the to string.
+   * @return String.
+   */
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/obstacle/Enemy.java
   @Override
   public String toString() {
     return "Enemy{" +

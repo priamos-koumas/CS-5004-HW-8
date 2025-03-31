@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import gamedriver.elements.IElements;
 import gamedriver.game.Game;
@@ -14,21 +15,15 @@ import gamedriver.holder.RoomContents;
 import gamedriver.obstacle.IObstacle;
 
 /**
- * The room.Room class represents the location of the player's avatar. It is the central hub for any
+ * The Room class represents the location of the player's avatar. It is the central hub for any
  * interactable elements in the game including roomItems, roomFixtures, puzzles, and monsters.
  */
 public class Room {
   private Game game;
-
-  // The @SerializedName tag specifies if the variable name does not match the corresponding
-  // key name in a JSON file and gives the correct key name (for this "room_name" is the JSON key
-  // name)
   @SerializedName("room_name")
   private final String NAME;
-
   @SerializedName("room_number")
   private final int NUMBER;
-
   @SerializedName("description")
   private final String DESCRIPTION;
   private int[] directions;
@@ -39,7 +34,7 @@ public class Room {
   private final String PICTURE;
 
   /**
-   * room.Room's overloaded constructor takes in all the necessary elements that make up the room.Room
+   * Room's overloaded constructor takes in all the necessary elements that make up the Room
    * as specified below.
    *
    * @param roomName the name of the room
@@ -55,15 +50,18 @@ public class Room {
    * @param fixtures the roomFixtures in the room
    * @param picture image that depicts the room
    */
-  public Room(String roomName, int roomNumber, String description,
+  public Room(Game game, String roomName, int roomNumber, String description,
               int n, int s, int e, int w, String puzzle,
               String monster, String items, String fixtures,
               String picture) {
+    this.game = game;
     this.NAME = roomName;
     this.NUMBER = roomNumber;
     this.DESCRIPTION = description;
-    int [] directions = {n, s, e, w};
+    int[] directions = {n, s, e, w};
+    this.directions = directions;
     this.neighbors = new RoomNeighbors(this.game.getRooms());
+    setNeighbors(directions);
     setObstacle(monster, puzzle);
     this.roomItems = new Bag(13);
     setRoomItems(items);
@@ -72,30 +70,55 @@ public class Room {
     this.PICTURE = picture;
   }
 
+  /**
+   * Room constructor that takes in a Game and a RoomData object. The Game is set as the Room's
+   * game attribute so the room can access any necessary data from the Game class. The RoomData
+   * object is an intermediary class between Room and the JSON file containing the data
+   * specifications for a specific Room instance.
+   *
+   * @param game Room's game attribute
+   * @param data attribute data for Room
+   */
   public Room(Game game, RoomData data) {
     this.game = game;
     this.NAME = data.getRoomName();
     this.NUMBER = data.getRoomNumber();
+<<<<<<<< HEAD:src/project/room/Room.java
 
+========
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/room/Room.java
     this.DESCRIPTION = data.getDescription();
+    this.PICTURE = data.getPicture();
+
+    // Save room numbers of neighbor rooms in an array
     int[] directions = {data.getN(), data.getS(), data.getE(), data.getW()};
     this.directions = directions;
-    this.PICTURE = data.getPicture();
+
+    // Set room obstacle so there is no more than one monster XOR puzzle
     setObstacle(data.getMonster(), data.getPuzzle());
+
+    // Fill roomItems attribute with Item instances created with ItemData instances
     this.roomItems = new RoomContents();
     setRoomItems(data.getItems());
+
+    // Fill roomFixtures attribute with Fixtures instances created with FixtureData instances
     this.roomFixtures = new RoomContents();
     setRoomFixtures(data.getFixtures());
   }
 
-  public void createNeighbors(List<Room> rooms) {
+  /**
+   * Creates a RoomNeighbors class that tracks a room's neighboring rooms.
+   *
+   * @param rooms list of all room's in Game
+   */
+  public void createNeighbors(Map<Integer, Room> rooms) {
     this.neighbors = new RoomNeighbors(rooms);
     setNeighbors(this.directions);
   }
 
   /**
-   * Sets the Neighbors attribute from JSON class. The order of the numbers in the  directions
-   * array must be n, s, e, w.
+   * Sets the neighbor rooms based on the numbers from the JSON data. The order of the numbers in
+   * the directions array must be n, s, e, w.
    *
    * @param directions array of room numbers
    */
@@ -113,10 +136,18 @@ public class Room {
    * @param roomItems String of Item names
    */
   private void setRoomItems(String roomItems) {
+
+    // Check that roomItems exists
     if (roomItems != null) {
+
+      // Create a list of strings containing the names of items
       List<String> itemsList = Arrays.asList(roomItems.split("\\s*,\\s*"));
+
+      // Check each name and see if it matches any items in the Game's item list
       for (String item : itemsList) {
         for (IElements i : this.game.getItems()) {
+
+          // Add the Item to roomItems if the name matches
           if (i.getName().equals(item)) {
             this.roomItems.addItem(i);
           }
@@ -132,10 +163,18 @@ public class Room {
    * @param roomFixtures String of Fixture names
    */
   private void setRoomFixtures(String roomFixtures) {
+
+    // Check that roomFixtures exists
     if (roomFixtures != null) {
+
+      // Create a list of strings containing the names of fixtures
       List<String> fixturesList = Arrays.asList(roomFixtures.split("\\s*,\\s*"));
+
+      // Check each name and see if it matches any fixtures in the Game's fixture list
       for (String fixture : fixturesList) {
         for (IElements i : this.game.getFixtures()) {
+
+          // Add the fixture to roomFixtures if the name matches
           if (i.getName().equals(fixture)) {
             this.roomFixtures.addItem(i);
           }
@@ -152,12 +191,19 @@ public class Room {
    */
   private void setObstacle(String enemy, String puzzle) {
 
+    // Case where there is no obstacle
     if (enemy == null && puzzle == null) {
       this.obstacle = null;
+
+    // Case where there is a monster
     } else if (puzzle == null) {
       this.obstacle = game.getMonster(enemy);
+
+    // Case where there is a puzzle
     } else if (enemy == null) {
       this.obstacle = game.getPuzzle(puzzle);
+
+    // Throw an error if more than one is included
     } else {
       throw new IllegalArgumentException(
               "Only one enemy or one puzzle may be included, not both"
@@ -202,6 +248,7 @@ public class Room {
     return neighbors.getRoom(direction);
   }
 
+<<<<<<<< HEAD:src/project/room/Room.java
   public int getNeighborNumber(CardinalDirection direction) {
     return neighbors.getRoomNumber(direction);
   }
@@ -238,6 +285,128 @@ public class Room {
   @Override
   public String toString() {
 
+    /*
+    return "room.Room{" +
+            ", NAME='" + NAME + '\'' +
+            ", NUMBER=" + NUMBER +
+            ", DESCRIPTION='" + DESCRIPTION + '\'' +
+            ", neighbors=" + neighbors +
+            ", obstacle=" + obstacle +
+            ", roomItems=" + roomItems +
+            ", roomFixtures=" + roomFixtures +
+            ", PICTURE='" + PICTURE + '\'' +
+            '}' + "\n";
+
+     */
+
+    if (roomItems != null && !roomItems.getItem().isEmpty()) {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + roomItems.toString() + "\n";
+    } else {
+      return "You are in " + NAME + ".\n"
+              + DESCRIPTION + "\n"
+              + "There are no items in this room.";
+    }
+========
+  /**
+   * Returns the room number of the neighboring room at the given CardinalDirection.
+   *
+   * @param direction direction of neighboring room from current room
+   *
+   * @return neighboring room number
+   */
+  public int getNeighborNumber(CardinalDirection direction) {
+    return neighbors.getRoomNumber(direction);
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/room/Room.java
+  }
+
+  /**
+   * Returns room obstacle.
+   *
+   * @return room's obstacle
+   */
+  public IObstacle getObstacle() {
+    return obstacle;
+  }
+
+  /**
+   * Returns room picture.
+   *
+   * @return room's picture
+   */
+  public String getPicture() {
+    return PICTURE;
+  }
+
+  /**
+   * Returns the RoomFixtures attribute.
+   *
+   * @return roomFixtures
+   */
+  public IHolder<IElements> getRoomFixtures() {
+    return roomFixtures;
+  }
+
+  /**
+   * Returns the roomFixtures attribute in list form.
+   *
+   * return list of room fixtures
+   */
+  public List<IElements> getRoomFixturesList() {
+    return roomFixtures.getItem();
+  }
+
+  /**
+   * Returns the roomItems attribute.
+   *
+   * @return roomItems
+   */
+  public IHolder<IElements> getRoomItems() {
+    return this.roomItems;
+  }
+
+  /**
+   * Returns the roomItems attribute in list form
+   *
+   * @return list of items in room
+   */
+  public List<IElements> getRoomItemsList() {
+    return this.roomItems.getItem();
+  }
+
+  /**
+   * Takes in a "solution" for the room's obstacle (enemy or puzzle). Returns a String
+   * stating the outcome (success or failure) or if nothing happened (i.e., there is no obstacle
+   * present.
+   *
+   * @param solution solution to room obstacle
+   *
+   * @return String reporting success or failure
+   */
+  public String solveObstacle(String solution) {
+
+    // Check that there is an obstacle
+    if (obstacle != null) {
+
+      // Get success or failure response from the obstacle class
+      String response = this.obstacle.checkSolution(solution);
+
+      // "Unlock" any rooms that were blocked by the obstacle if the solution was successful
+      if (!this.obstacle.getActiveState()) {
+        this.neighbors.unlockRooms();
+      }
+
+      return response;
+    }
+
+    // If there is no obstacle, there is nothing to solve!
+    return "Nothing happened!";
+  }
+
+  @Override
+  public String toString() {
+
     if (roomItems != null && !roomItems.getItem().isEmpty()) {
       return "You are in " + NAME + ".\n"
               + DESCRIPTION + "\n"
@@ -247,13 +416,5 @@ public class Room {
               + DESCRIPTION + "\n"
               + "There are no items in this room.";
     }
-  }
-
-  public IHolder<IElements> getRoomItems() {
-    return this.roomItems;
-  }
-
-  public List<IElements> getRoomItemsList() {
-    return this.roomItems.getItem();
   }
 }

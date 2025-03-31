@@ -23,6 +23,11 @@ public class Puzzle extends AbstractObstacle {
             puzzleData.getPicture());
   }
 
+  /**
+   * This ensures the string data which is true or false is represented properly.
+   * @param s is a string.
+   * @return a boolean.
+   */
   private boolean booleanChecker(String s) {
     if (s == null) {
       return false;
@@ -51,6 +56,10 @@ public class Puzzle extends AbstractObstacle {
     return "";
   }
 
+  /**
+   * This is the to string.
+   * @return String.
+   */
   @Override
   public String toString() {
     return "Enemy{" +

@@ -6,5 +6,5 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-# Ignore compiled class files
 out/
+.idea/misc.xml

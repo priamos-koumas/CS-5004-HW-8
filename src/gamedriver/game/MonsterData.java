@@ -2,8 +2,19 @@ package gamedriver.game;
 
 import com.google.gson.annotations.SerializedName;
 
-import gamedriver.obstacle.Enemy;
+<<<<<<<< HEAD:src/project/game/MonsterData.java
+import com.google.gson.annotations.SerializedName;
 
+import project.obstacle.Enemy;
+========
+import gamedriver.obstacle.Enemy;
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/MonsterData.java
+
+/**
+ * MonsterData is an intermediary class between a JSON file and the Enemy class. Stores
+ * all needed data to create an Enemy from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
 public class MonsterData {
 
   @SerializedName("name")
@@ -45,6 +56,12 @@ public class MonsterData {
   @SerializedName("picture")
   private String picture;
 
+  /**
+   * MonsterData constructor takes an Enemy and converts its data back into MonsterData for
+   * storage in a JSON.
+   *
+   * @param monster Enemy object being saved
+   */
   public MonsterData(Enemy monster) {
     this.name = monster.getName();
     this.active = String.valueOf(monster.getActiveState());

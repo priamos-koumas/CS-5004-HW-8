@@ -2,8 +2,18 @@ package gamedriver.game;
 
 import com.google.gson.annotations.SerializedName;
 
+<<<<<<<< HEAD:src/project/game/FixtureData.java
+import project.elements.Fixtures;
+
+========
 import gamedriver.elements.Fixtures;
 
+/**
+ * FixtureData is an intermediary class between a JSON file and the Fixtures class. Stores
+ * all needed data to create a Fixtures from a JSON file using a Gson object. Gson objects
+ * use the default constructor to create Data objects.
+ */
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/FixtureData.java
 public class FixtureData {
 
   @SerializedName("name")
@@ -22,6 +32,15 @@ public class FixtureData {
   private String description;
   private String picture;
 
+<<<<<<<< HEAD:src/project/game/FixtureData.java
+========
+  /**
+   * FixtureData constructor takes a Fixtures and converts its data back into FixtureData for
+   * storage in a JSON.
+   *
+   * @param fixture Fixtures object being saved
+   */
+>>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/FixtureData.java
   public FixtureData(Fixtures fixture) {
     this.name = fixture.getName();
     this.weight = String.valueOf(fixture.getWeight());

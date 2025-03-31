@@ -1,11 +1,13 @@
 package obstacle;
-import project.obstacle.IObstacle;
-import project.obstacle.Enemy;
-import project.obstacle.Puzzle;
+import gamedriver.obstacle.IObstacle;
+import gamedriver.obstacle.Enemy;
+import gamedriver.obstacle.Puzzle;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 /**
@@ -15,8 +17,10 @@ public class IObstacleTest {
 
   private IObstacle obstacle1;
   private IObstacle obstacle2;
-  private Enemy enemy1;
-  private Puzzle puzzle1;
+  private Enemy obstacle3;
+  private Puzzle obstacle4;
+  private IObstacle nullObstacle1;
+  private IObstacle nullObstacle2;
 
   /**
    * Setup for testing.
@@ -74,4 +78,48 @@ public class IObstacleTest {
             obstacle2.getEffects());
     Assertions.assertEquals("6:Kitchen", obstacle2.getTarget());
   }
+  // Additional tests
+  // null or blank fields
+  // check solution and changes in field values based on a correct solution.
+  //
+
+  @Test
+  public void testCheckSolution() {
+
+    Assertions.assertTrue(obstacle1.getActiveState());
+    Assertions.assertEquals("Carrot", obstacle1.getSolution());
+    Assertions.assertEquals("You did not clear the monster.", obstacle1.checkSolution("Banana"));
+    Assertions.assertEquals("You have cleared the monster for 300 points!", obstacle1.checkSolution("Carrot"));
+    Assertions.assertFalse(obstacle1.getActiveState());
+
+    Assertions.assertTrue(obstacle2.getActiveState());
+    Assertions.assertEquals("Lamp", obstacle2.getSolution());
+    Assertions.assertEquals("That did not solve the puzzle.", obstacle2.checkSolution("Flame Thrower"));
+    Assertions.assertEquals("You have solved the puzzle for 150 points!", obstacle2.checkSolution("Lamp"));
+    Assertions.assertFalse(obstacle2.getActiveState());
+
+  }
+
+
+  @Test
+  public void testManageNulls() {
+      this.obstacle3 = new Enemy("Rabbit", "true",  "true", "true", "Carrot", null,
+              "Awww. A furry rabbit twitching its nose and eating a carrot. Makes you want to pet him",
+              "A monster Rabbit moves towards you! He's blocking the way north. \nI think you might be dinner!",
+              null, "7:Dining Room","true", "licks you with a giant tongue!", "monster-rabbit.png");
+
+      Assertions.assertEquals(0, obstacle3.getValue());
+      Assertions.assertEquals(0, obstacle3.getDamage());
+
+      this.obstacle4 = new Puzzle("DARKNESS", "true",  "true", "true", "Lamp", "150",
+              "Darkness! You cannot see!", "It's dark! You cannot see anything! Maybe we should go back?",
+              "6:Kitchen", "darkness.png");
+
+      assertThrows(IllegalArgumentException.class, () -> new Enemy(null, null,  null, null, null, null,
+              null, null,
+              null, null,null, null, null));
+
+  }
+
+
 }
