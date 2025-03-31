@@ -1,6 +1,8 @@
 package gamedriver;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
@@ -15,9 +17,14 @@ public class Main {
 
     StringBuffer sb = new StringBuffer();
 
-    BufferedReader stringReader = new BufferedReader(new StringReader(s));
-    GameEngineApp gameEngineApp = new GameEngineApp("align_quest_game_elements.json", stringReader, sb);
-    gameEngineApp.start();
+    try (FileWriter fileWriter = new FileWriter("Test.json")) {
+      BufferedReader stringReader = new BufferedReader(new StringReader(s));
+      GameEngineApp gameEngineApp = new GameEngineApp("json_files/align_quest_game_elements.json", stringReader, fileWriter);
+      gameEngineApp.start();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
 
     System.out.println(sb.toString());
 

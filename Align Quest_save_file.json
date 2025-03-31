@@ -2,10 +2,10 @@
   "name": "Align Quest",
   "version": "1.0.9",
   "avatar": {
-    "health": 100,
-    "name": "",
-    "bag": "",
-    "room": 1
+    "health": 90,
+    "name": "Ethan",
+    "bag": "Hair Clippers, Thumb Drive, Lamp",
+    "room": 3
   },
   "rooms": [
     {
@@ -16,7 +16,7 @@
       "S": 0,
       "E": 0,
       "W": 0,
-      "items": "Hair Clippers",
+      "items": "",
       "fixtures": "Billboard",
       "picture": "courtyard.png"
     },
@@ -28,7 +28,7 @@
       "S": 1,
       "E": 0,
       "W": 0,
-      "items": "Thumb Drive, Modulo 2",
+      "items": "Modulo 2",
       "fixtures": "Chandelier",
       "picture": "entrance.png"
     },
@@ -41,7 +41,7 @@
       "E": 4,
       "W": 0,
       "monster": "Teddy Bear",
-      "items": "Lamp",
+      "items": "",
       "fixtures": "",
       "picture": "foyer.png"
     },
@@ -177,7 +177,7 @@
       "name": "Lamp",
       "weight": "3",
       "max_uses": "100",
-      "uses_remaining": "20",
+      "uses_remaining": "19",
       "value": "100",
       "when_used": "You light the lamp with the flint.",
       "description": "An old oil lamp with flint to spark."
@@ -204,7 +204,7 @@
       "name": "Hair Clippers",
       "weight": "2",
       "max_uses": "10",
-      "uses_remaining": "4",
+      "uses_remaining": "3",
       "value": "5",
       "when_used": "You activate the clippers. It makes a loud buzzing sound as you use them!",
       "description": "Cordless Wahl hair clippers for pets or humans. The battery low light is blinking."
@@ -334,9 +334,9 @@
     },
     {
       "name": "Teddy Bear",
-      "active": "true",
-      "affects_target": "true",
-      "affects_player": "true",
+      "active": "false",
+      "affects_target": "false",
+      "affects_player": "false",
       "solution": "Hair Clippers",
       "value": "200",
       "description": "A peaceful, cute-looking teddy bear with its hair clipped sits on the floor",
