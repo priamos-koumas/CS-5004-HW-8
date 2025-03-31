@@ -2,10 +2,6 @@ package gamedriver.game;
 
 import com.google.gson.annotations.SerializedName;
 
-<<<<<<<< HEAD:src/project/game/PuzzleData.java
-import project.obstacle.Puzzle;
-
-========
 import gamedriver.obstacle.Puzzle;
 
 /**
@@ -13,7 +9,6 @@ import gamedriver.obstacle.Puzzle;
  * all needed data to create a Puzzle from a JSON file using a Gson object. Gson objects
  * use the default constructor to create Data objects.
  */
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/PuzzleData.java
 public class PuzzleData {
 
   @SerializedName("name")
@@ -46,15 +41,12 @@ public class PuzzleData {
   @SerializedName("picture")
   private String picture;
 
-<<<<<<<< HEAD:src/project/game/PuzzleData.java
-========
   /**
    * PuzzleData constructor takes a Puzzle and converts its data back into PuzzleData for
    * storage in a JSON.
    *
    * @param puzzle Puzzle object being saved
    */
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/PuzzleData.java
   public PuzzleData(Puzzle puzzle) {
     this.name = puzzle.getName();
     this.active = String.valueOf(puzzle.getActiveState());

@@ -8,7 +8,6 @@ import java.io.FileReader;
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
-import gamedriver.obstacle.IObstacle;
 
 public class MainTest2 {
 
@@ -27,7 +26,7 @@ public class MainTest2 {
     JsonData data = gson.fromJson(reader, JsonData.class);
     Game game = new Game(data);
 
-    GameCommandReaderNew userReader = new GameCommandReaderNew();
+    GameCommandReader userReader = new GameCommandReader();
     AvatarController control = new AvatarController(game, userReader);
     control.go();
 

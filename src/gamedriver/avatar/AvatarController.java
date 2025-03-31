@@ -3,17 +3,14 @@ package gamedriver.avatar;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
-import gamedriver.GameCommandReaderNew;
+import gamedriver.GameCommandReader;
 import gamedriver.game.Game;
-import gamedriver.game.JsonData;
 import gamedriver.holder.Bag;
 import gamedriver.obstacle.IObstacle;
 import gamedriver.room.CardinalDirection;
 import gamedriver.elements.IElements;
 
-import static java.awt.SystemColor.control;
 import static java.lang.System.exit;
 
 /**
@@ -21,7 +18,7 @@ import static java.lang.System.exit;
  */
 public class AvatarController {
   private Game game;
-  private GameCommandReaderNew userReader;
+  private GameCommandReader userReader;
   private Avatar player;
   private boolean save = false;
 
@@ -30,7 +27,7 @@ public class AvatarController {
    * @param game
    * @param userReader
    */
-  public AvatarController(Game game, GameCommandReaderNew userReader) {
+  public AvatarController(Game game, GameCommandReader userReader) {
     this.game = game;
     this.userReader = userReader;
     this.player = this.game.getAvatar();
@@ -50,15 +47,12 @@ public class AvatarController {
    */
   public void go() {
 
-    if (userReader.isBufferedName()) {
-      userReader.getDataFromUser();
+    if (this.game.getAvatar().getName().isEmpty()) {
+      userReader.sendOut("Please enter your name: ");
+      this.userReader.getDataFromUser();
+      game.getAvatar().setName(this.userReader.getLine());
     }
-    if (this.userReader.getName() == "") {
-      System.out.println("Please enter your name: ");
-      game.getAvatar().setName();
-    }
-    game.getAvatar().setName(this.userReader.getName());
-    System.out.println("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
+    userReader.sendOut("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
             "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
             "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
             "(A)nswer a question or provide a text solution. \n" +
@@ -66,20 +60,20 @@ public class AvatarController {
             "To save the game, enter sa(V)e to quit and exit.\n" +
             "To restore the game, enter (R)estore.\n");
     while(userReader.getDataFromUser()) {
-      this.Control(userReader.getOperator(), userReader.getOperand1());
+      this.Control(userReader.getCommand(), userReader.getDetails());
 
       if (game.getAvatar().getLoc().getObstacle() != null && game.getAvatar().getLoc().getObstacle().getActiveState()) {
         IObstacle obstacle = game.getAvatar().getLoc().getObstacle();
-        System.out.println(obstacle.getEffects());
+        userReader.sendOut(obstacle.getEffects());
         game.getAvatar().setHealth(game.getAvatar().getHealth() + obstacle.getDamage());
-        System.out.println(game.getAvatar().toString());
+        userReader.sendOut(game.getAvatar().toString());
       }
       if (game.getAvatar().getHealth() == 0) {
-        System.out.println("Game Over \n" + "Your score is: ");
-        System.out.println(game.getAvatar().getScore());
+        userReader.sendOut("Game Over \n" + "Your score is: ");
+        userReader.sendOut(String.valueOf(game.getAvatar().getScore()));
         exit(0);
       }
-      System.out.println("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
+      userReader.sendOut("To move, enter: (N)orth, (S)outh, (E)ast or (W)est.\n" +
               "Other actions: (I)nventory, (L)ook around the location, (U)se an item\n" +
               "(T)ake an item, (D)rop an item, or e(X)amine something. \n" +
               "(A)nswer a question or provide a text solution. \n" +
@@ -104,9 +98,9 @@ public class AvatarController {
         if (dir.getText().equalsIgnoreCase(instruct)) {
 
           String result = this.player.moveRoom(dir);
-          System.out.println(result);
-          System.out.println("You are now in: " + player.getLoc().getRoomName());
-          System.out.println(player.getLoc().getDescription());
+          userReader.sendOut(result);
+          userReader.sendOut("You are now in: " + player.getLoc().getRoomName());
+          userReader.sendOut(player.getLoc().getDescription());
           return result;
         }
       }
@@ -119,22 +113,22 @@ public class AvatarController {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.addToBag(items);
           this.player.getLoc().getRoomItems().removeItem(items.getName());
-          System.out.println("Successfully pick up");
+          userReader.sendOut("Successfully pick up");
           return "Successfully pick up";
         }
       }
-      System.out.println("There is nothing here");
+      userReader.sendOut("There is nothing here");
       return "There is nothing here";
     }
 
     // Examine item
     else if (instruct.equalsIgnoreCase("I")) {
-      System.out.println(player.getBag().toString());
+      userReader.sendOut(player.getBag().toString());
       return player.getBag().toString();
     }
     //Look around.
     else if (instruct.equalsIgnoreCase("L")) {
-      System.out.println(player.getLoc().toString());
+      userReader.sendOut(player.getLoc().toString());
       return player.getLoc().toString();
     }
 
@@ -150,17 +144,17 @@ public class AvatarController {
                   && !(obstacle.getActiveState())) {
             this.player.setScore(obstacle.getValue() + this.player.getScore());
           }
-          System.out.println(outcome);
+          userReader.sendOut(outcome);
           item.decrementUsesRemaining();
           if (item.usesRemaining() == 0) {
             this.player.getBag().removeItem(item.getName());
-            System.out.println("Maximum usage limit reached. " + item.getName() + " is destroyed");
+            userReader.sendOut("Maximum usage limit reached. " + item.getName() + " is destroyed");
             return "Maximum usage limit reached. " + item.getName() + " is destroyed";
           }
           return outcome;
         }
       }
-      System.out.println("There is no such thing in your bag");
+      userReader.sendOut("There is no such thing in your bag");
       return "There is no such thing in your bag";
     }
 
@@ -171,11 +165,11 @@ public class AvatarController {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
           this.player.getBag().removeItem(items.getName());
           this.player.getLoc().getRoomItems().addItem(items);
-          System.out.println("Item Dropped");
+          userReader.sendOut("Item Dropped");
           return "Item Dropped";
         }
       }
-      System.out.println("There is no such thing in your bag");
+      userReader.sendOut("There is no such thing in your bag");
       return "There is no such thing in your bag";
     }
 
@@ -185,13 +179,13 @@ public class AvatarController {
       Bag bag1 = player.getBag();
       for (IElements items : bag1.getItem()) {
         if (items.getName().equalsIgnoreCase(furtherInstruct)) {
-          System.out.println(items.getDescription());
+          userReader.sendOut(items.getDescription());
           return items.getDescription();
         }
       }
 
       if(furtherInstruct.equalsIgnoreCase("self")) {
-        System.out.println(player.toString());
+        userReader.sendOut(player.toString());
         return player.toString();
       }
     }
@@ -200,7 +194,7 @@ public class AvatarController {
     else if (instruct.equalsIgnoreCase("A")) {
       String answer = (instruction.length > 0) ? instruction[1] : "";
       String outcome = this.player.getLoc().solveObstacle(answer);
-      System.out.println(outcome);
+      userReader.sendOut(outcome);
       return outcome;
     }
 
@@ -209,30 +203,30 @@ public class AvatarController {
 
       if ( !this.save ) {
         /*
-        System.out.println("Game haven't save yet \n");
-        System.out.println("Do you really want to Quit (Yes/No)?");
+        userReader.sendOut("Game haven't save yet \n");
+        userReader.sendOut("Do you really want to Quit (Yes/No)?");
         Scanner scanner = new Scanner(System.in);
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Yes")) {
-          System.out.println("Game Quit \n");
-          System.out.println("Your current score is: ");
-          System.out.println(player.getScore());
+          userReader.sendOut("Game Quit \n");
+          userReader.sendOut("Your current score is: ");
+          userReader.sendOut(player.getScore());
           exit(0);
         }
         else if (confirm.equalsIgnoreCase("No")) {
-          System.out.println("Game Resume");
+          userReader.sendOut("Game Resume");
           return "Game Resume";
         }
         else {
-          System.out.println("I guess you're gonna keep playing");
+          userReader.sendOut("I guess you're gonna keep playing");
           return "I guess you're gonna keep playing";
         }
         */
 
       }
-      System.out.println("Game Quit \n");
-      System.out.println("Your current score is: ");
-      System.out.println(player.getScore());
+      userReader.sendOut("Game Quit \n");
+      userReader.sendOut("Your current score is: ");
+      userReader.sendOut(String.valueOf(player.getScore()));
       exit(0);
 
     }
@@ -240,7 +234,7 @@ public class AvatarController {
     //Saving.
     else if (instruct.equalsIgnoreCase("V")) {
 
-      System.out.println("Game saving");
+      userReader.sendOut("Game saving");
       this.game.save();
 
       Path path = Paths.get(this.game.getName() + "_save_file.json");
@@ -249,7 +243,7 @@ public class AvatarController {
         this.save = true;
         return "Game saving";
       } else {
-        System.out.println("Saving Failed");
+        userReader.sendOut("Saving Failed");
         return "Saving Failed";
       }
     }
@@ -257,7 +251,7 @@ public class AvatarController {
     //Restore
     else if (instruct.equalsIgnoreCase("R")) {
 
-      System.out.println("Game restoring");
+      userReader.sendOut("Game restoring");
       boolean loaded = this.game.restore();
       if (loaded == false) {
         return "Game file not found.";
@@ -265,7 +259,7 @@ public class AvatarController {
       this.player = this.game.getAvatar();
       return "Game restoring";
     }
-    System.out.println("Empty");
+    userReader.sendOut("Empty");
     return "";
 
   }

@@ -83,10 +83,6 @@ public class Room {
     this.game = game;
     this.NAME = data.getRoomName();
     this.NUMBER = data.getRoomNumber();
-<<<<<<<< HEAD:src/project/room/Room.java
-
-========
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/room/Room.java
     this.DESCRIPTION = data.getDescription();
     this.PICTURE = data.getPicture();
 
@@ -248,67 +244,6 @@ public class Room {
     return neighbors.getRoom(direction);
   }
 
-<<<<<<<< HEAD:src/project/room/Room.java
-  public int getNeighborNumber(CardinalDirection direction) {
-    return neighbors.getRoomNumber(direction);
-  }
-
-  public IObstacle getObstacle() {
-    return obstacle;
-  }
-
-  public String getPicture() {
-    return PICTURE;
-  }
-
-  public IHolder<IElements> getRoomFixtures() {
-    return roomFixtures;
-  }
-
-  public List<IElements> getRoomFixturesList() {
-    return roomFixtures.getItem();
-  }
-
-  public String solveObstacle(String solution) {
-    if (obstacle != null) {
-      String response = this.obstacle.checkSolution(solution);
-      if (!this.obstacle.getActiveState()) {
-        this.neighbors.unlockRooms();
-      }
-
-      return response;
-    }
-
-    return "Nothing happened!";
-  }
-
-  @Override
-  public String toString() {
-
-    /*
-    return "room.Room{" +
-            ", NAME='" + NAME + '\'' +
-            ", NUMBER=" + NUMBER +
-            ", DESCRIPTION='" + DESCRIPTION + '\'' +
-            ", neighbors=" + neighbors +
-            ", obstacle=" + obstacle +
-            ", roomItems=" + roomItems +
-            ", roomFixtures=" + roomFixtures +
-            ", PICTURE='" + PICTURE + '\'' +
-            '}' + "\n";
-
-     */
-
-    if (roomItems != null && !roomItems.getItem().isEmpty()) {
-      return "You are in " + NAME + ".\n"
-              + DESCRIPTION + "\n"
-              + roomItems.toString() + "\n";
-    } else {
-      return "You are in " + NAME + ".\n"
-              + DESCRIPTION + "\n"
-              + "There are no items in this room.";
-    }
-========
   /**
    * Returns the room number of the neighboring room at the given CardinalDirection.
    *
@@ -318,7 +253,6 @@ public class Room {
    */
   public int getNeighborNumber(CardinalDirection direction) {
     return neighbors.getRoomNumber(direction);
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/room/Room.java
   }
 
   /**

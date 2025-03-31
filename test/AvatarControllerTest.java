@@ -6,12 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.*;
 
-import gamedriver.GameCommandReaderNew;
-import gamedriver.avatar.Avatar;
+import gamedriver.GameCommandReader;
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.Game;
 import gamedriver.game.JsonData;
-import gamedriver.room.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,7 +30,7 @@ public class AvatarControllerTest {
   JsonData data = gson.fromJson(reader, JsonData.class);
   Game game = new Game(data);
 
-  GameCommandReaderNew userReader = new GameCommandReaderNew();
+  GameCommandReader userReader = new GameCommandReader();
 
   /**
    * Test Avatar Constructor and Controller moving method.

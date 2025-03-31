@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.StringReader;
 
-import gamedriver.GameCommandReaderNew;
+import gamedriver.GameCommandReader;
 import gamedriver.avatar.Avatar;
 import gamedriver.avatar.AvatarController;
 import gamedriver.game.AvatarData;
@@ -55,10 +55,10 @@ public class AvatarDataTest {
 
 	  StringBuffer sb = new StringBuffer(); // sink / output
 
-	  GameCommandReaderNew gameReader =
-			  new GameCommandReaderNew(stringReader, sb);
+	  GameCommandReader gameReader =
+			  new GameCommandReader(stringReader, sb);
 
-	  GameCommandReaderNew userReader = new GameCommandReaderNew(stringReader, sb);
+	  GameCommandReader userReader = new GameCommandReader(stringReader, sb);
 	  AvatarController control = new AvatarController(game, userReader);
 	  RoomData room1 = data.getRooms().get(0);
 	  Avatar avatar = new Avatar(100, "Ronald", new Room(game, room1));

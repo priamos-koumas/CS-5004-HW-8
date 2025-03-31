@@ -2,13 +2,7 @@ package gamedriver.game;
 
 import com.google.gson.annotations.SerializedName;
 
-<<<<<<<< HEAD:src/project/game/MonsterData.java
-import com.google.gson.annotations.SerializedName;
-
-import project.obstacle.Enemy;
-========
 import gamedriver.obstacle.Enemy;
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/MonsterData.java
 
 /**
  * MonsterData is an intermediary class between a JSON file and the Enemy class. Stores

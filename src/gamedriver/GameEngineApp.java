@@ -42,7 +42,7 @@ public class GameEngineApp {
 	  //System.out.println("Please enter your name: ");
 	  //game.getAvatar().setName();
 
-	  GameCommandReaderNew userReader = new GameCommandReaderNew(this.source, this.output);
+	  GameCommandReader userReader = new GameCommandReader(this.source, this.output);
 	  AvatarController control = new AvatarController(game, userReader);
 	  control.go();
 	}

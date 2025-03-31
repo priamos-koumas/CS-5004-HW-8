@@ -17,7 +17,7 @@ public class Main {
 
     StringBuffer sb = new StringBuffer();
 
-    try (FileWriter fileWriter = new FileWriter("Test.json")) {
+    try (FileWriter fileWriter = new FileWriter("Test.txt")) {
       BufferedReader stringReader = new BufferedReader(new StringReader(s));
       GameEngineApp gameEngineApp = new GameEngineApp("json_files/align_quest_game_elements.json", stringReader, fileWriter);
       gameEngineApp.start();

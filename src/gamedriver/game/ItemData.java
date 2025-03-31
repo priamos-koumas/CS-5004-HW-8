@@ -2,10 +2,6 @@ package gamedriver.game;
 
 import com.google.gson.annotations.SerializedName;
 
-<<<<<<<< HEAD:src/project/game/ItemData.java
-import project.elements.Item;
-
-========
 import gamedriver.elements.Item;
 
 /**
@@ -13,7 +9,6 @@ import gamedriver.elements.Item;
  * all needed data to create an Item from a JSON file using a Gson object. Gson objects
  * use the default constructor to create Data objects.
  */
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/ItemData.java
 public class ItemData {
 
   @SerializedName("name")
@@ -40,15 +35,12 @@ public class ItemData {
   @SerializedName("picture")
   private String picture;
 
-<<<<<<<< HEAD:src/project/game/ItemData.java
-========
   /**
    * ItemData constructor takes an Item and converts its data back into ItemData for
    * storage in a JSON.
    *
    * @param item Item object being saved
    */
->>>>>>>> f12dfc66f43f00b676ecaf48a260b29318c27306:src/gamedriver/game/ItemData.java
 public ItemData(Item item) {
   this.name = item.getName();
   this.weight = String.valueOf(item.getWeight());
